@@ -65,18 +65,20 @@ As a researcher, I need to measure process count, RAM consumption at startup, an
 
 ### User Story 4 - Additional Performance Criteria (Priority: P2)
 
-As a researcher, I need to measure at least one additional performance criterion (e.g., system latency, DPC latency, context menu delays, disk I/O) to earn bonus points and provide deeper analysis.
+As a researcher, I need to measure system performance using sysbench (from GitHub) across all 4 configurations to earn bonus points and provide comprehensive CPU/memory/disk I/O benchmarking.
 
-**Why this priority**: Required for bonus points (up to 20) and demonstrates comprehensive understanding of IDS performance impact.
+**Why this priority**: Required for bonus points (up to 20) and sysbench provides standardized, reproducible benchmarks for CPU, memory, and disk I/O performance that clearly demonstrate IDS impact.
 
-**Independent Test**: Can be fully tested by selecting one additional metric (e.g., DPC latency with DPC Latency Checker), measuring it across all 4 configurations, and documenting why this metric is relevant.
+**Independent Test**: Can be fully tested by installing sysbench from GitHub, running CPU/memory/disk benchmarks across all 4 configurations, and documenting the rationale for why system benchmarking reveals IDS overhead.
 
 **Acceptance Scenarios**:
 
-1. **Given** an additional performance criterion is selected, **When** I document the rationale, **Then** the explanation clearly describes why this metric matters for IDS impact
-2. **Given** the additional criterion is chosen, **When** I measure it across all 4 configurations, **Then** comparable data is collected and logged
-3. **Given** the additional measurements are complete, **When** included in the case study, **Then** the methodology, results, and analysis are clearly documented
-4. **Given** multiple additional criteria are considered, **When** selecting the best one, **Then** I choose a metric that reveals meaningful differences between IDS configurations
+1. **Given** sysbench is installed from GitHub, **When** I document the rationale, **Then** the explanation clearly describes why system benchmarking (CPU/memory/disk I/O) matters for IDS impact analysis
+2. **Given** sysbench is configured, **When** I run CPU benchmarks across all 4 configurations, **Then** comparable data (operations per second, execution time) is collected and logged
+3. **Given** sysbench is configured, **When** I run memory benchmarks across all 4 configurations, **Then** comparable data (throughput, latency) is collected and logged
+4. **Given** sysbench is configured, **When** I run disk I/O benchmarks across all 4 configurations, **Then** comparable data (IOPS, throughput) is collected and logged
+5. **Given** all sysbench measurements are complete, **When** included in the case study, **Then** the methodology, results, and analysis are clearly documented with proper attribution to sysbench project
+6. **Given** sysbench results, **When** compared across configurations, **Then** the data reveals meaningful differences showing IDS overhead on system resources
 
 ---
 
@@ -163,9 +165,10 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 #### Additional Measurement Criteria (Bonus - Criterion f)
 
-- **FR-009**: System SHOULD measure at least one additional performance criterion beyond criteria a-e for bonus points (maximum 20 points)
-- **FR-010**: Additional criterion MUST be explained and detailed with clear rationale for relevance
-- **FR-011**: Additional criterion SHOULD build on concepts discussed in laboratory sessions (e.g., system latency, DPC latency, disk I/O, context menu delays)
+- **FR-009**: System MUST measure additional performance criterion (f) using sysbench from GitHub for bonus points (maximum 20 points)
+- **FR-010**: Sysbench benchmarks MUST include at least one of: CPU performance, memory throughput/latency, or disk I/O (IOPS/throughput)
+- **FR-011**: Additional criterion MUST be explained with clear rationale: sysbench provides standardized, reproducible benchmarks that reveal IDS overhead on system resources
+- **FR-012**: Sysbench MUST be properly attributed in references section with GitHub repository link
 
 #### VM Configuration & Snapshot Management
 
@@ -236,8 +239,10 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 #### Additional Criterion (Bonus Points)
 
-- **SC-011**: At least one additional performance criterion beyond a-e is selected, measured, and documented with clear rationale
-- **SC-012**: Additional criterion reveals meaningful differences between configurations and is properly analyzed in the case study
+- **SC-011**: Sysbench is successfully installed from GitHub and configured for Windows testing
+- **SC-012**: At least one sysbench benchmark type (CPU, memory, or disk I/O) is measured across all 4 configurations with documented results
+- **SC-013**: Sysbench results reveal meaningful performance differences between configurations and demonstrate IDS impact on system resources
+- **SC-014**: Sysbench methodology, rationale, and results are properly documented in the case study with appropriate attribution
 
 #### Data Analysis & Visualization
 
@@ -298,6 +303,7 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 - **Test Data**: 1GB folder for local copy, 100MB file on remote server
 - **Network Protocol**: Must specify which protocol used (FTP, SFTP, SMB, etc.) - [NEEDS CLARIFICATION]
 - **Measurement Tools**: Must document all tools used (BootRacer or equivalent, Task Manager/perfmon, etc.)
+- **Bonus Criterion Tool**: sysbench from GitHub (https://github.com/akopytov/sysbench) for CPU/memory/disk I/O benchmarking
 - **LaTeX Template**: LNCS template mandatory (https://github.com/latextemplates/LNCS/archive/main.zip)
 - **Plagiarism Limit**: Maximum 7% similarity on TurnItIn
 - **Document Length**: Minimum 7 pages
@@ -308,7 +314,7 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 1. ~~Which antivirus product will be selected?~~ **RESOLVED: Symantec**
 2. ~~Which firewall product will be selected?~~ **RESOLVED: OPNsense**
 3. **Which network protocol for folder copying?** (FTP, SFTP, SMB, or other? Must be specified in paper)
-4. **What will be the additional criterion (f)?** (For bonus points - e.g., DPC latency, disk I/O, context menu delay, or other?)
+4. ~~What will be the additional criterion (f)?~~ **RESOLVED: System benchmarking using sysbench from GitHub**
 5. **What are the exact VM specifications?** (RAM, CPU cores, disk space - should be documented in methodology)
 6. **What remote server will be used for download testing?** (Public file host, university server, or other?)
 7. **How many iterations per test?** (3-5 iterations recommended for statistical consistency)
@@ -318,3 +324,4 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 - **Testing Criteria Reference**: https://pastebin.com/fnxDqJ7V (illustrative purposes only)
 - **LNCS LaTeX Template**: https://github.com/latextemplates/LNCS/archive/main.zip (mandatory)
 - **Paper Structure Examples**: https://uvt-ro.academia.edu/CiprianPungila (follow same layout as scientific papers)
+- **Sysbench Tool**: https://github.com/akopytov/sysbench (for bonus criterion f - system benchmarking)
