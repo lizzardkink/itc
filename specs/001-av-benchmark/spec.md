@@ -1,154 +1,320 @@
-# Feature Specification: Antivirus Performance Benchmarking System
+# Feature Specification: Intrusion Detection Systems (IDS) Impact Analysis
 
 **Feature Branch**: `001-av-benchmark`  
 **Created**: 2026-01-16  
+**Updated**: 2026-01-16  
 **Status**: Draft  
-**Input**: User description: "Antivirus performance benchmarking system"
+**Input**: User description: "Antivirus performance benchmarking system"  
+**Academic Project**: Analysis of the impact of intrusion detection systems on computational resources  
+**Deadline**: 23 Jan 2026, 21:00  
+**Deliverable**: LaTeX paper (7+ pages) + PDF, using LNCS template
 
 ## User Scenarios & Testing *(mandatory)*
 
-### User Story 1 - Baseline System Performance Measurement (Priority: P1)
+### User Story 1 - Four-Variant System Configuration and Baseline (Priority: P1)
 
-As a performance analyst, I need to establish a clean baseline of Windows 11 VM performance before installing any antivirus software, so I can accurately measure the performance impact of the AV.
+As a researcher, I need to establish and measure 4 distinct system configurations (no IDS, antivirus only, firewall only, antivirus+firewall), so I can perform comparative analysis of IDS impact on computational resources.
 
-**Why this priority**: This is the foundation for all comparative analysis. Without an accurate baseline, we cannot quantify AV performance impact.
+**Why this priority**: This is the foundation of the academic project - without all 4 variants properly configured and measured, the comparative study cannot be completed.
 
-**Independent Test**: Can be fully tested by running all benchmark scripts on a clean Windows 11 VM snapshot and collecting consistent measurements (boot time, memory, CPU, disk usage) that show less than 5% variance across 3-5 runs.
+**Independent Test**: Can be fully tested by creating 4 separate VM snapshots representing each configuration, verifying each can boot successfully, and confirming the correct software is installed and active in each variant.
 
 **Acceptance Scenarios**:
 
-1. **Given** a clean Windows 11 VM snapshot, **When** I run the baseline benchmark suite 3 times, **Then** boot time measurements vary by less than 5%
-2. **Given** the baseline benchmark is complete, **When** I review collected data, **Then** I have CSV files with boot time, application launch times, memory usage, CPU usage, and disk space metrics
-3. **Given** the baseline tests are running, **When** I launch 75 application instances (25 each of calc, notepad, mspaint), **Then** the script completes successfully and logs timing to measurements.csv
+1. **Given** a clean Windows 11 VM, **When** I create the baseline snapshot with no IDS, **Then** no antivirus or firewall software is running
+2. **Given** the baseline snapshot, **When** I install only the selected antivirus, **Then** a new snapshot "AV-only" is created with AV confirmed active
+3. **Given** the baseline snapshot, **When** I install only the selected firewall, **Then** a new snapshot "Firewall-only" is created with firewall confirmed active
+4. **Given** the baseline snapshot, **When** I install both antivirus and firewall, **Then** a new snapshot "AV+Firewall" is created with both confirmed active
+5. **Given** all 4 snapshots exist, **When** I restore each snapshot, **Then** the system boots successfully with the correct IDS configuration
 
 ---
 
-### User Story 2 - Antivirus Performance Impact Measurement (Priority: P1)
+### User Story 2 - Network File Transfer Performance Measurement (Priority: P1)
 
-As a performance analyst, I need to measure system performance with antivirus software installed using identical tests to the baseline, so I can quantify the exact performance overhead introduced by the AV.
+As a researcher, I need to measure recursive folder copying speed (1GB+ via local network) and remote file download speed (100MB+) across all 4 configurations, so I can quantify IDS impact on network operations.
 
-**Why this priority**: This is the core deliverable - measuring AV impact. Without this, the project has no value.
+**Why this priority**: Criteria (a) and (b) from the project requirements are mandatory measurements for the case study.
 
-**Independent Test**: Can be fully tested by installing an AV on a clean VM, running the same benchmark suite, and collecting measurements that can be compared directly with baseline data.
+**Independent Test**: Can be fully tested by setting up a network file share, performing FTP/SFTP transfers of 1GB folder and 100MB file, and collecting transfer time measurements for each configuration.
 
 **Acceptance Scenarios**:
 
-1. **Given** an AV-installed VM snapshot, **When** I run the benchmark suite, **Then** all tests execute successfully with the same methodology as baseline
-2. **Given** AV benchmarks are complete, **When** I compare with baseline, **Then** I can calculate percentage overhead for each metric (boot time, app launch, memory, CPU, disk)
-3. **Given** the AV is running, **When** I trigger a full system scan, **Then** scan duration and resource consumption (CPU, memory, disk I/O) are measured and logged
+1. **Given** a 1GB test folder on network share, **When** I copy it recursively using FTP/SFTP from each of 4 configurations, **Then** transfer time is measured and logged in seconds
+2. **Given** a remote server with 100MB test file, **When** I download it from each of 4 configurations, **Then** download time and speed (MB/s) are measured and logged
+3. **Given** transfer measurements are complete, **When** I analyze the data, **Then** I can calculate percentage overhead for each IDS variant compared to baseline
+4. **Given** the network protocol used (e.g., FTP, SFTP), **When** included in documentation, **Then** the protocol is clearly specified in the results
 
 ---
 
-### User Story 3 - File I/O and Real-World Workload Testing (Priority: P2)
+### User Story 3 - System Resource Consumption Measurement (Priority: P1)
 
-As a performance analyst, I need to measure how the antivirus impacts file operations and common user tasks, so I can understand real-world performance implications beyond basic metrics.
+As a researcher, I need to measure process count, RAM consumption at startup, and OS boot time across all 4 configurations, so I can quantify IDS impact on system resources.
 
-**Why this priority**: Boot time and app launch don't tell the complete story. File I/O, compression, and web browsing represent daily user activities where AV overhead matters most.
+**Why this priority**: Criteria (c), (d), and (e) from the project requirements are mandatory measurements for the case study.
 
-**Independent Test**: Can be fully tested by running file copy benchmarks (large file and many small files), compression tests with 7-Zip, and web page load timing, comparing results between baseline and AV-installed states.
+**Independent Test**: Can be fully tested by measuring Windows process count, RAM usage at startup, and boot time using BootRacer for each configuration, ensuring data is collected consistently.
 
 **Acceptance Scenarios**:
 
-1. **Given** a test dataset of files, **When** I copy a 1GB file using robocopy, **Then** transfer time is measured for both baseline and AV-installed states
-2. **Given** a folder of 10,000 small files, **When** I copy them using robocopy, **Then** total time is measured and compared between states
-3. **Given** a 500MB test folder, **When** I compress it with 7-Zip, **Then** compression and decompression times are logged for comparison
-4. **Given** a list of 10 popular websites, **When** I measure page load times, **Then** average load time difference between baseline and AV states is calculated
+1. **Given** each of 4 configurations, **When** I count running processes using Task Manager or PowerShell, **Then** process count is recorded for comparison
+2. **Given** each configuration at startup, **When** I measure RAM consumption using Performance Monitor, **Then** memory usage in MB is recorded immediately after boot completes
+3. **Given** each configuration, **When** I measure boot time using BootRacer or similar tool, **Then** time-to-logon and time-to-desktop are recorded in seconds
+4. **Given** all resource measurements are complete, **When** I compare results, **Then** percentage impact for each IDS variant is calculated
 
 ---
 
-### User Story 4 - Advanced System-Level Diagnostics (Priority: P3)
+### User Story 4 - Additional Performance Criteria (Priority: P2)
 
-As a performance analyst, I need to measure advanced system metrics like DPC latency, context menu delays, and service startup times, so I can identify subtle performance degradations that impact user experience.
+As a researcher, I need to measure at least one additional performance criterion (e.g., system latency, DPC latency, context menu delays, disk I/O) to earn bonus points and provide deeper analysis.
 
-**Why this priority**: While less critical than core metrics, these measurements can reveal specific areas where AV impacts user experience (UI responsiveness, audio/video stuttering).
+**Why this priority**: Required for bonus points (up to 20) and demonstrates comprehensive understanding of IDS performance impact.
 
-**Independent Test**: Can be fully tested by running DPC Latency Checker, measuring context menu response times, and analyzing Windows Event Logs for service startup delays, comparing baseline vs. AV-installed.
+**Independent Test**: Can be fully tested by selecting one additional metric (e.g., DPC latency with DPC Latency Checker), measuring it across all 4 configurations, and documenting why this metric is relevant.
 
 **Acceptance Scenarios**:
 
-1. **Given** the system is idle, **When** I run DPC Latency Checker for 5 minutes, **Then** maximum and average DPC latency values are recorded
-2. **Given** I right-click on desktop, **When** the context menu appears, **Then** the delay is measured in milliseconds
-3. **Given** system boot is complete, **When** I analyze Event Logs, **Then** I identify any services delayed by AV startup
+1. **Given** an additional performance criterion is selected, **When** I document the rationale, **Then** the explanation clearly describes why this metric matters for IDS impact
+2. **Given** the additional criterion is chosen, **When** I measure it across all 4 configurations, **Then** comparable data is collected and logged
+3. **Given** the additional measurements are complete, **When** included in the case study, **Then** the methodology, results, and analysis are clearly documented
+4. **Given** multiple additional criteria are considered, **When** selecting the best one, **Then** I choose a metric that reveals meaningful differences between IDS configurations
 
 ---
 
-### User Story 5 - Automated Reporting and Visualization (Priority: P3)
+### User Story 5 - LaTeX Case Study and Comparative Visualization (Priority: P1)
 
-As a performance analyst, I need an automated report generator that compares baseline and AV performance data with visualizations, so I can efficiently communicate findings to stakeholders.
+As a researcher, I need to generate a 7+ page LaTeX case study using the LNCS template with comparative graphs, so I can deliver the academic project in the required format.
 
-**Why this priority**: Nice-to-have for communication, but analysis can be done manually if needed.
+**Why this priority**: The LaTeX document and PDF are the primary deliverables - without this, the project cannot be submitted.
 
-**Independent Test**: Can be fully tested by providing baseline and AV CSV files, then generating a markdown report with calculated overhead percentages and comparison charts.
+**Independent Test**: Can be fully tested by generating a LaTeX document with all sections (introduction, methodology, results, analysis, conclusion), compiling to PDF, and verifying it meets formatting requirements.
 
 **Acceptance Scenarios**:
 
-1. **Given** baseline and AV CSV data files, **When** I run the report generator, **Then** a markdown report is created with executive summary and detailed metric comparisons
-2. **Given** the report is generated, **When** I review visualizations, **Then** I see graphs comparing boot time, memory usage, CPU usage, and disk impact
-3. **Given** the report includes all metrics, **When** I read the conclusion, **Then** an overall performance impact assessment is provided
+1. **Given** all measurement data is collected, **When** I generate comparative graphs, **Then** charts clearly show differences between all 4 configurations for each metric
+2. **Given** the LNCS LaTeX template, **When** I format the case study, **Then** the document structure follows scientific paper guidelines (abstract, introduction, related work, methodology, results, discussion, conclusion, references)
+3. **Given** screenshots are needed, **When** included in the document, **Then** they occupy no more than 25% of any page
+4. **Given** the LaTeX sources are complete, **When** compiled, **Then** a PDF of at least 7 pages is generated
+5. **Given** the completed document, **When** checked for plagiarism, **Then** TurnItIn similarity score is below 7%
+6. **Given** the final deliverable, **When** submitted, **Then** both PDF and complete LaTeX sources are included
+
+---
+
+### User Story 6 - Automated Data Collection and Analysis Pipeline (Priority: P3)
+
+As a researcher, I need automated scripts to execute all benchmarks across all 4 configurations and generate CSV data suitable for analysis, so I can efficiently collect consistent measurements.
+
+**Why this priority**: Automation reduces manual errors and ensures repeatability, but manual execution is acceptable if needed.
+
+**Independent Test**: Can be fully tested by running the automation pipeline on all 4 VM snapshots and verifying that CSV files with all required metrics are generated.
+
+**Acceptance Scenarios**:
+
+1. **Given** a VM snapshot for any configuration, **When** I run the benchmark automation script, **Then** all required metrics are measured and logged to CSV
+2. **Given** CSV data files from all 4 configurations, **When** I import them into analysis tools, **Then** the data format is consistent and suitable for generating comparative graphs
+3. **Given** the automation completes, **When** I review the results, **Then** any measurement failures or anomalies are clearly logged
 
 ---
 
 ### Edge Cases
 
 - What happens when the VM runs out of disk space during benchmark data collection?
-- How does the system handle AV update interruptions during benchmark execution?
-- What happens if one of the benchmark tools (BootRacer, 7-Zip) is not installed?
-- How does the system handle application launch failures during the 75-instance stress test?
-- What happens if the AV is in the middle of a scheduled scan during baseline testing?
+- How does the system handle AV or firewall update interruptions during benchmark execution?
+- What happens if one of the benchmark tools (BootRacer, FTP client) is not installed?
+- How does the system handle application launch failures during testing?
+- What happens if the AV or firewall is in the middle of a scheduled scan during testing?
 - How does the benchmark handle VMs with different amounts of RAM or CPU cores?
-- What happens if network connectivity is lost during web browsing benchmarks?
+- What happens if network connectivity is lost during network transfer benchmarks?
+- How do we handle firewall prompts that require user interaction during automated testing?
+- What happens if the selected antivirus or firewall is not compatible with Windows 11?
+- How do we ensure consistent network conditions for file transfer measurements across test runs?
 
 ## Requirements *(mandatory)*
 
+### Project Scope & Deliverables
+
+**Academic Context**: This is a practical research project for an academic course, requiring a formal case study following scientific paper structure.
+
+**Project Variants**: Must test 4 distinct configurations:
+1. **Baseline (No IDS)**: Clean Windows system with no antivirus or firewall
+2. **Antivirus Only**: Selected AV product installed and active
+3. **Firewall Only**: Selected firewall product installed and active  
+4. **Antivirus + Firewall**: Both products installed and active simultaneously
+
+**Deliverable Format**:
+- LaTeX source files using LNCS template (https://github.com/latextemplates/LNCS/archive/main.zip)
+- Compiled PDF document (minimum 7 pages)
+- Must include comparative graphs
+- Screenshots permitted (maximum 25% per page)
+- Must pass TurnItIn plagiarism check (≤7% similarity)
+- Due: 23 Jan 2026, 21:00
+
 ### Functional Requirements
 
-- **FR-001**: System MUST establish a clean Windows 11 VM baseline by measuring boot time, application launch time, memory consumption, CPU usage, and disk space without any antivirus installed
-- **FR-002**: System MUST measure identical performance metrics on a Windows 11 VM with antivirus software installed using the same methodology as baseline measurements
-- **FR-003**: System MUST execute each benchmark test 3-5 times to ensure statistical consistency (results should vary by less than 5%)
-- **FR-004**: System MUST persist all measurement data in CSV format with timestamps and iteration indexes for analysis
-- **FR-005**: System MUST measure boot time using BootRacer, capturing time-to-logon and time-to-desktop metrics
-- **FR-006**: System MUST measure application launch performance by starting 25 instances each of calc.exe, notepad.exe, and mspaint.exe in randomized order
-- **FR-007**: System MUST measure memory consumption at idle and under load using Windows Performance Monitor (perfmon)
-- **FR-008**: System MUST measure CPU usage at idle and during benchmark execution using Performance Monitor
-- **FR-009**: System MUST measure disk space consumed by AV installation and associated data files
-- **FR-010**: System MUST measure file I/O performance for both large single files and many small files using robocopy
-- **FR-011**: System MUST measure file compression and decompression performance using 7-Zip
-- **FR-012**: System MUST measure software installation time for common applications
-- **FR-013**: System MUST measure web page load times for a predefined list of websites
-- **FR-014**: System MUST measure network throughput (download/upload speeds)
-- **FR-015**: System MUST measure AV-specific operations including full scan duration, quick scan duration, and resource consumption during scans
-- **FR-016**: System MUST track AV update frequency, definition update sizes, and resource overhead during background updates
-- **FR-017**: System MUST measure DPC (Deferred Procedure Call) latency using DPC Latency Checker
-- **FR-018**: System MUST measure context menu delay on desktop and file right-click operations
-- **FR-019**: System MUST analyze Windows Event Logs to determine service and process startup times
-- **FR-020**: System MUST cleanup all test processes (calculator, paint, notepad) after each benchmark iteration, including clearing Notepad session state
-- **FR-021**: System MUST support VM snapshot restoration for repeatable testing
-- **FR-022**: System MUST calculate percentage overhead for each metric by comparing baseline and AV-installed measurements
-- **FR-023**: System MUST generate a comprehensive report with raw data, analysis, visualizations, and conclusions
+#### Mandatory Measurements (Criteria a-e)
+
+- **FR-001**: System MUST measure recursive folder copy speed (≥1GB) via local network using FTP, SFTP, or equivalent protocol across all 4 configurations
+- **FR-002**: System MUST specify and document which network protocol is used for folder copying (e.g., FTP, SFTP, SMB)
+- **FR-003**: System MUST measure folder transfer from one device to another over local network, not local disk operations
+- **FR-004**: System MUST measure download speed of a remote file (≥100MB) from a long-distance server across all 4 configurations
+- **FR-005**: System MUST count the number of running processes in Windows for each configuration using Task Manager or equivalent tool
+- **FR-006**: System MUST measure RAM memory consumption at system startup for each configuration
+- **FR-007**: System MUST measure operating system startup times using a specialized tool (e.g., BootRacer) for each configuration
+- **FR-008**: System MUST perform all measurements consistently across all 4 configurations using identical methodology
+
+#### Additional Measurement Criteria (Bonus - Criterion f)
+
+- **FR-009**: System SHOULD measure at least one additional performance criterion beyond criteria a-e for bonus points (maximum 20 points)
+- **FR-010**: Additional criterion MUST be explained and detailed with clear rationale for relevance
+- **FR-011**: Additional criterion SHOULD build on concepts discussed in laboratory sessions (e.g., system latency, DPC latency, disk I/O, context menu delays)
+
+#### VM Configuration & Snapshot Management
+
+- **FR-012**: System MUST support creation and restoration of VM snapshots for each of the 4 configurations
+- **FR-013**: System MUST ensure baseline snapshot contains no antivirus or firewall software
+- **FR-014**: System MUST verify that selected antivirus is properly installed and active in AV-only and AV+Firewall configurations
+- **FR-015**: System MUST verify that selected firewall is properly installed and active in Firewall-only and AV+Firewall configurations
+- **FR-016**: System MUST document which specific antivirus product was selected from the provided list
+- **FR-017**: System MUST document which specific firewall product was selected from the provided list
+
+#### Data Collection & Analysis
+
+- **FR-018**: System MUST persist all measurement data in structured format (CSV or equivalent) with configuration labels
+- **FR-019**: System MUST execute each benchmark test multiple times (3-5 iterations) to ensure statistical consistency
+- **FR-020**: System MUST calculate percentage impact/overhead for each metric by comparing each IDS configuration to baseline
+- **FR-021**: System MUST generate comparative graphs showing all 4 configurations for each measured criterion
+- **FR-022**: System MUST ensure graphs are suitable for inclusion in LaTeX document
+
+#### LaTeX Document Generation
+
+- **FR-023**: System MUST generate LaTeX source using the mandatory LNCS template
+- **FR-024**: Document MUST follow scientific paper structure: abstract, introduction, related work, methodology, results, discussion, conclusion, references
+- **FR-025**: Document MUST include methodology section describing test setup, VM specifications, software versions, and measurement procedures
+- **FR-026**: Document MUST include results section with tables and comparative graphs for all measured criteria
+- **FR-027**: Document MUST include discussion/analysis section interpreting the results and explaining performance differences
+- **FR-028**: Document MUST include references to relevant academic papers or technical sources
+- **FR-029**: Document MUST be at least 7 pages when compiled to PDF
+- **FR-030**: Document MAY include screenshots but they must not exceed 25% of any page
+- **FR-031**: Document MUST be checked for plagiarism and maintain ≤7% similarity score
+
+#### Network Testing Setup
+
+- **FR-032**: System MUST establish a local network connection between two devices for folder copy testing
+- **FR-033**: System MUST have access to a remote server for long-distance file download testing
+- **FR-034**: System MUST create or identify a test folder of at least 1GB for network copy testing
+- **FR-035**: System MUST create or identify a test file of at least 100MB on a remote server for download testing
+- **FR-036**: System MUST ensure consistent network conditions across test runs (or document any variations)
 
 ### Key Entities
 
-- **Benchmark Suite**: Collection of all performance tests executed on both baseline and AV-installed systems, including boot time, app launch, memory, CPU, disk, file I/O, compression, web browsing, and network tests
-- **Measurement Record**: Individual data point captured during benchmark execution, containing metric name, value, timestamp, iteration index, and system state (baseline or AV-installed)
-- **Performance Metric**: Specific measurable aspect of system performance (e.g., boot time in seconds, memory usage in MB, CPU percentage), with baseline value, AV-installed value, and calculated overhead percentage
-- **Test Configuration**: VM specifications and test parameters including number of iterations, application instances, file sizes for I/O tests, websites for browsing tests, and tools used
-- **Benchmark Report**: Final deliverable containing executive summary, methodology description, detailed metric comparisons, visualizations (charts/graphs), and overall assessment of AV performance impact
+- **IDS Configuration**: One of 4 variants (No IDS, AV-only, Firewall-only, AV+Firewall), each represented by a VM snapshot with specific software installed
+- **Measurement Record**: Individual data point captured during benchmark execution, containing criterion name (a-f), value, unit, timestamp, iteration number, and configuration label
+- **Performance Criterion**: Specific measurable aspect mandated by project requirements (folder copy speed, download speed, process count, RAM usage, boot time, additional criterion)
+- **Test Environment**: Complete setup including VM specifications, network topology (local network + remote server), selected AV product, selected firewall product, and measurement tools
+- **LaTeX Document**: Academic case study deliverable containing all sections (abstract through conclusion), comparative graphs, and analysis following LNCS template format
+- **Comparative Graph**: Visualization showing all 4 configurations for a single performance criterion, suitable for LaTeX inclusion
+- **Benchmark Suite**: Collection of all measurement scripts and tools needed to execute criteria a-f across all 4 configurations
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
-- **SC-001**: Baseline benchmarks complete successfully on clean Windows 11 VM with measurement variance less than 5% across 3-5 iterations
-- **SC-002**: All baseline metrics are collected and persisted to CSV files including boot time, application launch times, memory usage, CPU usage, disk space, file I/O performance, compression performance, web browsing performance, and network throughput
-- **SC-003**: AV-installed benchmarks complete successfully using identical methodology with measurement variance less than 5% across 3-5 iterations
-- **SC-004**: Performance overhead is accurately calculated for each metric showing percentage difference between baseline and AV-installed states
-- **SC-005**: Application launch stress test successfully launches and cleans up 75 application instances (25 calc, 25 notepad, 25 mspaint) without crashes or hangs
-- **SC-006**: AV-specific metrics (full scan time, quick scan time, resource consumption during scans, update frequency and size) are successfully measured and logged
-- **SC-007**: Advanced system metrics (DPC latency, context menu delay, service startup times) are successfully captured from both baseline and AV-installed states
-- **SC-008**: File I/O benchmarks successfully measure both large file transfer (1GB+) and small file operations (10,000+ files)
-- **SC-009**: Compression benchmarks successfully measure both compression and decompression operations on 500MB+ test data
-- **SC-010**: All test processes are completely cleaned up after each iteration with no orphaned processes or session state
-- **SC-011**: VM snapshots can be reliably restored to enable repeatable testing
-- **SC-012**: Benchmark report is generated containing executive summary, detailed methodology, metric comparisons, visualizations, and performance impact assessment
-- **SC-013**: Report clearly identifies which user workflows are most impacted by AV overhead (e.g., file operations vs. web browsing)
-- **SC-014**: All measurement data is available in raw CSV format for independent analysis and verification
+#### Configuration & Setup (Critical Path)
+
+- **SC-001**: All 4 VM configuration snapshots are successfully created (No IDS, AV-only, Firewall-only, AV+Firewall)
+- **SC-002**: Selected antivirus product is properly installed, activated, and verified in AV-only and AV+Firewall configurations
+- **SC-003**: Selected firewall product is properly installed, activated, and verified in Firewall-only and AV+Firewall configurations
+- **SC-004**: Baseline (No IDS) configuration is verified to have no antivirus or firewall software running
+
+#### Mandatory Measurements (Criteria a-e)
+
+- **SC-005**: Folder copy speed (≥1GB via local network) is successfully measured across all 4 configurations using documented protocol (FTP/SFTP/etc.)
+- **SC-006**: Remote file download speed (≥100MB from long-distance server) is successfully measured across all 4 configurations
+- **SC-007**: Process count is successfully measured and recorded for all 4 configurations
+- **SC-008**: RAM consumption at startup is successfully measured and recorded for all 4 configurations  
+- **SC-009**: OS boot time is successfully measured using specialized tool (e.g., BootRacer) for all 4 configurations
+- **SC-010**: All mandatory measurements show consistent results with variance <10% across 3-5 iterations per configuration
+
+#### Additional Criterion (Bonus Points)
+
+- **SC-011**: At least one additional performance criterion beyond a-e is selected, measured, and documented with clear rationale
+- **SC-012**: Additional criterion reveals meaningful differences between configurations and is properly analyzed in the case study
+
+#### Data Analysis & Visualization
+
+- **SC-013**: Percentage impact/overhead is accurately calculated for each criterion by comparing each IDS configuration to baseline
+- **SC-014**: Comparative graphs are generated showing all 4 configurations for each measured criterion (a-e plus additional)
+- **SC-015**: All graphs are properly formatted and suitable for LaTeX document inclusion
+- **SC-016**: All measurement data is available in structured format (CSV) for verification and reproducibility
+
+#### LaTeX Document Deliverable
+
+- **SC-017**: LaTeX source files compile successfully to PDF without errors
+- **SC-018**: Compiled PDF document meets minimum 7-page requirement
+- **SC-019**: Document uses mandatory LNCS template correctly with proper formatting
+- **SC-020**: Document includes all required sections: abstract, introduction, related work, methodology, results, discussion, conclusion, references
+- **SC-021**: Methodology section clearly describes test setup, VM specs, software versions, selected AV/firewall products, and measurement procedures
+- **SC-022**: Results section includes tables and comparative graphs for all measured criteria
+- **SC-023**: Discussion section provides insightful analysis explaining performance differences between configurations
+- **SC-024**: Screenshots (if included) do not exceed 25% of any page
+- **SC-025**: Document passes TurnItIn plagiarism check with ≤7% similarity score
+- **SC-026**: Both PDF and complete LaTeX sources are ready for submission
+
+#### Network Testing Infrastructure
+
+- **SC-027**: Local network connection between two devices is established and functional for folder copy testing
+- **SC-028**: Remote server with ≥100MB test file is accessible and functional for download testing
+- **SC-029**: Test folder of ≥1GB is created/available for network copy benchmarks
+- **SC-030**: Network conditions remain consistent across test runs, or variations are documented
+
+#### Project Completion
+
+- **SC-031**: All deliverables (PDF + LaTeX sources) are ready for submission before deadline (23 Jan 2026, 21:00)
+- **SC-032**: Selected antivirus and firewall products are documented in project submission
+- **SC-033**: Project meets all academic requirements for maximum grade eligibility (including bonus points from additional criterion)
+
+## Product Selection & Technical Constraints
+
+### Available Antivirus Products (Select One)
+
+Students must select ONE antivirus from the list below on a first-come, first-served basis:
+
+1. Ad-Aware, 2. AegisLab, 3. AhnLab-V3, 4. AntiVir, 5. Antiy-AVL, 6. Avast, 7. AVG, 8. Baidu-International, 9. BitDefender, 10. ByteHero, 11. CAT-QuickHeal, 12. ClamAV, 13. CMC, 14. Commtouch, 15. Comodo, 16. DrWeb, 17. Emsisoft, 18. eScan, 19. ESET-NOD32, 20. F-Prot, 21. F-Secure, 22. Fortinet, 23. GData, 24. Ikarus, 25. Jiangmin, 26. K7AntiVirus, 27. K7GW, 28. Kaspersky, 29. Kingsoft, 30. Malwarebytes, 31. McAfee, 32. McAfee-GW-Edition, 33. Microsoft, 34. NANO-Antivirus, 35. Norman, 36. nProtect, 37. Panda, 38. Qihoo-360, 39. Rising, 40. Sophos, 41. SUPERAntiSpyware, 42. Symantec, 43. Tencent, 44. TheHacker, 45. TotalDefense, 46. TrendMicro, 47. TrendMicro-HouseCall, 48. VBA32, 49. VIPRE, 50. ViRobot, 51. Yandex, 52. Zillya
+
+**Selected Antivirus**: [TO BE DETERMINED - NEEDS CLARIFICATION]
+
+### Available Firewall Products (Select One)
+
+Students must select ONE firewall from the list below on a first-come, first-served basis:
+
+1. SolarWinds Network Firewall Security Management, 2. System Mechanic Ultimate Defense, 3. Norton, 4. LifeLock, 5. ZoneAlarm, 6. Comodo Firewall, 7. TinyWall, 8. Netdefender, 9. Glasswire, 10. PeerBlock, 11. AVS Firewall, 12. OpenDNS Home, 13. Privatefirewall, 14. Avast Endpoint Firewall, 15. Mcafee Firewall, 16. Azure Firewall, 17. Evorim, 18. Untangle, 19. eScan Advanced Firewall, 20. Sophos XG Firewall, 21. Outpost Firewall, 22. R-Firewall, 23. Ashampoo FireWall, 24. pfSense, 25. Little Snitch, 26. OPNsense
+
+**Selected Firewall**: [TO BE DETERMINED - NEEDS CLARIFICATION]
+
+### Technical Constraints
+
+- **Operating System**: Windows 11 (implied from existing test plan)
+- **Virtualization**: VM-based testing required for snapshot capability
+- **Network Setup**: Must have access to both local network (for folder copy) and remote server (for download test)
+- **Test Data**: 1GB folder for local copy, 100MB file on remote server
+- **Network Protocol**: Must specify which protocol used (FTP, SFTP, SMB, etc.) - [NEEDS CLARIFICATION]
+- **Measurement Tools**: Must document all tools used (BootRacer or equivalent, Task Manager/perfmon, etc.)
+- **LaTeX Template**: LNCS template mandatory (https://github.com/latextemplates/LNCS/archive/main.zip)
+- **Plagiarism Limit**: Maximum 7% similarity on TurnItIn
+- **Document Length**: Minimum 7 pages
+- **Deadline**: 23 Jan 2026, 21:00
+
+### Open Questions Requiring Clarification
+
+1. **Which antivirus product will be selected?** (Must be chosen from the list and registered as first-come, first-served)
+2. **Which firewall product will be selected?** (Must be chosen from the list and registered as first-come, first-served)
+3. **Which network protocol for folder copying?** (FTP, SFTP, SMB, or other? Must be specified in paper)
+4. **What will be the additional criterion (f)?** (For bonus points - e.g., DPC latency, disk I/O, context menu delay, or other?)
+5. **What are the exact VM specifications?** (RAM, CPU cores, disk space - should be documented in methodology)
+6. **What remote server will be used for download testing?** (Public file host, university server, or other?)
+7. **How many iterations per test?** (3-5 iterations recommended for statistical consistency)
+
+### Reference Materials
+
+- **Testing Criteria Reference**: https://pastebin.com/fnxDqJ7V (illustrative purposes only)
+- **LNCS LaTeX Template**: https://github.com/latextemplates/LNCS/archive/main.zip (mandatory)
+- **Paper Structure Examples**: https://uvt-ro.academia.edu/CiprianPungila (follow same layout as scientific papers)
