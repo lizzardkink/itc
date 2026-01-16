@@ -183,7 +183,7 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 #### Data Collection & Analysis
 
 - **FR-018**: System MUST persist all measurement data in structured format (CSV or equivalent) with configuration labels
-- **FR-019**: System MUST execute each benchmark test multiple times (3-5 iterations) to ensure statistical consistency
+- **FR-019**: System MUST execute each benchmark test 5 iterations to ensure statistical consistency and reliability
 - **FR-020**: System MUST calculate percentage impact/overhead for each metric by comparing each IDS configuration to baseline
 - **FR-021**: System MUST generate comparative graphs showing all 4 configurations for each measured criterion
 - **FR-022**: System MUST ensure graphs are suitable for inclusion in LaTeX document
@@ -237,7 +237,7 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 - **SC-007**: Process count is successfully measured and recorded for all 4 configurations
 - **SC-008**: RAM consumption at startup is successfully measured and recorded for all 4 configurations  
 - **SC-009**: OS boot time is successfully measured using specialized tool (e.g., BootRacer) for all 4 configurations
-- **SC-010**: All mandatory measurements show consistent results with variance <10% across 3-5 iterations per configuration
+- **SC-010**: All mandatory measurements show consistent results with variance <10% across 5 iterations per configuration
 
 #### Additional Criterion (Bonus Points)
 
@@ -322,7 +322,7 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 4. ~~What will be the additional criterion (f)?~~ **RESOLVED: System benchmarking using sysbench from GitHub**
 5. ~~What are the exact VM specifications?~~ **RESOLVED: VirtualBox VM named "Win11" with clean snapshot (OS updated, no AV/firewall)**
 6. ~~What remote server will be used for download testing?~~ **RESOLVED: DIGI Storage server via FTP protocol**
-7. **How many iterations per test?** (3-5 iterations recommended for statistical consistency)
+7. ~~How many iterations per test?~~ **RESOLVED: 5 iterations per test for all measurements**
 
 ### Reference Materials
 
