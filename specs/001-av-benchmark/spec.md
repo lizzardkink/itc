@@ -82,6 +82,25 @@ As a researcher, I need to measure system performance using sysbench (from GitHu
 
 ---
 
+### User Story 4.5 - Application Launch Performance Test (Priority: P2)
+
+As a researcher, I need to measure real-world application launch performance using the existing AV-Bench script to demonstrate IDS impact on process creation and system responsiveness.
+
+**Why this priority**: Provides additional bonus points and real-world performance data more meaningful than static measurements. Uses actual Windows applications to test IDS overhead on process creation.
+
+**Independent Test**: Can be fully tested by running AV-Bench/script.ps1 which launches 75 application instances (25 Calculator, 25 Paint, 25 Notepad) in randomized order and measures total time with automated cleanup.
+
+**Acceptance Scenarios**:
+
+1. **Given** the application launch script exists (AV-Bench/script.ps1), **When** modified to run 5 iterations, **Then** it matches the consistency standard of other tests
+2. **Given** the script runs on baseline configuration, **When** 75 application instances launch, **Then** total time is recorded in measurements.csv with <10% variance
+3. **Given** baseline measurements are complete, **When** I run the same test on all 4 configurations, **Then** I can calculate percentage overhead for process creation
+4. **Given** all configuration data is collected, **When** I analyze results, **Then** I can identify which IDS component has greatest impact on application startup and system responsiveness
+5. **Given** application launch data uses real Windows apps, **When** compared to synthetic benchmarks, **Then** results provide more meaningful real-world performance insights
+6. **Given** the test measures process creation overhead, **When** documented in the case study, **Then** the real-world impact on user experience is clearly demonstrated
+
+---
+
 ### User Story 5 - LaTeX Case Study and Comparative Visualization (Priority: P1)
 
 As a researcher, I need to generate a 7+ page LaTeX case study using the LNCS template with comparative graphs, so I can deliver the academic project in the required format.
@@ -170,6 +189,15 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 - **FR-011**: Additional criterion MUST be explained with clear rationale: sysbench provides standardized, reproducible benchmarks that reveal IDS overhead on system resources
 - **FR-012**: Sysbench MUST be properly attributed in references section with GitHub repository link
 
+#### Application Launch Performance Test (Bonus - Criterion g)
+
+- **FR-012a**: System MUST use existing AV-Bench/script.ps1 to measure application launch performance across all 4 configurations
+- **FR-012b**: Application launch test MUST launch 75 application instances (25 Calculator, 25 Paint, 25 Notepad) in randomized order
+- **FR-012c**: Script MUST be modified to run 5 iterations per configuration to match consistency standard of other tests
+- **FR-012d**: Application launch times MUST be recorded to measurements.csv with timestamps for each iteration
+- **FR-012e**: Test MUST demonstrate IDS impact on process creation overhead and system responsiveness
+- **FR-012f**: Results MUST show real-world application performance impact more meaningful than static process counting
+
 #### VM Configuration & Snapshot Management
 
 - **FR-012**: System MUST use VirtualBox VM named "Win11" for all testing
@@ -246,6 +274,14 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 - **SC-013**: Sysbench results reveal meaningful performance differences between configurations and demonstrate IDS impact on system resources
 - **SC-014**: Sysbench methodology, rationale, and results are properly documented in the case study with appropriate attribution
 
+#### Application Launch Performance (Bonus Points)
+
+- **SC-014a**: Application launch script (AV-Bench/script.ps1) is modified to run 5 iterations per configuration
+- **SC-014b**: Script successfully launches 75 application instances and records timing data to CSV across all 4 configurations
+- **SC-014c**: Application launch results show <10% variance within iterations demonstrating measurement consistency
+- **SC-014d**: Results reveal meaningful differences in process creation overhead between IDS configurations
+- **SC-014e**: Application launch performance data is properly documented in the case study with clear rationale for real-world relevance
+
 #### Data Analysis & Visualization
 
 - **SC-013**: Percentage impact/overhead is accurately calculated for each criterion by comparing each IDS configuration to baseline
@@ -308,7 +344,8 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 - **Network Protocol (Criterion b)**: FTP (File Transfer Protocol) for 100MB remote download test
 - **Test Data**: 1GB folder on QNAP NAS for local copy, 100MB file on DIGI Storage for remote download
 - **Measurement Tools**: Must document all tools used (BootRacer or equivalent, Task Manager/perfmon, etc.)
-- **Bonus Criterion Tool**: sysbench from GitHub (https://github.com/akopytov/sysbench) for CPU/memory/disk I/O benchmarking
+- **Bonus Criterion Tool (f)**: sysbench from GitHub (https://github.com/akopytov/sysbench) for CPU/memory/disk I/O benchmarking
+- **Bonus Criterion Tool (g)**: AV-Bench/script.ps1 for application launch performance testing (75 app instances)
 - **LaTeX Template**: LNCS template mandatory (https://github.com/latextemplates/LNCS/archive/main.zip)
 - **Plagiarism Limit**: Maximum 7% similarity on TurnItIn
 - **Document Length**: Minimum 7 pages
@@ -330,3 +367,4 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 - **LNCS LaTeX Template**: https://github.com/latextemplates/LNCS/archive/main.zip (mandatory)
 - **Paper Structure Examples**: https://uvt-ro.academia.edu/CiprianPungila (follow same layout as scientific papers)
 - **Sysbench Tool**: https://github.com/akopytov/sysbench (for bonus criterion f - system benchmarking)
+- **Application Launch Script**: AV-Bench/script.ps1 (for bonus criterion g - real-world app performance)

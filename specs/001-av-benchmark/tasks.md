@@ -241,7 +241,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Estimated Time**: 2 hours  
 **Dependencies**: TASK-009
 
-**Description**: Create PowerShell scripts for automated testing based on provided templates.
+**Description**: Create PowerShell scripts for automated testing based on provided templates, and modify existing app launch script.
 
 **Scripts to Create**:
 1. `scripts/smb-copy-test.ps1` (from NETWORK_TEST_CONFIG.md)
@@ -250,8 +250,12 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 4. `scripts/ram-startup-test.ps1`
 5. `scripts/sysbench-wrapper.ps1`
 
+**Script to Modify**:
+6. `AV-Bench/script.ps1` - Change `$iterations = 3` to `$iterations = 5`
+
 **Acceptance Criteria**:
 - [ ] All 5 scripts created
+- [ ] App launch script modified for 5 iterations
 - [ ] Scripts include parameter handling
 - [ ] Scripts export to CSV
 - [ ] Scripts include iteration loops
@@ -395,22 +399,45 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 ---
 
+### TASK-016A: Run Baseline Application Launch Test
+**Priority**: P0 (Blocker)  
+**Estimated Time**: 30 minutes  
+**Dependencies**: TASK-001, TASK-010
+
+**Description**: Run application launch performance test (criterion g) on baseline configuration using modified AV-Bench script.
+
+**Steps**:
+1. Restore Baseline-NoIDS snapshot (if needed)
+2. Start VM
+3. Navigate to: `cd C:\Users\...\ItC\AV-Bench`
+4. Run: `.\script.ps1`
+5. Wait for 5 iterations to complete (~5-10 minutes)
+6. Copy `measurements.csv` to `data\baseline\app-launch-baseline.csv`
+
+**Acceptance Criteria**:
+- [ ] 5 iterations completed
+- [ ] CSV file generated
+- [ ] Variance <10%
+- [ ] Average time documented (expected: 8-15 seconds for 75 apps)
+
+---
+
 ### TASK-017: Verify Baseline Data Quality
 **Priority**: P0 (Blocker)  
 **Estimated Time**: 30 minutes  
-**Dependencies**: TASK-011 through TASK-016
+**Dependencies**: TASK-011 through TASK-016A
 
 **Description**: Review all baseline measurements for completeness and consistency.
 
 **Steps**:
-1. Check all 6 CSV files exist
+1. Check all 7 CSV files exist
 2. Verify 5 iterations in each file
 3. Calculate variance for each criterion
 4. Document any issues
 5. Re-run tests if variance >10%
 
 **Acceptance Criteria**:
-- [ ] All 6 CSV files present
+- [ ] All 7 CSV files present
 - [ ] All variances <10%
 - [ ] Data ready for comparison
 
@@ -448,7 +475,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Estimated Time**: 6-8 hours  
 **Dependencies**: TASK-018
 
-**Description**: Run all 6 criteria tests on Symantec-Only configuration (5 iterations each).
+**Description**: Run all 7 criteria tests on Symantec-Only configuration (5 iterations each).
 
 **Steps**:
 1. Restore Symantec-Only snapshot
@@ -458,9 +485,10 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 5. Run RAM startup test → `data\symantec\ram-startup-symantec.csv`
 6. Run boot time test → `data\symantec\boot-time-symantec.csv`
 7. Run sysbench tests → `data\symantec\sysbench-*.csv`
+8. Run app launch test → `data\symantec\app-launch-symantec.csv`
 
 **Acceptance Criteria**:
-- [ ] All 6 criteria tested (5 iterations each)
+- [ ] All 7 criteria tested (5 iterations each)
 - [ ] All CSV files generated
 - [ ] Variance <10% per criterion
 - [ ] Data saved to symantec directory
@@ -481,7 +509,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 4. Document results
 
 **Acceptance Criteria**:
-- [ ] Overhead calculated for all 6 criteria
+- [ ] Overhead calculated for all 7 criteria
 - [ ] Results documented
 - [ ] Overhead percentages reasonable (5-40%)
 
@@ -521,7 +549,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Estimated Time**: 6-8 hours  
 **Dependencies**: TASK-021
 
-**Description**: Run all 6 criteria tests on firewall-only configuration (5 iterations each).
+**Description**: Run all 7 criteria tests on firewall-only configuration (5 iterations each).
 
 **Steps**:
 1. Restore OPNsense-Only snapshot
@@ -531,9 +559,10 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 5. Run RAM startup test → `data\opnsense\ram-startup-opnsense.csv`
 6. Run boot time test → `data\opnsense\boot-time-opnsense.csv`
 7. Run sysbench tests → `data\opnsense\sysbench-*.csv`
+8. Run app launch test → `data\opnsense\app-launch-opnsense.csv`
 
 **Acceptance Criteria**:
-- [ ] All 6 criteria tested (5 iterations each)
+- [ ] All 7 criteria tested (5 iterations each)
 - [ ] All CSV files generated
 - [ ] Variance <10% per criterion
 - [ ] Data saved to opnsense directory
@@ -554,7 +583,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 4. Document results
 
 **Acceptance Criteria**:
-- [ ] Overhead calculated for all 6 criteria
+- [ ] Overhead calculated for all 7 criteria
 - [ ] Results documented
 - [ ] Overhead percentages reasonable (5-25%)
 
@@ -592,7 +621,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Estimated Time**: 6-8 hours  
 **Dependencies**: TASK-024
 
-**Description**: Run all 6 criteria tests on combined configuration (5 iterations each).
+**Description**: Run all 7 criteria tests on combined configuration (5 iterations each).
 
 **Steps**:
 1. Restore Symantec-OPNsense-Both snapshot
@@ -602,9 +631,10 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 5. Run RAM startup test → `data\both\ram-startup-both.csv`
 6. Run boot time test → `data\both\boot-time-both.csv`
 7. Run sysbench tests → `data\both\sysbench-*.csv`
+8. Run app launch test → `data\both\app-launch-both.csv`
 
 **Acceptance Criteria**:
-- [ ] All 6 criteria tested (5 iterations each)
+- [ ] All 7 criteria tested (5 iterations each)
 - [ ] All CSV files generated
 - [ ] Variance <10% per criterion
 - [ ] Data saved to both directory
@@ -626,7 +656,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 5. Compare with individual overheads
 
 **Acceptance Criteria**:
-- [ ] Overhead calculated for all 6 criteria
+- [ ] Overhead calculated for all 7 criteria
 - [ ] Results documented
 - [ ] Overhead percentages reasonable (15-50%)
 - [ ] Comparison with individual configs noted
@@ -644,13 +674,13 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 **Steps**:
 1. Create analysis spreadsheet/notebook
-2. Import all 24 CSV files
+2. Import all 28 CSV files
 3. Organize by criterion and configuration
 4. Calculate summary statistics
 5. Document any anomalies
 
 **Acceptance Criteria**:
-- [ ] All 24 CSV files imported
+- [ ] All 28 CSV files imported
 - [ ] Data organized by criterion
 - [ ] Summary statistics calculated
 - [ ] Anomalies documented
@@ -671,11 +701,12 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 4. RAM usage comparison (MB)
 5. Boot time comparison (seconds)
 6. sysbench performance comparison (events/s, MB/s, IOPS)
+7. Application launch time comparison (seconds for 75 apps)
 
 **Format**: Bar charts or line graphs suitable for LaTeX inclusion
 
 **Acceptance Criteria**:
-- [ ] 6 graphs generated
+- [ ] 7 graphs generated
 - [ ] All 4 configurations shown per graph
 - [ ] Graphs properly labeled (axis, legend)
 - [ ] Saved as high-quality images (PNG/PDF)
@@ -799,8 +830,8 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Content**:
 - VM specifications (WIN11, 4 cores, 8GB)
 - 4 configurations detailed
-- 6 criteria explained (a-f)
-- Tools used (BootRacer, sysbench, etc.)
+- 7 criteria explained (a-g)
+- Tools used (BootRacer, sysbench, AV-Bench script, etc.)
 - Network setup (QNAP, DIGI Storage)
 - Testing procedure (5 iterations)
 - Data collection methods
@@ -822,7 +853,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Description**: Write Results section presenting measurement data with tables and graphs.
 
 **Content**:
-- Present all 6 criteria results
+- Present all 7 criteria results
 - Include tables with data
 - Include comparative graphs
 - Report overhead percentages
@@ -830,7 +861,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 **Acceptance Criteria**:
 - [ ] Results written (2 pages)
-- [ ] All 6 graphs included
+- [ ] All 7 graphs included
 - [ ] All tables included
 - [ ] Data clearly presented
 - [ ] No interpretation (save for Discussion)
@@ -992,7 +1023,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Checklist**:
 - [ ] 7+ pages?
 - [ ] All sections present?
-- [ ] All 6 criteria documented?
+- [ ] all 7 criteria documented?
 - [ ] All graphs included?
 - [ ] All tables formatted correctly?
 - [ ] References complete?
@@ -1066,7 +1097,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 **Steps**:
 1. Create backup of entire project directory
-2. Include all data files (24 CSV files)
+2. Include all data files (28 CSV files)
 3. Include all scripts
 4. Include LaTeX sources and PDF
 5. Store in safe location (cloud, external drive)
@@ -1080,14 +1111,14 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 ## Summary Statistics
 
-**Total Tasks**: 45  
-**Estimated Total Time**: 70-90 hours over 14 days  
-**Critical Path Tasks**: 36 (marked P0)  
-**Blocker Tasks**: 42  
+**Total Tasks**: 46 (added TASK-016A for app launch test)  
+**Estimated Total Time**: 72-92 hours over 14 days  
+**Critical Path Tasks**: 37 (marked P0)  
+**Blocker Tasks**: 43  
 
 **Phase Breakdown**:
 - Phase 0 (Setup): 10 tasks, 4-6 hours
-- Phase 1 (Baseline): 7 tasks, 6-8 hours
+- Phase 1 (Baseline): 8 tasks (added TASK-016A), 6.5-8.5 hours
 - Phase 2 (Symantec): 3 tasks, 8-10 hours
 - Phase 3 (OPNsense): 3 tasks, 8-10 hours
 - Phase 4 (Combined): 3 tasks, 8-10 hours
@@ -1096,6 +1127,8 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 - Phase 7 (Submission): 4 tasks, 2-4 hours
 
 **Deadline**: 23 Jan 2026, 21:00 (7 days from spec complete)
+
+**Test Matrix**: 4 configurations × 7 criteria × 5 iterations = **140 test runs**
 
 ---
 
@@ -1123,3 +1156,4 @@ Use this to track daily progress:
 **Status**: Ready to begin Phase 0  
 **Next Task**: TASK-001 (Configure VM Baseline Snapshot)  
 **Good luck! 🚀**
+

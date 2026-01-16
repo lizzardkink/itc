@@ -142,9 +142,10 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 5. Measure RAM at startup (5 boots) → `data/baseline/ram-startup-*.csv`
 6. Measure boot time with BootRacer (5 boots) → `data/baseline/boot-time-*.csv`
 7. Run sysbench CPU/memory/disk tests (5 iterations) → `data/baseline/sysbench-*.csv`
+8. Run application launch test (5 iterations) → `data/baseline/app-launch-*.csv`
 
 **Deliverables**:
-- 6 CSV files with baseline measurements
+- 7 CSV files with baseline measurements
 - Variance verification (<10% required)
 
 ### Phase 2: Symantec Configuration (Days 3-4)
@@ -156,12 +157,12 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 3. Update antivirus definitions
 4. Verify real-time protection is active
 5. Create 'Symantec-Only' snapshot
-6. Run all 6 criteria tests (5 iterations each)
+6. Run all 7 criteria tests (5 iterations each)
 7. Collect data to `data/symantec/` directory
 
 **Deliverables**:
 - Symantec-Only snapshot
-- 6 CSV files with AV measurements
+- 7 CSV files with AV measurements
 
 ### Phase 3: OPNsense Configuration (Days 5-6)
 **Goal**: Install firewall and measure performance impact
@@ -172,12 +173,12 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 3. Enable firewall rules and logging
 4. Verify firewall is active
 5. Create 'OPNsense-Only' snapshot
-6. Run all 6 criteria tests (5 iterations each)
+6. Run all 7 criteria tests (5 iterations each)
 7. Collect data to `data/opnsense/` directory
 
 **Deliverables**:
 - OPNsense-Only snapshot
-- 6 CSV files with firewall measurements
+- 7 CSV files with firewall measurements
 
 ### Phase 4: Combined Configuration (Day 7)
 **Goal**: Install both IDS components and measure combined impact
@@ -188,27 +189,27 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 3. Install OPNsense/firewall
 4. Verify both are active simultaneously
 5. Create 'Symantec-OPNsense-Both' snapshot
-6. Run all 6 criteria tests (5 iterations each)
+6. Run all 7 criteria tests (5 iterations each)
 7. Collect data to `data/both/` directory
 
 **Deliverables**:
 - Symantec-OPNsense-Both snapshot
-- 6 CSV files with combined measurements
+- 7 CSV files with combined measurements
 
 ### Phase 5: Data Analysis (Days 8-9)
 **Goal**: Calculate overhead and generate comparative visualizations
 
 **Tasks**:
-1. Import all CSV data (24 files total)
+1. Import all CSV data (28 files total: 7 criteria × 4 configurations)
 2. Calculate average, min, max for each test
 3. Calculate percentage overhead vs baseline
-4. Generate comparative graphs (6 graphs, one per criterion)
+4. Generate comparative graphs (7 graphs, one per criterion)
 5. Export graphs to `lncs-enhanced-main/figures/`
 6. Verify statistical significance
 
 **Deliverables**:
-- Overhead calculations for all criteria
-- 6 publication-ready graphs
+- Overhead calculations for all 7 criteria
+- 7 publication-ready graphs
 - Statistical analysis summary
 
 ### Phase 6: LaTeX Paper Writing (Days 10-13)
@@ -218,7 +219,7 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 1. Write Abstract (problem, method, findings)
 2. Write Introduction (context, objectives)
 3. Write Related Work (literature review)
-4. Write Methodology (4 configs, 6 criteria, VM specs, tools)
+4. Write Methodology (4 configs, 7 criteria, VM specs, tools)
 5. Write Results (tables with measurements, graphs)
 6. Write Discussion (analysis of overhead patterns)
 7. Write Conclusion (summary, implications)
@@ -239,7 +240,7 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 
 **Tasks**:
 1. Verify PDF is 7+ pages
-2. Verify all 6 criteria documented
+2. Verify all 7 criteria documented
 3. Verify comparative graphs included
 4. Verify LNCS format compliance
 5. Verify references are complete
@@ -267,14 +268,14 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 ## Success Criteria
 
 **Measurements Complete**:
-- ✅ 120 test runs executed (4 configs × 6 criteria × 5 iterations)
+- ✅ 140 test runs executed (4 configs × 7 criteria × 5 iterations)
 - ✅ All data in CSV format with timestamps
 - ✅ Variance <10% within iterations
 - ✅ All 4 VM snapshots functional and verified
 
 **Analysis Complete**:
-- ✅ Overhead percentages calculated for all criteria
-- ✅ 6 comparative graphs generated
+- ✅ Overhead percentages calculated for all 7 criteria
+- ✅ 7 comparative graphs generated
 - ✅ Statistical validity confirmed
 
 **Paper Complete**:
