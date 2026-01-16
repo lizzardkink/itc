@@ -172,12 +172,13 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 #### VM Configuration & Snapshot Management
 
-- **FR-012**: System MUST support creation and restoration of VM snapshots for each of the 4 configurations
-- **FR-013**: System MUST ensure baseline snapshot contains no antivirus or firewall software
-- **FR-014**: System MUST verify that selected antivirus is properly installed and active in AV-only and AV+Firewall configurations
-- **FR-015**: System MUST verify that selected firewall is properly installed and active in Firewall-only and AV+Firewall configurations
-- **FR-016**: System MUST document which specific antivirus product was selected from the provided list
-- **FR-017**: System MUST document which specific firewall product was selected from the provided list
+- **FR-012**: System MUST use VirtualBox VM named "Win11" for all testing
+- **FR-013**: System MUST maintain clean baseline snapshot with Windows 11 updated and no antivirus or firewall software installed
+- **FR-014**: System MUST create four distinct snapshots: (1) Baseline-NoIDS, (2) Symantec-Only, (3) OPNsense-Only, (4) Symantec-OPNsense-Both
+- **FR-015**: System MUST verify that selected antivirus (Symantec) is properly installed and active in AV-only and AV+Firewall snapshots
+- **FR-016**: System MUST verify that selected firewall (OPNsense) is properly installed and active in Firewall-only and AV+Firewall snapshots
+- **FR-017**: System MUST document exact VM specifications (RAM, CPU cores, disk size) from VirtualBox configuration for methodology section
+- **FR-018**: System MUST be able to restore snapshots reliably for repeatable testing across all measurements
 
 #### Data Collection & Analysis
 
@@ -297,8 +298,9 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 
 ### Technical Constraints
 
-- **Operating System**: Windows 11 (implied from existing test plan)
-- **Virtualization**: VM-based testing required for snapshot capability
+- **Operating System**: Windows 11 (updated to latest version)
+- **Virtualization**: VirtualBox with VM named "Win11"
+- **VM Snapshot Strategy**: Clean baseline snapshot exists with OS updated, no antivirus or firewall installed
 - **Network Setup**: Must have access to both local network (for folder copy) and remote server (for download test)
 - **Test Data**: 1GB folder for local copy, 100MB file on remote server
 - **Network Protocol**: Must specify which protocol used (FTP, SFTP, SMB, etc.) - [NEEDS CLARIFICATION]
@@ -315,7 +317,7 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 2. ~~Which firewall product will be selected?~~ **RESOLVED: OPNsense**
 3. **Which network protocol for folder copying?** (FTP, SFTP, SMB, or other? Must be specified in paper)
 4. ~~What will be the additional criterion (f)?~~ **RESOLVED: System benchmarking using sysbench from GitHub**
-5. **What are the exact VM specifications?** (RAM, CPU cores, disk space - should be documented in methodology)
+5. ~~What are the exact VM specifications?~~ **RESOLVED: VirtualBox VM named "Win11" with clean snapshot (OS updated, no AV/firewall)**
 6. **What remote server will be used for download testing?** (Public file host, university server, or other?)
 7. **How many iterations per test?** (3-5 iterations recommended for statistical consistency)
 
