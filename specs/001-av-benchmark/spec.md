@@ -264,30 +264,34 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 - **SC-002**: Selected antivirus product is properly installed, activated, and verified in AV-only and AV+Firewall configurations
 - **SC-003**: Selected firewall product is properly installed, activated, and verified in Firewall-only and AV+Firewall configurations
 - **SC-004**: Baseline (No IDS) configuration is verified to have no antivirus or firewall software running
+- **SC-005**: VirtualBox shared folder is successfully configured between host computer and Win11 VM
+- **SC-006**: Shared folder is accessible from inside VM (mapped to drive letter or mount point) with read/write permissions
+- **SC-007**: All test scripts successfully write measurement data to shared folder visible from host computer
+- **SC-008**: Shared folder data persists correctly after VM snapshot restore operations
 
 #### Mandatory Measurements (Criteria a-e)
 
-- **SC-001**: OS boot time is successfully measured using specialized tool (e.g., BootRacer) for all 4 configurations [CRITERION A]
-- **SC-002**: RAM consumption at startup is successfully measured and recorded for all 4 configurations [CRITERION B]
-- **SC-003**: Process count is successfully measured and recorded for all 4 configurations [CRITERION C]
-- **SC-004**: Folder copy speed (≥1GB via local network) is successfully measured across all 4 configurations using documented protocol (SMB) [CRITERION D]
-- **SC-005**: Remote file download speed (≥100MB from long-distance server) is successfully measured across all 4 configurations [CRITERION E]
-- **SC-006**: All mandatory measurements show consistent results with variance <10% across 5 iterations per configuration
+- **SC-009**: OS boot time is successfully measured using specialized tool (e.g., BootRacer) for all 4 configurations [CRITERION A]
+- **SC-010**: RAM consumption at startup is successfully measured and recorded for all 4 configurations [CRITERION B]
+- **SC-011**: Process count is successfully measured and recorded for all 4 configurations [CRITERION C]
+- **SC-012**: Folder copy speed (≥1GB via local network) is successfully measured across all 4 configurations using documented protocol (SMB) [CRITERION D]
+- **SC-013**: Remote file download speed (≥100MB from long-distance server) is successfully measured across all 4 configurations [CRITERION E]
+- **SC-014**: All mandatory measurements show consistent results with variance <10% across 5 iterations per configuration
 
 #### Additional Criterion (Bonus Points - Criterion g)
 
-- **SC-007**: Sysbench is successfully installed from GitHub and configured for Windows testing [CRITERION G]
-- **SC-007a**: At least one sysbench benchmark type (CPU, memory, or disk I/O) is measured across all 4 configurations with documented results
-- **SC-007b**: Sysbench results reveal meaningful performance differences between configurations and demonstrate IDS impact on system resources
-- **SC-007c**: Sysbench methodology, rationale, and results are properly documented in the case study with appropriate attribution
+- **SC-015**: Sysbench is successfully installed from GitHub and configured for Windows testing [CRITERION G]
+- **SC-015a**: At least one sysbench benchmark type (CPU, memory, or disk I/O) is measured across all 4 configurations with documented results
+- **SC-015b**: Sysbench results reveal meaningful performance differences between configurations and demonstrate IDS impact on system resources
+- **SC-015c**: Sysbench methodology, rationale, and results are properly documented in the case study with appropriate attribution
 
 #### Application Launch Performance (Bonus Points - Criterion f)
 
-- **SC-008**: Application launch script (AV-Bench/script.ps1) is modified to run 5 iterations per configuration [CRITERION F]
-- **SC-008a**: Script successfully launches 75 application instances and records timing data to CSV across all 4 configurations
-- **SC-008b**: Application launch results show <10% variance within iterations demonstrating measurement consistency
-- **SC-008c**: Results reveal meaningful differences in process creation overhead between IDS configurations
-- **SC-008d**: Application launch performance data is properly documented in the case study with clear rationale for real-world relevance
+- **SC-016**: Application launch script (AV-Bench/script.ps1) is modified to run 5 iterations per configuration [CRITERION F]
+- **SC-016a**: Script successfully launches 75 application instances and records timing data to CSV across all 4 configurations
+- **SC-016b**: Application launch results show <10% variance within iterations demonstrating measurement consistency
+- **SC-016c**: Results reveal meaningful differences in process creation overhead between IDS configurations
+- **SC-016d**: Application launch performance data is properly documented in the case study with clear rationale for real-world relevance
 
 #### Data Analysis & Visualization
 
