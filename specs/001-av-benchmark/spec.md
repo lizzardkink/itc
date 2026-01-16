@@ -171,32 +171,32 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 ### Functional Requirements
 
-#### Mandatory Measurements (Criteria a-e) - Execution Order: e, d, c, a, b
+#### Mandatory Measurements (Criteria a-e)
 
-- **FR-007**: System MUST measure operating system startup times using a specialized tool (e.g., BootRacer) for each configuration [CRITERION E - First]
-- **FR-006**: System MUST measure RAM memory consumption at system startup for each configuration [CRITERION D - Second]
-- **FR-005**: System MUST count the number of running processes in Windows for each configuration using Task Manager or equivalent tool [CRITERION C - Third]
-- **FR-001**: System MUST measure recursive folder copy speed (≥1GB) via SMB protocol on 1 Gigabit LAN to QNAP NAS across all 4 configurations [CRITERION A - Fifth]
-- **FR-002**: System MUST specify and document that SMB (Server Message Block) protocol is used for folder copying over local network
-- **FR-003**: System MUST measure folder transfer from WIN11 VM to QNAP NAS over 1Gbit LAN connection, not local disk operations
-- **FR-004**: System MUST measure download speed of a remote file (≥100MB) from DIGI Storage server via FTP protocol across all 4 configurations [CRITERION B - Sixth]
-- **FR-008**: System MUST perform all measurements consistently across all 4 configurations using identical methodology
+- **FR-001**: System MUST measure operating system startup times using a specialized tool (e.g., BootRacer) for each configuration [CRITERION A]
+- **FR-002**: System MUST measure RAM memory consumption at system startup for each configuration [CRITERION B]
+- **FR-003**: System MUST count the number of running processes in Windows for each configuration using Task Manager or equivalent tool [CRITERION C]
+- **FR-004**: System MUST measure recursive folder copy speed (≥1GB) via SMB protocol on 1 Gigabit LAN to QNAP NAS across all 4 configurations [CRITERION D]
+- **FR-004a**: System MUST specify and document that SMB (Server Message Block) protocol is used for folder copying over local network
+- **FR-004b**: System MUST measure folder transfer from WIN11 VM to QNAP NAS over 1Gbit LAN connection, not local disk operations
+- **FR-005**: System MUST measure download speed of a remote file (≥100MB) from DIGI Storage server via FTP protocol across all 4 configurations [CRITERION E]
+- **FR-006**: System MUST perform all measurements consistently across all 4 configurations using identical methodology
 
-#### Additional Measurement Criteria (Bonus - Criterion f) - Execution Order: Seventh
+#### Additional Measurement Criteria (Bonus - Criterion g)
 
-- **FR-009**: System MUST measure additional performance criterion (f) using sysbench from GitHub for bonus points (maximum 20 points) [CRITERION F - Seventh]
-- **FR-010**: Sysbench benchmarks MUST include at least one of: CPU performance, memory throughput/latency, or disk I/O (IOPS/throughput)
-- **FR-011**: Additional criterion MUST be explained with clear rationale: sysbench provides standardized, reproducible benchmarks that reveal IDS overhead on system resources
-- **FR-012**: Sysbench MUST be properly attributed in references section with GitHub repository link
+- **FR-007**: System MUST measure additional performance criterion (g) using sysbench from GitHub for bonus points (maximum 20 points) [CRITERION G]
+- **FR-007a**: Sysbench benchmarks MUST include at least one of: CPU performance, memory throughput/latency, or disk I/O (IOPS/throughput)
+- **FR-007b**: Additional criterion MUST be explained with clear rationale: sysbench provides standardized, reproducible benchmarks that reveal IDS overhead on system resources
+- **FR-007c**: Sysbench MUST be properly attributed in references section with GitHub repository link
 
-#### Application Launch Performance Test (Bonus - Criterion g) - Execution Order: Fourth
+#### Application Launch Performance Test (Bonus - Criterion f)
 
-- **FR-012a**: System MUST use existing AV-Bench/script.ps1 to measure application launch performance across all 4 configurations [CRITERION G - Fourth]
-- **FR-012b**: Application launch test MUST launch 75 application instances (25 Calculator, 25 Paint, 25 Notepad) in randomized order
-- **FR-012c**: Script MUST be modified to run 5 iterations per configuration to match consistency standard of other tests
-- **FR-012d**: Application launch times MUST be recorded to measurements.csv with timestamps for each iteration
-- **FR-012e**: Test MUST demonstrate IDS impact on process creation overhead and system responsiveness
-- **FR-012f**: Results MUST show real-world application performance impact more meaningful than static process counting
+- **FR-008**: System MUST use existing AV-Bench/script.ps1 to measure application launch performance across all 4 configurations [CRITERION F]
+- **FR-008a**: Application launch test MUST launch 75 application instances (25 Calculator, 25 Paint, 25 Notepad) in randomized order
+- **FR-008b**: Script MUST be modified to run 5 iterations per configuration to match consistency standard of other tests
+- **FR-008c**: Application launch times MUST be recorded to measurements.csv with timestamps for each iteration
+- **FR-008d**: Test MUST demonstrate IDS impact on process creation overhead and system responsiveness
+- **FR-008e**: Results MUST show real-world application performance impact more meaningful than static process counting
 
 #### VM Configuration & Snapshot Management
 
@@ -258,29 +258,29 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 - **SC-003**: Selected firewall product is properly installed, activated, and verified in Firewall-only and AV+Firewall configurations
 - **SC-004**: Baseline (No IDS) configuration is verified to have no antivirus or firewall software running
 
-#### Mandatory Measurements (Criteria a-e) - Test Execution Order: e→d→c→a→b
+#### Mandatory Measurements (Criteria a-e)
 
-- **SC-009**: OS boot time is successfully measured using specialized tool (e.g., BootRacer) for all 4 configurations [1st - CRITERION E]
-- **SC-008**: RAM consumption at startup is successfully measured and recorded for all 4 configurations [2nd - CRITERION D]
-- **SC-007**: Process count is successfully measured and recorded for all 4 configurations [3rd - CRITERION C]
-- **SC-005**: Folder copy speed (≥1GB via local network) is successfully measured across all 4 configurations using documented protocol (SMB) [5th - CRITERION A]
-- **SC-006**: Remote file download speed (≥100MB from long-distance server) is successfully measured across all 4 configurations [6th - CRITERION B]
-- **SC-010**: All mandatory measurements show consistent results with variance <10% across 5 iterations per configuration
+- **SC-001**: OS boot time is successfully measured using specialized tool (e.g., BootRacer) for all 4 configurations [CRITERION A]
+- **SC-002**: RAM consumption at startup is successfully measured and recorded for all 4 configurations [CRITERION B]
+- **SC-003**: Process count is successfully measured and recorded for all 4 configurations [CRITERION C]
+- **SC-004**: Folder copy speed (≥1GB via local network) is successfully measured across all 4 configurations using documented protocol (SMB) [CRITERION D]
+- **SC-005**: Remote file download speed (≥100MB from long-distance server) is successfully measured across all 4 configurations [CRITERION E]
+- **SC-006**: All mandatory measurements show consistent results with variance <10% across 5 iterations per configuration
 
-#### Additional Criterion (Bonus Points) - Test Execution Order: 7th
+#### Additional Criterion (Bonus Points - Criterion g)
 
-- **SC-011**: Sysbench is successfully installed from GitHub and configured for Windows testing [7th - CRITERION F]
-- **SC-012**: At least one sysbench benchmark type (CPU, memory, or disk I/O) is measured across all 4 configurations with documented results
-- **SC-013**: Sysbench results reveal meaningful performance differences between configurations and demonstrate IDS impact on system resources
-- **SC-014**: Sysbench methodology, rationale, and results are properly documented in the case study with appropriate attribution
+- **SC-007**: Sysbench is successfully installed from GitHub and configured for Windows testing [CRITERION G]
+- **SC-007a**: At least one sysbench benchmark type (CPU, memory, or disk I/O) is measured across all 4 configurations with documented results
+- **SC-007b**: Sysbench results reveal meaningful performance differences between configurations and demonstrate IDS impact on system resources
+- **SC-007c**: Sysbench methodology, rationale, and results are properly documented in the case study with appropriate attribution
 
-#### Application Launch Performance (Bonus Points) - Test Execution Order: 4th
+#### Application Launch Performance (Bonus Points - Criterion f)
 
-- **SC-014a**: Application launch script (AV-Bench/script.ps1) is modified to run 5 iterations per configuration [4th - CRITERION G]
-- **SC-014b**: Script successfully launches 75 application instances and records timing data to CSV across all 4 configurations
-- **SC-014c**: Application launch results show <10% variance within iterations demonstrating measurement consistency
-- **SC-014d**: Results reveal meaningful differences in process creation overhead between IDS configurations
-- **SC-014e**: Application launch performance data is properly documented in the case study with clear rationale for real-world relevance
+- **SC-008**: Application launch script (AV-Bench/script.ps1) is modified to run 5 iterations per configuration [CRITERION F]
+- **SC-008a**: Script successfully launches 75 application instances and records timing data to CSV across all 4 configurations
+- **SC-008b**: Application launch results show <10% variance within iterations demonstrating measurement consistency
+- **SC-008c**: Results reveal meaningful differences in process creation overhead between IDS configurations
+- **SC-008d**: Application launch performance data is properly documented in the case study with clear rationale for real-world relevance
 
 #### Data Analysis & Visualization
 
