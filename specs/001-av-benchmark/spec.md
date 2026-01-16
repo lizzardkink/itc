@@ -280,7 +280,7 @@ Students must select ONE antivirus from the list below on a first-come, first-se
 
 1. Ad-Aware, 2. AegisLab, 3. AhnLab-V3, 4. AntiVir, 5. Antiy-AVL, 6. Avast, 7. AVG, 8. Baidu-International, 9. BitDefender, 10. ByteHero, 11. CAT-QuickHeal, 12. ClamAV, 13. CMC, 14. Commtouch, 15. Comodo, 16. DrWeb, 17. Emsisoft, 18. eScan, 19. ESET-NOD32, 20. F-Prot, 21. F-Secure, 22. Fortinet, 23. GData, 24. Ikarus, 25. Jiangmin, 26. K7AntiVirus, 27. K7GW, 28. Kaspersky, 29. Kingsoft, 30. Malwarebytes, 31. McAfee, 32. McAfee-GW-Edition, 33. Microsoft, 34. NANO-Antivirus, 35. Norman, 36. nProtect, 37. Panda, 38. Qihoo-360, 39. Rising, 40. Sophos, 41. SUPERAntiSpyware, 42. Symantec, 43. Tencent, 44. TheHacker, 45. TotalDefense, 46. TrendMicro, 47. TrendMicro-HouseCall, 48. VBA32, 49. VIPRE, 50. ViRobot, 51. Yandex, 52. Zillya
 
-**Selected Antivirus**: [TO BE DETERMINED - NEEDS CLARIFICATION]
+**Selected Antivirus**: Symantec
 
 ### Available Firewall Products (Select One)
 
@@ -288,7 +288,7 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 
 1. SolarWinds Network Firewall Security Management, 2. System Mechanic Ultimate Defense, 3. Norton, 4. LifeLock, 5. ZoneAlarm, 6. Comodo Firewall, 7. TinyWall, 8. Netdefender, 9. Glasswire, 10. PeerBlock, 11. AVS Firewall, 12. OpenDNS Home, 13. Privatefirewall, 14. Avast Endpoint Firewall, 15. Mcafee Firewall, 16. Azure Firewall, 17. Evorim, 18. Untangle, 19. eScan Advanced Firewall, 20. Sophos XG Firewall, 21. Outpost Firewall, 22. R-Firewall, 23. Ashampoo FireWall, 24. pfSense, 25. Little Snitch, 26. OPNsense
 
-**Selected Firewall**: [TO BE DETERMINED - NEEDS CLARIFICATION]
+**Selected Firewall**: OPNsense
 
 ### Technical Constraints
 
@@ -305,8 +305,8 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 
 ### Open Questions Requiring Clarification
 
-1. **Which antivirus product will be selected?** (Must be chosen from the list and registered as first-come, first-served)
-2. **Which firewall product will be selected?** (Must be chosen from the list and registered as first-come, first-served)
+1. ~~Which antivirus product will be selected?~~ **RESOLVED: Symantec**
+2. ~~Which firewall product will be selected?~~ **RESOLVED: OPNsense**
 3. **Which network protocol for folder copying?** (FTP, SFTP, SMB, or other? Must be specified in paper)
 4. **What will be the additional criterion (f)?** (For bonus points - e.g., DPC latency, disk I/O, context menu delay, or other?)
 5. **What are the exact VM specifications?** (RAM, CPU cores, disk space - should be documented in methodology)
