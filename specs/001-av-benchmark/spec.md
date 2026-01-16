@@ -154,9 +154,9 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 #### Mandatory Measurements (Criteria a-e)
 
-- **FR-001**: System MUST measure recursive folder copy speed (≥1GB) via local network using FTP, SFTP, or equivalent protocol across all 4 configurations
-- **FR-002**: System MUST specify and document which network protocol is used for folder copying (e.g., FTP, SFTP, SMB)
-- **FR-003**: System MUST measure folder transfer from one device to another over local network, not local disk operations
+- **FR-001**: System MUST measure recursive folder copy speed (≥1GB) via SMB protocol on 1 Gigabit LAN to QNAP NAS across all 4 configurations
+- **FR-002**: System MUST specify and document that SMB (Server Message Block) protocol is used for folder copying over local network
+- **FR-003**: System MUST measure folder transfer from WIN11 VM to QNAP NAS over 1Gbit LAN connection, not local disk operations
 - **FR-004**: System MUST measure download speed of a remote file (≥100MB) from a long-distance server across all 4 configurations
 - **FR-005**: System MUST count the number of running processes in Windows for each configuration using Task Manager or equivalent tool
 - **FR-006**: System MUST measure RAM memory consumption at system startup for each configuration
@@ -202,11 +202,12 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 #### Network Testing Setup
 
-- **FR-032**: System MUST establish a local network connection between two devices for folder copy testing
-- **FR-033**: System MUST have access to a remote server for long-distance file download testing
-- **FR-034**: System MUST create or identify a test folder of at least 1GB for network copy testing
-- **FR-035**: System MUST create or identify a test file of at least 100MB on a remote server for download testing
-- **FR-036**: System MUST ensure consistent network conditions across test runs (or document any variations)
+- **FR-032**: System MUST establish 1 Gigabit LAN connection from WIN11 VM to QNAP NAS for folder copy testing
+- **FR-033**: System MUST configure VirtualBox network adapter to Bridged mode to access local network and QNAP NAS
+- **FR-034**: System MUST have access to remote server with internet connection for long-distance file download testing
+- **FR-035**: System MUST create or identify a 1GB test folder on QNAP NAS for network copy benchmarks
+- **FR-036**: System MUST create or identify a test file of at least 100MB on remote server for download testing
+- **FR-037**: System MUST ensure consistent network conditions across test runs (or document any variations in throughput)
 
 ### Key Entities
 
@@ -301,9 +302,9 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 - **Operating System**: Windows 11 (updated to latest version)
 - **Virtualization**: VirtualBox with VM named "Win11"
 - **VM Snapshot Strategy**: Clean baseline snapshot exists with OS updated, no antivirus or firewall installed
-- **Network Setup**: Must have access to both local network (for folder copy) and remote server (for download test)
-- **Test Data**: 1GB folder for local copy, 100MB file on remote server
-- **Network Protocol**: Must specify which protocol used (FTP, SFTP, SMB, etc.) - [NEEDS CLARIFICATION]
+- **Network Setup**: 1 Gigabit LAN connection to QNAP NAS for folder copy testing; internet access for remote download
+- **Network Protocol**: SMB (Server Message Block) for 1GB folder copy test over local network
+- **Test Data**: 1GB folder on QNAP NAS for local copy, 100MB file on remote server for download
 - **Measurement Tools**: Must document all tools used (BootRacer or equivalent, Task Manager/perfmon, etc.)
 - **Bonus Criterion Tool**: sysbench from GitHub (https://github.com/akopytov/sysbench) for CPU/memory/disk I/O benchmarking
 - **LaTeX Template**: LNCS template mandatory (https://github.com/latextemplates/LNCS/archive/main.zip)
@@ -315,7 +316,7 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 
 1. ~~Which antivirus product will be selected?~~ **RESOLVED: Symantec**
 2. ~~Which firewall product will be selected?~~ **RESOLVED: OPNsense**
-3. **Which network protocol for folder copying?** (FTP, SFTP, SMB, or other? Must be specified in paper)
+3. ~~Which network protocol for folder copying?~~ **RESOLVED: SMB protocol on 1Gbit LAN to QNAP NAS**
 4. ~~What will be the additional criterion (f)?~~ **RESOLVED: System benchmarking using sysbench from GitHub**
 5. ~~What are the exact VM specifications?~~ **RESOLVED: VirtualBox VM named "Win11" with clean snapshot (OS updated, no AV/firewall)**
 6. **What remote server will be used for download testing?** (Public file host, university server, or other?)
