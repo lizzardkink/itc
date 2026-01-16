@@ -200,33 +200,40 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 #### VM Configuration & Snapshot Management
 
-- **FR-012**: System MUST use VirtualBox VM named "Win11" for all testing
-- **FR-013**: System MUST maintain clean baseline snapshot with Windows 11 updated and no antivirus or firewall software installed
-- **FR-014**: System MUST create four distinct snapshots: (1) Baseline-NoIDS, (2) Symantec-Only, (3) OPNsense-Only, (4) Symantec-OPNsense-Both
-- **FR-015**: System MUST verify that selected antivirus (Symantec) is properly installed and active in AV-only and AV+Firewall snapshots
-- **FR-016**: System MUST verify that selected firewall (OPNsense) is properly installed and active in Firewall-only and AV+Firewall snapshots
-- **FR-017**: System MUST document exact VM specifications (RAM, CPU cores, disk size) from VirtualBox configuration for methodology section
-- **FR-018**: System MUST be able to restore snapshots reliably for repeatable testing across all measurements
+- **FR-009**: System MUST use VirtualBox VM named "Win11" for all testing
+- **FR-010**: System MUST maintain clean baseline snapshot with Windows 11 updated and no antivirus or firewall software installed
+- **FR-011**: System MUST create four distinct snapshots: (1) Baseline-NoIDS, (2) Symantec-Only, (3) OPNsense-Only, (4) Symantec-OPNsense-Both
+- **FR-012**: System MUST verify that selected antivirus (Symantec) is properly installed and active in AV-only and AV+Firewall snapshots
+- **FR-013**: System MUST verify that selected firewall (OPNsense) is properly installed and active in Firewall-only and AV+Firewall snapshots
+- **FR-014**: System MUST document exact VM specifications (RAM, CPU cores, disk size) from VirtualBox configuration for methodology section
+- **FR-015**: System MUST be able to restore snapshots reliably for repeatable testing across all measurements
+- **FR-016**: System MUST configure VirtualBox shared folder between host computer and Win11 VM for automatic data collection
+- **FR-016a**: Shared folder MUST be mapped to accessible drive letter or mount point inside Win11 VM (e.g., Z:\Shared)
+- **FR-016b**: All test scripts (BootRacer exports, AV-Bench script.ps1, sysbench, etc.) MUST save measurement results directly to shared folder
+- **FR-016c**: Shared folder MUST persist measurement data even after VM snapshots are restored to prevent data loss
+- **FR-016d**: System MUST verify shared folder read/write permissions work correctly before beginning test iterations
 
 #### Data Collection & Analysis
 
-- **FR-018**: System MUST persist all measurement data in structured format (CSV or equivalent) with configuration labels
-- **FR-019**: System MUST execute each benchmark test 5 iterations to ensure statistical consistency and reliability
-- **FR-020**: System MUST calculate percentage impact/overhead for each metric by comparing each IDS configuration to baseline
-- **FR-021**: System MUST generate comparative graphs showing all 4 configurations for each measured criterion
-- **FR-022**: System MUST ensure graphs are suitable for inclusion in LaTeX document
+- **FR-017**: System MUST persist all measurement data in structured format (CSV or equivalent) with configuration labels to shared folder
+- **FR-017a**: Measurement files MUST include metadata: configuration name, iteration number, timestamp, criterion measured
+- **FR-018**: System MUST execute each benchmark test 5 iterations to ensure statistical consistency and reliability
+- **FR-019**: System MUST calculate percentage impact/overhead for each metric by comparing each IDS configuration to baseline
+- **FR-020**: System MUST generate comparative graphs showing all 4 configurations for each measured criterion
+- **FR-021**: System MUST ensure graphs are suitable for inclusion in LaTeX document
 
 #### LaTeX Document Generation
 
-- **FR-023**: System MUST generate LaTeX source using the mandatory LNCS template
-- **FR-024**: Document MUST follow scientific paper structure: abstract, introduction, related work, methodology, results, discussion, conclusion, references
-- **FR-025**: Document MUST include methodology section describing test setup, VM specifications, software versions, and measurement procedures
-- **FR-026**: Document MUST include results section with tables and comparative graphs for all measured criteria
-- **FR-027**: Document MUST include discussion/analysis section interpreting the results and explaining performance differences
-- **FR-028**: Document MUST include references to relevant academic papers or technical sources
-- **FR-029**: Document MUST be at least 7 pages when compiled to PDF
-- **FR-030**: Document MAY include screenshots but they must not exceed 25% of any page
-- **FR-031**: Document MUST be checked for plagiarism and maintain ≤7% similarity score
+- **FR-022**: System MUST generate LaTeX source using the mandatory LNCS template
+- **FR-023**: Document MUST follow scientific paper structure: abstract, introduction, related work, methodology, results, discussion, conclusion, references
+- **FR-024**: Document MUST include methodology section describing test setup, VM specifications, software versions, and measurement procedures
+- **FR-024a**: Methodology MUST document shared folder configuration for automated data collection from VM to host computer
+- **FR-025**: Document MUST include results section with tables and comparative graphs for all measured criteria
+- **FR-026**: Document MUST include discussion/analysis section interpreting the results and explaining performance differences
+- **FR-027**: Document MUST include references to relevant academic papers or technical sources
+- **FR-028**: Document MUST be at least 7 pages when compiled to PDF
+- **FR-029**: Document MAY include screenshots but they must not exceed 25% of any page
+- **FR-030**: Document MUST be checked for plagiarism and maintain ≤7% similarity score
 
 #### Network Testing Setup
 
