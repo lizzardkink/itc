@@ -157,7 +157,7 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 - **FR-001**: System MUST measure recursive folder copy speed (≥1GB) via SMB protocol on 1 Gigabit LAN to QNAP NAS across all 4 configurations
 - **FR-002**: System MUST specify and document that SMB (Server Message Block) protocol is used for folder copying over local network
 - **FR-003**: System MUST measure folder transfer from WIN11 VM to QNAP NAS over 1Gbit LAN connection, not local disk operations
-- **FR-004**: System MUST measure download speed of a remote file (≥100MB) from a long-distance server across all 4 configurations
+- **FR-004**: System MUST measure download speed of a remote file (≥100MB) from DIGI Storage server via FTP protocol across all 4 configurations
 - **FR-005**: System MUST count the number of running processes in Windows for each configuration using Task Manager or equivalent tool
 - **FR-006**: System MUST measure RAM memory consumption at system startup for each configuration
 - **FR-007**: System MUST measure operating system startup times using a specialized tool (e.g., BootRacer) for each configuration
@@ -204,9 +204,9 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 - **FR-032**: System MUST establish 1 Gigabit LAN connection from WIN11 VM to QNAP NAS for folder copy testing
 - **FR-033**: System MUST configure VirtualBox network adapter to Bridged mode to access local network and QNAP NAS
-- **FR-034**: System MUST have access to remote server with internet connection for long-distance file download testing
+- **FR-034**: System MUST establish FTP connection from WIN11 VM to DIGI Storage server for remote file download testing
 - **FR-035**: System MUST create or identify a 1GB test folder on QNAP NAS for network copy benchmarks
-- **FR-036**: System MUST create or identify a test file of at least 100MB on remote server for download testing
+- **FR-036**: System MUST create or identify a test file of at least 100MB on DIGI Storage server accessible via FTP for download testing
 - **FR-037**: System MUST ensure consistent network conditions across test runs (or document any variations in throughput)
 
 ### Key Entities
@@ -268,10 +268,11 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 #### Network Testing Infrastructure
 
-- **SC-027**: Local network connection between two devices is established and functional for folder copy testing
-- **SC-028**: Remote server with ≥100MB test file is accessible and functional for download testing
-- **SC-029**: Test folder of ≥1GB is created/available for network copy benchmarks
-- **SC-030**: Network conditions remain consistent across test runs, or variations are documented
+- **SC-027**: 1 Gigabit LAN connection between WIN11 VM and QNAP NAS is established and functional for folder copy testing
+- **SC-028**: FTP connection to DIGI Storage server is accessible and functional for remote download testing
+- **SC-029**: Test folder of ≥1GB is created/available on QNAP NAS for network copy benchmarks
+- **SC-030**: Test file of ≥100MB is created/available on DIGI Storage for FTP download benchmarks
+- **SC-031**: Network conditions remain consistent across test runs, or variations are documented
 
 #### Project Completion
 
@@ -302,9 +303,10 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 - **Operating System**: Windows 11 (updated to latest version)
 - **Virtualization**: VirtualBox with VM named "Win11"
 - **VM Snapshot Strategy**: Clean baseline snapshot exists with OS updated, no antivirus or firewall installed
-- **Network Setup**: 1 Gigabit LAN connection to QNAP NAS for folder copy testing; internet access for remote download
-- **Network Protocol**: SMB (Server Message Block) for 1GB folder copy test over local network
-- **Test Data**: 1GB folder on QNAP NAS for local copy, 100MB file on remote server for download
+- **Network Setup**: 1 Gigabit LAN connection to QNAP NAS for folder copy testing; FTP connection to DIGI Storage for remote download
+- **Network Protocol (Criterion a)**: SMB (Server Message Block) for 1GB folder copy test over local network
+- **Network Protocol (Criterion b)**: FTP (File Transfer Protocol) for 100MB remote download test
+- **Test Data**: 1GB folder on QNAP NAS for local copy, 100MB file on DIGI Storage for remote download
 - **Measurement Tools**: Must document all tools used (BootRacer or equivalent, Task Manager/perfmon, etc.)
 - **Bonus Criterion Tool**: sysbench from GitHub (https://github.com/akopytov/sysbench) for CPU/memory/disk I/O benchmarking
 - **LaTeX Template**: LNCS template mandatory (https://github.com/latextemplates/LNCS/archive/main.zip)
@@ -319,7 +321,7 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 3. ~~Which network protocol for folder copying?~~ **RESOLVED: SMB protocol on 1Gbit LAN to QNAP NAS**
 4. ~~What will be the additional criterion (f)?~~ **RESOLVED: System benchmarking using sysbench from GitHub**
 5. ~~What are the exact VM specifications?~~ **RESOLVED: VirtualBox VM named "Win11" with clean snapshot (OS updated, no AV/firewall)**
-6. **What remote server will be used for download testing?** (Public file host, university server, or other?)
+6. ~~What remote server will be used for download testing?~~ **RESOLVED: DIGI Storage server via FTP protocol**
 7. **How many iterations per test?** (3-5 iterations recommended for statistical consistency)
 
 ### Reference Materials
