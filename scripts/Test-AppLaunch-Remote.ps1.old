@@ -1,0 +1,145 @@
+# Test-AppLaunch-Remote.ps1
+# App Launch Performance Test - Uses Remote GUI Control
+# Launches 75 app instances (25 each of Calc, Notepad, Paint) via remote GUI helper
+# Created: 2026-01-16
+
+param(
+    [int]$Iterations = 5,
+    [string]$ConfigName = "baseline",
+    [string]$VMHost = "127.0.0.1",
+    [int]$VMPort = 5985,
+    [string]$Username = "admin",
+    [string]$Password = "admin"
+)
+
+$secPass = ConvertTo-SecureString $Password -AsPlainText -Force
+$cred = New-Object System.Management.Automation.PSCredential($Username, $secPass)
+
+Write-Host "=== App Launch Performance Test (Remote GUI) ===" -ForegroundColor Cyan
+Write-Host "Configuration: $ConfigName" -ForegroundColor Yellow
+Write-Host "Iterations: $Iterations" -ForegroundColor Yellow
+Write-Host "Apps: 25 Calc + 25 Notepad + 25 Paint = 75 total per iteration`n" -ForegroundColor Gray
+
+# Path to remote GUI control script
+$guiScript = Join-Path $PSScriptRoot "Invoke-RemoteGUIApp.ps1"
+
+# Output file
+$outputFile = "C:\VMShare\data\$ConfigName\app-launch-$ConfigName.csv"
+
+# Create output directory if needed
+$outputDir = Split-Path $outputFile -Parent
+if (-not (Test-Path $outputDir)) {
+    New-Item -Path $outputDir -ItemType Directory -Force | Out-Null
+}
+
+# Initialize CSV
+if (-not (Test-Path $outputFile)) {
+    "Index,Timestamp,TimeMs,TimeSeconds" | Out-File -FilePath $outputFile -Encoding UTF8
+}
+
+# Get starting index
+$index = 1
+if (Test-Path $outputFile) {
+    $content = Get-Content $outputFile -ErrorAction SilentlyContinue
+    if ($content -and $content.Count -gt 1) {
+        $lastLine = if ($content -is [array]) { $content[-1] } else { $content }
+        if ($lastLine -match "^(\d+),") {
+            $index = [int]$matches[1] + 1
+        }
+    }
+}
+
+# Pre-flight check: Verify helper is running
+Write-Host "Checking helper status..." -ForegroundColor Gray
+Invoke-Command -ComputerName $VMHost -Port $VMPort -Credential $cred -ScriptBlock {
+    $helperRunning = $false
+    Get-Process -Name powershell,pwsh -ErrorAction SilentlyContinue | ForEach-Object {
+        $cmdLine = (Get-WmiObject Win32_Process -Filter "ProcessId=$($_.Id)").CommandLine
+        if ($cmdLine -like "*GUI-App-Launcher-Helper*") {
+            $helperRunning = $true
+        }
+    }
+    if (-not $helperRunning) {
+        Write-Host "⚠ WARNING: Helper script not detected!" -ForegroundColor Red
+        Write-Host "  Start it on VM: & 'Z:\GUI-App-Launcher-Helper.ps1'" -ForegroundColor Yellow
+        throw "Helper not running"
+    }
+} | Out-Null
+Write-Host "✓ Helper is running`n" -ForegroundColor Green
+
+# Run iterations
+for ($iter = 1; $iter -le $Iterations; $iter++) {
+    Write-Host "========== Iteration $iter of $Iterations ==========" -ForegroundColor Magenta
+    
+    # Clean up any existing instances first
+    Write-Host "Cleaning up existing instances..." -ForegroundColor Gray
+    & $guiScript -AppName calc -Action CloseAll | Out-Null
+    & $guiScript -AppName notepad -Action CloseAll | Out-Null
+    & $guiScript -AppName mspaint -Action CloseAll | Out-Null
+    Start-Sleep -Seconds 2
+    
+    Write-Host "Starting 75 application instances (randomized order)..." -ForegroundColor Cyan
+    
+    # Create randomized launch sequence
+    $launchSequence = @()
+    @('calc', 'notepad', 'mspaint') | ForEach-Object {
+        $app = $_
+        1..25 | ForEach-Object { $launchSequence += $app }
+    }
+    $launchSequence = $launchSequence | Get-Random -Count $launchSequence.Count
+    
+    # Time the launches
+    $totalStart = Get-Date
+    
+    # Launch apps in batches for efficiency (remote GUI control handles timing)
+    $calcCount = ($launchSequence | Where-Object { $_ -eq 'calc' }).Count
+    $notepadCount = ($launchSequence | Where-Object { $_ -eq 'notepad' }).Count
+    $paintCount = ($launchSequence | Where-Object { $_ -eq 'mspaint' }).Count
+    
+    Write-Host "  Launching $calcCount Calculator instances..." -ForegroundColor Gray
+    & $guiScript -AppName calc -Action Launch -Count $calcCount | Out-Null
+    
+    Write-Host "  Launching $notepadCount Notepad instances..." -ForegroundColor Gray
+    & $guiScript -AppName notepad -Action Launch -Count $notepadCount | Out-Null
+    
+    Write-Host "  Launching $paintCount Paint instances..." -ForegroundColor Gray
+    & $guiScript -AppName mspaint -Action Launch -Count $paintCount | Out-Null
+    
+    $totalTime = ((Get-Date) - $totalStart).TotalMilliseconds
+    
+    Write-Host "`nAll applications opened in $([math]::Round($totalTime, 2))ms ($([math]::Round($totalTime/1000, 2))s)" -ForegroundColor Green
+    
+    # Log result
+    $timestamp = Get-Date -Format "M/d/yyyy HH:mm"
+    $timeMs = [math]::Round($totalTime, 2)
+    $timeSec = [math]::Round($totalTime/1000, 3)
+    "$index,$timestamp,$timeMs,$timeSec" | Out-File -FilePath $outputFile -Append -Encoding UTF8
+    Write-Host "Result logged to $outputFile" -ForegroundColor Cyan
+    
+    # Cleanup
+    Write-Host "`nCleaning up..." -ForegroundColor Gray
+    & $guiScript -AppName calc -Action CloseAll | Out-Null
+    & $guiScript -AppName notepad -Action CloseAll | Out-Null
+    & $guiScript -AppName mspaint -Action CloseAll | Out-Null
+    
+    $index++
+    
+    if ($iter -lt $Iterations) {
+        Write-Host "Waiting 5 seconds before next iteration...`n" -ForegroundColor Gray
+        Start-Sleep -Seconds 5
+    }
+}
+
+Write-Host "`n========== All $Iterations iterations completed ==========" -ForegroundColor Green
+
+# Display results
+Write-Host "`nResults Summary:" -ForegroundColor Yellow
+if (Test-Path $outputFile) {
+    $results = Import-Csv $outputFile | Select-Object -Last $Iterations
+    $results | Format-Table -AutoSize
+    
+    $avg = ($results | Measure-Object -Property TimeSeconds -Average).Average
+    Write-Host "Average time: $([math]::Round($avg, 3))s" -ForegroundColor Cyan
+}
+
+Write-Host "`n✓ Test complete!" -ForegroundColor Green

@@ -10,8 +10,9 @@ The script measures how quickly the system can launch 75 application instances (
 
 ### Key Features:
 - **Applications**: calc, mspaint, notepad
-- **Instances**: 25 of each = 75 total processes
-- **Iterations**: 3 runs (configurable)
+- **Instances**: 25 of each = 75 total processes per iteration
+- **Iterations**: 5 runs (configured to match other tests)
+- **Total Launches**: 375 application instances (75 per iteration × 5 iterations)
 - **Output**: `measurements.csv` with timestamps and timing data
 - **Cleanup**: Aggressive cleanup between iterations to ensure consistent state
 
@@ -20,8 +21,8 @@ The script measures how quickly the system can launch 75 application instances (
 ### Applications Tested
 ```powershell
 $apps = @("calc", "mspaint", "notepad")
-$instanceCount = 25  # 25 instances per app
-$iterations = 3      # Run 3 times
+$instanceCount = 25  # 25 instances per app = 75 per iteration
+$iterations = 5      # Run 5 times (matches other test consistency)
 ```
 
 ### Measurement Process
@@ -39,6 +40,8 @@ Index,Timestamp,TimeMs,TimeSeconds
 1,2026-01-16 15:30:45,12543.67,12.544
 2,2026-01-16 15:31:02,13201.23,13.201
 3,2026-01-16 15:31:20,12899.45,12.899
+4,2026-01-16 15:31:38,12756.89,12.757
+5,2026-01-16 15:31:56,13045.12,13.045
 ```
 
 ### Cleanup Function
@@ -51,9 +54,10 @@ The script includes aggressive cleanup:
 ## Integration with IDS Testing
 
 ### Option 1: Additional Performance Criterion
-This could be criterion (g) if you want more than 6 criteria:
+This is criterion (f) as an additional bonus test:
 - **Metric**: Application launch performance
-- **Measurement**: Time to launch 75 application instances (ms)
+- **Measurement**: Time to launch 75 application instances per iteration (ms), 5 iterations
+- **Total**: 375 application launches across all iterations
 - **Rationale**: Tests IDS impact on process creation overhead
 
 ### Option 2: System Responsiveness Validation
@@ -92,7 +96,7 @@ Instead of just counting processes, this measures:
    - Rename: `app-launch-baseline.csv`, `app-launch-symantec.csv`, etc.
 
 5. **Calculate averages**
-   - Average of 3 iterations per configuration
+   - Average of 5 iterations per configuration
    - Compare against baseline
    - Calculate overhead percentage
 
@@ -118,13 +122,14 @@ Instead of just counting processes, this measures:
 
 ## Integration Recommendations
 
-### If Using as Criterion (g):
+### If Using as Criterion (f):
 
-Update specification to include:
-- **Criterion (g)**: Application launch performance (bonus)
-- **Measurement**: Time to launch 75 application instances
+Specification updated to include:
+- **Criterion (f)**: Application launch performance (bonus)
+- **Measurement**: Time to launch 75 application instances per iteration
 - **Tools**: Custom PowerShell script (`AV-Bench/script.ps1`)
-- **Iterations**: 3 per configuration (already built-in)
+- **Iterations**: 5 per configuration (configured to match other tests)
+- **Total Launches**: 375 application instances per configuration
 
 ### If Using as Validation:
 
@@ -133,13 +138,13 @@ Run this test once per configuration to verify:
 - IDS is functioning without conflicts
 - VM performance is stable
 
-## Modifications Needed (if any)
+## Modifications Applied
 
-The script is production-ready as-is. Optional modifications:
+The script has been updated to production configuration:
 
-### 1. Increase Iterations to 5 (match other tests):
+### 1. ✅ Iterations Set to 5 (matches other tests):
 ```powershell
-$iterations = 5  # Change from 3 to 5
+$iterations = 5  # Already configured
 ```
 
 ### 2. Add Configuration Label:
@@ -162,11 +167,13 @@ Start-Sleep -Seconds 3  # Change from 5 to 3
 
 | Criterion | What It Measures | This Script Measures |
 |-----------|------------------|---------------------|
-| (c) Process Count | Static process count at startup | Dynamic process creation speed |
-| (d) RAM Usage | Static memory at startup | Memory allocation under load |
-| (e) Boot Time | OS initialization | Application initialization |
-| (f) sysbench | Synthetic CPU/mem/disk | Real app launch performance |
-| **(g) App Launch** | **Real-world responsiveness** | **Real application startup** |
+| (a) SMB Copy | Network transfer speed | Static file transfer |
+| (b) FTP Download | Remote download speed | Static remote transfer |
+| (c) Process Count | Static process count at startup | Current (criterion c) |
+| (d) RAM Usage | Static memory at startup | Current (criterion d) |
+| (e) Boot Time | OS initialization | Current (criterion e) |
+| **(f) App Launch** | **Real-world responsiveness** | **375 app startups** |
+| (g) sysbench | Synthetic CPU/mem/disk | Synthetic benchmarks |
 
 ## Usage Commands
 
@@ -209,9 +216,9 @@ $overhead = (($symantecAvg - $baselineAvg) / $baselineAvg) * 100
 Write-Host "Symantec overhead: $([math]::Round($overhead, 2))%"
 ```
 
-## Rationale for Paper (if using as criterion)
+## Rationale for Paper
 
-"Application launch performance was measured by timing the sequential startup of 75 application instances (25 each of Calculator, Paint, and Notepad) in randomized order. This test evaluates the real-world impact of IDS process scanning on application startup times, memory allocation, and system responsiveness under moderate concurrent process creation load."
+"Application launch performance (criterion f) was measured by timing the sequential startup of 75 application instances (25 each of Calculator, Paint, and Notepad) in randomized order across 5 iterations, totaling 375 application launches per configuration. This test evaluates the real-world impact of IDS process scanning on application startup times, memory allocation, and system responsiveness under moderate concurrent process creation load. Unlike static measurements, this dynamic test reveals the practical overhead users experience when launching applications with active IDS protection."
 
 ## Recommendation
 

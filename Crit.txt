@@ -1,6 +1,0 @@
-1. boot time
-2. mem usage
-3. disk space
-
-
-git sysbench

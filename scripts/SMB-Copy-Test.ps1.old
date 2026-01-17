@@ -1,0 +1,91 @@
+# SMB-Copy-Test.ps1
+# Measures SMB network copy performance from QNAP NAS to local Desktop
+# Created: 2026-01-16
+
+param(
+    [string]$ConfigName = "baseline",
+    [int]$Iterations = 5
+)
+
+Write-Host "=== SMB Network Copy Test ===" -ForegroundColor Cyan
+Write-Host "Configuration: $ConfigName" -ForegroundColor Yellow
+Write-Host "Iterations: $Iterations`n" -ForegroundColor Yellow
+
+# Configuration
+$nasPath = "\\192.168.50.99\Public\Test"
+$nasUser = "admin"
+$nasPass = "sm@rtpassQ12!"
+$destBasePath = "C:\Users\admin\Desktop\SMB"
+$csvPath = "Z:\data\$ConfigName\smb-copy-$ConfigName.csv"
+
+# Create PSCredential for NAS access
+Write-Host "Setting up NAS credentials..." -ForegroundColor Yellow
+$secPass = ConvertTo-SecureString $nasPass -AsPlainText -Force
+$nasCred = New-Object System.Management.Automation.PSCredential($nasUser, $secPass)
+
+# Map drive using New-PSDrive
+try {
+    New-PSDrive -Name "N" -PSProvider FileSystem -Root $nasPath -Credential $nasCred -ErrorAction Stop | Out-Null
+    Write-Host "  ✓ Network drive mapped successfully" -ForegroundColor Green
+} catch {
+    Write-Host "  ⚠ Could not map drive, will use UNC path directly" -ForegroundColor Yellow
+}
+
+$sourcePath = $nasPath
+
+# Create CSV with header
+"Iteration,Timestamp,SourceSizeGB,CopyTimeSeconds,SpeedMBps,Configuration" | Out-File -FilePath $csvPath -Encoding UTF8
+
+for ($i = 1; $i -le $Iterations; $i++) {
+    Write-Host "Iteration $i of $Iterations" -ForegroundColor Cyan
+    
+    # Create unique destination folder for this iteration
+    $destPath = "$destBasePath\iteration_$i"
+    
+    # Clean destination if exists
+    if (Test-Path $destPath) {
+        Write-Host "  Cleaning previous test data..." -ForegroundColor Gray
+        Remove-Item $destPath -Recurse -Force
+    }
+    
+    New-Item -ItemType Directory -Path $destPath -Force | Out-Null
+    
+    # Get source size
+    Write-Host "  Calculating source size..." -ForegroundColor Gray
+    $sourceItems = Get-ChildItem $sourcePath -Recurse | Where-Object {!$_.PSIsContainer}
+    $sourceSizeBytes = ($sourceItems | Measure-Object -Property Length -Sum).Sum
+    $sourceSizeGB = [math]::Round($sourceSizeBytes / 1GB, 2)
+    
+    Write-Host "  Source size: $sourceSizeGB GB" -ForegroundColor Green
+    Write-Host "  Starting copy..." -ForegroundColor Yellow
+    
+    # Measure copy time
+    $startTime = Get-Date
+    Copy-Item -Path "$sourcePath\*" -Destination $destPath -Recurse -Force
+    $endTime = Get-Date
+    
+    $copyTime = ($endTime - $startTime).TotalSeconds
+    $speedMBps = [math]::Round(($sourceSizeBytes / 1MB) / $copyTime, 2)
+    
+    $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+    
+    Write-Host "  Copy completed in $([math]::Round($copyTime, 2)) seconds" -ForegroundColor Green
+    Write-Host "  Speed: $speedMBps MB/s" -ForegroundColor Cyan
+    
+    # Save to CSV
+    "$i,$timestamp,$sourceSizeGB,$([math]::Round($copyTime, 2)),$speedMBps,$ConfigName" | 
+        Out-File -FilePath $csvPath -Append -Encoding UTF8
+    
+    # Clean up to save space for next iteration
+    Write-Host "  Cleaning up..." -ForegroundColor Gray
+    Remove-Item $destPath -Recurse -Force
+    
+    Write-Host ""
+}
+
+Write-Host "=== SMB Test Complete ===" -ForegroundColor Green
+Write-Host "Results saved to: $csvPath`n" -ForegroundColor Cyan
+
+# Display summary
+Write-Host "Summary:" -ForegroundColor Yellow
+Import-Csv $csvPath | Format-Table -AutoSize

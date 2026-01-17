@@ -2,12 +2,90 @@
 
 **Feature Branch**: `001-av-benchmark`  
 **Created**: 2026-01-16  
-**Updated**: 2026-01-16  
+**Updated**: 2026-01-16 15:49 UTC  
 **Status**: Draft  
 **Input**: User description: "Antivirus performance benchmarking system"  
 **Academic Project**: Analysis of the impact of intrusion detection systems on computational resources  
 **Deadline**: 23 Jan 2026, 21:00  
 **Deliverable**: LaTeX paper (7+ pages) + PDF, using LNCS template
+
+## Test Environment Configuration
+
+**Selected Products**:
+- **Antivirus**: Symantec
+- **Firewall**: OPNsense
+
+**Hardware/VM Setup**:
+- **Platform**: VirtualBox
+- **VM Name**: WIN11
+- **OS**: Windows 11 (64-bit) [Version: TBD - verify via `winver` or `systeminfo`]
+- **CPUs**: 4 virtual processors
+- **RAM**: 8 GB (8192 MB)
+- **VRAM**: 128 MB
+- **Initial State**: Clean snapshot with no antivirus/firewall installed
+- **Boot Time Tool**: BootRacer (pre-installed)
+
+**Network Configuration**:
+- **Local Network**: 1 Gbit LAN via SMB protocol
+- **NAS**: QNAP network storage (mapped via SMB)
+
+---
+
+## Documentation Structure
+
+This specification is part of a comprehensive documentation package:
+
+- **spec.md** (this file) - User stories, acceptance criteria, and test environment
+- **plan.md** - Research methodology, timeline, and deliverables
+- **tasks.md** - Task breakdown and progress tracking
+- **boot-time-methodology.md** - Detailed boot time measurement protocol
+- **test-scripts-reference.md** - Complete test automation documentation ⭐
+- **guest-setup.md** - VM configuration and setup procedures
+- **bibliography-guide.md** - Citation formatting guidelines
+
+## Project Structure
+
+```
+ItC/
+├── specs/001-av-benchmark/
+│   ├── spec.md                        # This file
+│   ├── test-scripts-reference.md      # Script documentation ⭐
+│   ├── boot-time-methodology.md       # Boot time details
+│   └── [other docs]
+├── scripts/                            # Main test scripts (run from host)
+│   ├── Automated-Boot-Cycle-With-BootRacer.ps1
+│   ├── Test-AppLaunch-Remote.ps1
+│   ├── FTP-Download-Test.ps1
+│   ├── SMB-Copy-Test.ps1
+│   └── [utilities]
+├── C:\VMShare/                         # Shared folder (Z:\ on VM)
+│   ├── Get-LatestBootTime.ps1         # VM helper scripts
+│   ├── VM-Helper-*.ps1                # Test executors
+│   └── data/                           # CSV results by config
+└── analysis/                           # Data analysis outputs
+```
+
+**Note**: See `test-scripts-reference.md` for complete script documentation including architecture, usage examples, and troubleshooting.
+
+---
+- **Remote Server**: DIGI Storage (FTP connection via FileZilla)
+
+**Shared Folder Mapping & Data Collection**:
+- **Host**: C:\VMShare (all test data stored here for access from guest)
+- **Guest**: Z: drive (mapped via VirtualBox shared folders)
+- **Measurement Storage**: All test results saved to C:\VMShare\data\{config}\{criterion}\ folders
+- **Analysis**: Results analyzed from host computer using data in C:\VMShare
+
+**Test Iterations**: 5 iterations per test
+
+## Test Criteria (Reordered)
+
+**Criterion A**: OS boot time measurement (using BootRacer)  
+**Criterion B**: RAM consumption at startup  
+**Criterion C**: Process count at startup  
+**Criterion D**: Application launch performance (AV-Bench/script.ps1 - 75 apps × 5 iterations = 375 total launches)  
+**Criterion E**: Local network file transfer speed via SMB (1GB folder copy)  
+**Criterion F**: Remote file download speed via FTP (100MB file from DIGI Storage)
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -22,88 +100,128 @@ As a researcher, I need to establish and measure 4 distinct system configuration
 **Acceptance Scenarios**:
 
 1. **Given** a clean Windows 11 VM, **When** I create the baseline snapshot with no IDS, **Then** no antivirus or firewall software is running
-2. **Given** the baseline snapshot, **When** I install only the selected antivirus, **Then** a new snapshot "AV-only" is created with AV confirmed active
-3. **Given** the baseline snapshot, **When** I install only the selected firewall, **Then** a new snapshot "Firewall-only" is created with firewall confirmed active
-4. **Given** the baseline snapshot, **When** I install both antivirus and firewall, **Then** a new snapshot "AV+Firewall" is created with both confirmed active
+2. **Given** the baseline snapshot, **When** I install only Symantec antivirus, **Then** a new snapshot "AV-only" is created with AV confirmed active
+3. **Given** the baseline snapshot, **When** I install only OPNsense firewall, **Then** a new snapshot "Firewall-only" is created with firewall confirmed active
+4. **Given** the baseline snapshot, **When** I install both Symantec and OPNsense, **Then** a new snapshot "AV+Firewall" is created with both confirmed active
 5. **Given** all 4 snapshots exist, **When** I restore each snapshot, **Then** the system boots successfully with the correct IDS configuration
 
 ---
 
-### User Story 2 - Network File Transfer Performance Measurement (Priority: P1)
+### User Story 2 - Criterion A: OS Boot Time Measurement (Priority: P1)
 
-As a researcher, I need to measure recursive folder copying speed (1GB+ via local network) and remote file download speed (100MB+) across all 4 configurations, so I can quantify IDS impact on network operations.
+As a researcher, I need to measure OS boot time across all 4 configurations using BootRacer, so I can quantify IDS impact on system startup performance.
 
-**Why this priority**: Criteria (a) and (b) from the project requirements are mandatory measurements for the case study.
+**Why this priority**: Criterion A (original criterion e) is mandatory for the case study.
 
-**Independent Test**: Can be fully tested by setting up a network file share, performing FTP/SFTP transfers of 1GB folder and 100MB file, and collecting transfer time measurements for each configuration.
+**Independent Test**: Can be fully tested by using BootRacer to measure boot time for each configuration, ensuring data is collected consistently.
+
+**Boot Time Components** (as measured by BootRacer):
+- **Time to Logon**: Seconds from boot start until Windows logon screen appears
+- **Logon Timeout**: Seconds spent at logon screen (if applicable)
+- **Logon to Desktop**: Seconds from logon until desktop is fully ready
+- **TOTAL BOOT TIME**: Sum of all three components (target: 60-90s baseline)
+
+**Data Source**: `C:\Users\Public\Documents\Bootracer.his` on VM (binary history file)
 
 **Acceptance Scenarios**:
 
-1. **Given** a 1GB test folder on network share, **When** I copy it recursively using FTP/SFTP from each of 4 configurations, **Then** transfer time is measured and logged in seconds
-2. **Given** a remote server with 100MB test file, **When** I download it from each of 4 configurations, **Then** download time and speed (MB/s) are measured and logged
-3. **Given** transfer measurements are complete, **When** I analyze the data, **Then** I can calculate percentage overhead for each IDS variant compared to baseline
-4. **Given** the network protocol used (e.g., FTP, SFTP), **When** included in documentation, **Then** the protocol is clearly specified in the results
+1. **Given** each configuration, **When** I measure boot time using BootRacer, **Then** all three components (Time to Logon, Logon Timeout, Logon to Desktop) are recorded and TOTAL boot time is calculated
+2. **Given** all boot time measurements are complete (5 iterations per configuration), **When** I compare results, **Then** percentage impact for each IDS variant is calculated based on TOTAL boot time
+3. **Given** measurements are collected, **When** saved to Z:\data\{config}\boot-time-{config}.csv, **Then** CSV files contain: Iteration, Timestamp, TimeToLogon, LogonTimeout, LogonToDesktop, TotalBootTime, Configuration
+4. **Given** BootRacer .his file is updated after each boot, **When** script reads `C:\Users\Public\Documents\Bootracer.his`, **Then** the most recent boot entry is parsed correctly and all components are extracted
+
+**Methodology Reference**: See `specs/001-av-benchmark/boot-time-methodology.md` for complete measurement protocol
+
+**Script Reference**: See `specs/001-av-benchmark/test-scripts-reference.md` for detailed script documentation
 
 ---
 
-### User Story 3 - System Resource Consumption Measurement (Priority: P1)
+### User Story 3 - Criterion B: RAM Consumption at Startup (Priority: P1)
 
-As a researcher, I need to measure process count, RAM consumption at startup, and OS boot time across all 4 configurations, so I can quantify IDS impact on system resources.
+As a researcher, I need to measure RAM consumption at startup across all 4 configurations, so I can quantify IDS impact on memory resources.
 
-**Why this priority**: Criteria (c), (d), and (e) from the project requirements are mandatory measurements for the case study.
+**Why this priority**: Criterion B (original criterion d) is mandatory for the case study.
 
-**Independent Test**: Can be fully tested by measuring Windows process count, RAM usage at startup, and boot time using BootRacer for each configuration, ensuring data is collected consistently.
+**Independent Test**: Can be fully tested by measuring RAM usage at startup using Performance Monitor for each configuration.
+
+**Acceptance Scenarios**:
+
+1. **Given** each configuration at startup, **When** I measure RAM consumption using Performance Monitor, **Then** memory usage in MB is recorded immediately after boot completes
+2. **Given** all RAM measurements are complete (5 iterations per configuration), **When** I compare results, **Then** percentage impact for each IDS variant is calculated
+3. **Given** measurements are collected, **When** saved to Z:\data\ram-usage\, **Then** CSV files contain config name, iteration, and RAM data
+
+---
+
+### User Story 4 - Criterion C: Process Count at Startup (Priority: P1)
+
+As a researcher, I need to count running processes at startup across all 4 configurations, so I can quantify IDS impact on system process overhead.
+
+**Why this priority**: Criterion C (original criterion c) is mandatory for the case study.
+
+**Independent Test**: Can be fully tested by counting Windows processes using PowerShell for each configuration.
 
 **Acceptance Scenarios**:
 
 1. **Given** each of 4 configurations, **When** I count running processes using Task Manager or PowerShell, **Then** process count is recorded for comparison
-2. **Given** each configuration at startup, **When** I measure RAM consumption using Performance Monitor, **Then** memory usage in MB is recorded immediately after boot completes
-3. **Given** each configuration, **When** I measure boot time using BootRacer or similar tool, **Then** time-to-logon and time-to-desktop are recorded in seconds
-4. **Given** all resource measurements are complete, **When** I compare results, **Then** percentage impact for each IDS variant is calculated
+2. **Given** all process count measurements are complete (5 iterations per configuration), **When** I compare results, **Then** percentage impact for each IDS variant is calculated
+3. **Given** measurements are collected, **When** saved to Z:\data\process-count\, **Then** CSV files contain config name, iteration, and count data
 
 ---
 
-### User Story 4 - Additional Performance Criteria (Priority: P2)
+### User Story 5 - Criterion D: Application Launch Performance (Priority: P2)
 
-As a researcher, I need to measure system performance using sysbench (from GitHub) across all 4 configurations to earn bonus points and provide comprehensive CPU/memory/disk I/O benchmarking.
-
-**Why this priority**: Required for bonus points (up to 20) and sysbench provides standardized, reproducible benchmarks for CPU, memory, and disk I/O performance that clearly demonstrate IDS impact.
-
-**Independent Test**: Can be fully tested by installing sysbench from GitHub, running CPU/memory/disk benchmarks across all 4 configurations, and documenting the rationale for why system benchmarking reveals IDS overhead.
-
-**Acceptance Scenarios**:
-
-1. **Given** sysbench is installed from GitHub, **When** I document the rationale, **Then** the explanation clearly describes why system benchmarking (CPU/memory/disk I/O) matters for IDS impact analysis
-2. **Given** sysbench is configured, **When** I run CPU benchmarks across all 4 configurations, **Then** comparable data (operations per second, execution time) is collected and logged
-3. **Given** sysbench is configured, **When** I run memory benchmarks across all 4 configurations, **Then** comparable data (throughput, latency) is collected and logged
-4. **Given** sysbench is configured, **When** I run disk I/O benchmarks across all 4 configurations, **Then** comparable data (IOPS, throughput) is collected and logged
-5. **Given** all sysbench measurements are complete, **When** included in the case study, **Then** the methodology, results, and analysis are clearly documented with proper attribution to sysbench project
-6. **Given** sysbench results, **When** compared across configurations, **Then** the data reveals meaningful differences showing IDS overhead on system resources
-
----
-
-### User Story 4.5 - Application Launch Performance Test (Priority: P2)
-
-As a researcher, I need to measure real-world application launch performance using the existing AV-Bench script to demonstrate IDS impact on process creation and system responsiveness.
+As a researcher, I need to measure real-world application launch performance using the existing AV-Bench script to demonstrate IDS impact on process creation and system responsiveness and earn bonus points.
 
 **Why this priority**: Provides additional bonus points and real-world performance data more meaningful than static measurements. Uses actual Windows applications to test IDS overhead on process creation.
 
-**Independent Test**: Can be fully tested by running AV-Bench/script.ps1 which launches 75 application instances (25 Calculator, 25 Paint, 25 Notepad) in randomized order and measures total time with automated cleanup.
+**Independent Test**: Can be fully tested by running AV-Bench/script.ps1 which launches 75 application instances (25 Calculator, 25 Paint, 25 Notepad) in randomized order per iteration, runs 5 iterations, and measures total time with automated cleanup.
 
 **Acceptance Scenarios**:
 
-1. **Given** the application launch script exists (AV-Bench/script.ps1), **When** modified to run 5 iterations, **Then** it matches the consistency standard of other tests
-2. **Given** the script runs on baseline configuration, **When** 75 application instances launch, **Then** total time is recorded in measurements.csv with <10% variance
+1. **Given** the application launch script exists (AV-Bench/script.ps1), **When** it runs 5 iterations, **Then** it matches the consistency standard of other tests
+2. **Given** the script runs on baseline configuration, **When** 75 application instances launch per iteration (5 iterations × 75 = 375 total), **Then** total time is recorded in measurements.csv with <10% variance
 3. **Given** baseline measurements are complete, **When** I run the same test on all 4 configurations, **Then** I can calculate percentage overhead for process creation
 4. **Given** all configuration data is collected, **When** I analyze results, **Then** I can identify which IDS component has greatest impact on application startup and system responsiveness
-5. **Given** application launch data uses real Windows apps, **When** compared to synthetic benchmarks, **Then** results provide more meaningful real-world performance insights
-6. **Given** the test measures process creation overhead, **When** documented in the case study, **Then** the real-world impact on user experience is clearly demonstrated
+5. **Given** measurements are collected, **When** saved to Z:\data\app-launch\, **Then** CSV files contain config name, iteration, and timing data
 
 ---
 
-### User Story 5 - LaTeX Case Study and Comparative Visualization (Priority: P1)
+### User Story 6 - Criterion E: Local Network File Transfer Performance (Priority: P1)
 
-As a researcher, I need to generate a 7+ page LaTeX case study using the LNCS template with comparative graphs, so I can deliver the academic project in the required format.
+As a researcher, I need to measure recursive folder copying speed (1GB+ via local network) across all 4 configurations, so I can quantify IDS impact on network operations.
+
+**Why this priority**: Criterion E (original criterion a) is mandatory for the case study.
+
+**Independent Test**: Can be fully tested by setting up a network file share and performing SMB transfers of 1GB folder, collecting transfer time measurements for each configuration.
+
+**Acceptance Scenarios**:
+
+1. **Given** a 1GB test folder on network share (192.168.50.99/Public/Test), **When** I copy it recursively using SMB from each of 4 configurations, **Then** transfer time is measured and logged in seconds
+2. **Given** transfer measurements are complete (5 iterations per configuration), **When** I analyze the data, **Then** I can calculate percentage overhead for each IDS variant compared to baseline
+3. **Given** measurements are collected, **When** saved to Z:\data\smb-transfer\, **Then** CSV files contain config name, iteration, file size, and transfer time
+
+---
+
+### User Story 7 - Criterion F: Remote File Download Performance (Priority: P1)
+
+As a researcher, I need to measure remote file download speed (100MB+ from DIGI Storage) across all 4 configurations, so I can quantify IDS impact on remote network operations.
+
+**Why this priority**: Criterion F (original criterion b) is mandatory for the case study.
+
+**Independent Test**: Can be fully tested by downloading a 100MB file via FTP from DIGI Storage and collecting transfer time measurements for each configuration.
+
+**Acceptance Scenarios**:
+
+1. **Given** DIGI Storage FTP server with 100MB test file (configured via FileZilla), **When** I download it via FTP from each of 4 configurations, **Then** download time and speed (MB/s) are measured and logged
+2. **Given** transfer measurements are complete (5 iterations per configuration), **When** I analyze the data, **Then** I can calculate percentage overhead for each IDS variant compared to baseline
+3. **Given** the network protocol used (FTP), **When** included in documentation, **Then** the protocol is clearly specified in the results
+4. **Given** measurements are collected, **When** saved to Z:\data\ftp-download\, **Then** CSV files contain config name, iteration, file size, and download speed
+
+---
+
+### User Story 8 - LaTeX Case Study and Comparative Visualization (Priority: P1)
+
+As a researcher, I need to generate a 7+ page LaTeX case study using the LNCS template with comparative graphs and bibliography references from Tom's Hardware/AnandTech, so I can deliver the academic project in the required format.
 
 **Why this priority**: The LaTeX document and PDF are the primary deliverables - without this, the project cannot be submitted.
 
@@ -117,10 +235,11 @@ As a researcher, I need to generate a 7+ page LaTeX case study using the LNCS te
 4. **Given** the LaTeX sources are complete, **When** compiled, **Then** a PDF of at least 7 pages is generated
 5. **Given** the completed document, **When** checked for plagiarism, **Then** TurnItIn similarity score is below 7%
 6. **Given** the final deliverable, **When** submitted, **Then** both PDF and complete LaTeX sources are included
+7. **Given** bibliography is required, **When** I add references, **Then** 3 testing methodology webpages from Tom's Hardware or AnandTech are included
 
 ---
 
-### User Story 6 - Automated Data Collection and Analysis Pipeline (Priority: P3)
+### User Story 9 - Automated Data Collection and Analysis Pipeline (Priority: P3)
 
 As a researcher, I need automated scripts to execute all benchmarks across all 4 configurations and generate CSV data suitable for analysis, so I can efficiently collect consistent measurements.
 
@@ -133,6 +252,7 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 1. **Given** a VM snapshot for any configuration, **When** I run the benchmark automation script, **Then** all required metrics are measured and logged to CSV
 2. **Given** CSV data files from all 4 configurations, **When** I import them into analysis tools, **Then** the data format is consistent and suitable for generating comparative graphs
 3. **Given** the automation completes, **When** I review the results, **Then** any measurement failures or anomalies are clearly logged
+4. **Given** measurements are collected in VM guest, **When** tests complete, **Then** results are saved to Z:\data\ (mapped to host C:\VMShare)
 
 ---
 
@@ -162,41 +282,34 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 4. **Antivirus + Firewall**: Both products installed and active simultaneously
 
 **Deliverable Format**:
+- **Documentation Workflow**: All paper content must first be aggregated into `paper.md` for review before LaTeX conversion
 - LaTeX source files using LNCS template (https://github.com/latextemplates/LNCS/archive/main.zip)
 - Compiled PDF document (minimum 7 pages)
 - Must include comparative graphs
 - Screenshots permitted (maximum 25% per page)
 - Must pass TurnItIn plagiarism check (≤7% similarity)
 - Due: 23 Jan 2026, 21:00
+- Bibliography must include 3 relevant testing methodology references from Tom's Hardware or AnandTech
+- **IMPORTANT**: LaTeX and PDF conversion only happens after paper.md approval
 
 ### Functional Requirements
 
-#### Mandatory Measurements (Criteria a-e)
+#### Mandatory Measurements (Reordered Criteria)
 
-- **FR-001**: System MUST measure operating system startup times using a specialized tool (e.g., BootRacer) for each configuration [CRITERION A]
-- **FR-002**: System MUST measure RAM memory consumption at system startup for each configuration [CRITERION B]
-- **FR-003**: System MUST count the number of running processes in Windows for each configuration using Task Manager or equivalent tool [CRITERION C]
-- **FR-004**: System MUST measure recursive folder copy speed (≥1GB) via SMB protocol on 1 Gigabit LAN to QNAP NAS across all 4 configurations [CRITERION D]
-- **FR-004a**: System MUST specify and document that SMB (Server Message Block) protocol is used for folder copying over local network
-- **FR-004b**: System MUST measure folder transfer from WIN11 VM to QNAP NAS over 1Gbit LAN connection, not local disk operations
-- **FR-005**: System MUST measure download speed of a remote file (≥100MB) from DIGI Storage server via FTP protocol across all 4 configurations [CRITERION E]
-- **FR-006**: System MUST perform all measurements consistently across all 4 configurations using identical methodology
-
-#### Additional Measurement Criteria (Bonus - Criterion g)
-
-- **FR-007**: System MUST measure additional performance criterion (g) using sysbench from GitHub for bonus points (maximum 20 points) [CRITERION G]
-- **FR-007a**: Sysbench benchmarks MUST include at least one of: CPU performance, memory throughput/latency, or disk I/O (IOPS/throughput)
-- **FR-007b**: Additional criterion MUST be explained with clear rationale: sysbench provides standardized, reproducible benchmarks that reveal IDS overhead on system resources
-- **FR-007c**: Sysbench MUST be properly attributed in references section with GitHub repository link
-
-#### Application Launch Performance Test (Bonus - Criterion f)
-
-- **FR-008**: System MUST use existing AV-Bench/script.ps1 to measure application launch performance across all 4 configurations [CRITERION F]
-- **FR-008a**: Application launch test MUST launch 75 application instances (25 Calculator, 25 Paint, 25 Notepad) in randomized order
-- **FR-008b**: Script MUST be modified to run 5 iterations per configuration to match consistency standard of other tests
-- **FR-008c**: Application launch times MUST be recorded to measurements.csv with timestamps for each iteration
-- **FR-008d**: Test MUST demonstrate IDS impact on process creation overhead and system responsiveness
-- **FR-008e**: Results MUST show real-world application performance impact more meaningful than static process counting
+- **FR-001**: System MUST measure operating system startup times using BootRacer for each configuration [CRITERION A - Boot Time]
+- **FR-002**: System MUST measure RAM memory consumption at system startup for each configuration [CRITERION B - RAM Usage]
+- **FR-003**: System MUST count the number of running processes in Windows for each configuration using Task Manager or equivalent tool [CRITERION C - Process Count]
+- **FR-004**: System MUST measure application launch performance using AV-Bench/script.ps1 across all 4 configurations [CRITERION D - App Launch]
+  - **FR-004a**: Application launch test MUST launch 75 application instances per iteration (25 Calculator, 25 Paint, 25 Notepad)
+  - **FR-004b**: Application launch test MUST run 5 iterations per configuration (total: 5 iterations × 75 apps = 375 total application launches)
+  - **FR-004c**: Application launch test MUST randomize launch order within each iteration
+  - **FR-004d**: Application launch test MUST automatically clean up (close all launched apps) after each iteration
+- **FR-005**: System MUST measure recursive folder copy speed (≥1GB) via SMB protocol from QNAP NAS to VM Desktop\SMB folder across all 4 configurations [CRITERION E - Network Copy]
+  - **FR-005a**: System MUST specify and document that SMB (Server Message Block) protocol is used for folder copying over local network
+  - **FR-005b**: System MUST measure folder transfer from QNAP NAS (192.168.50.99) test folder to C:\Users\admin\Desktop\SMB\ over 1Gbit LAN connection
+  - **FR-005c**: System MUST use SMB network path for testing (copy from NAS to local VM Desktop\SMB folder)
+- **FR-007**: System MUST perform all measurements consistently across all 4 configurations using identical methodology
+- **FR-008**: System MUST perform 5 iterations for each test across all configurations for statistical validity
 
 #### VM Configuration & Snapshot Management
 
@@ -208,10 +321,11 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 - **FR-014**: System MUST document exact VM specifications (RAM, CPU cores, disk size) from VirtualBox configuration for methodology section
 - **FR-015**: System MUST be able to restore snapshots reliably for repeatable testing across all measurements
 - **FR-016**: System MUST configure VirtualBox shared folder between host computer and Win11 VM for automatic data collection
-- **FR-016a**: Shared folder MUST be mapped to accessible drive letter or mount point inside Win11 VM (e.g., Z:\Shared)
-- **FR-016b**: All test scripts (BootRacer exports, AV-Bench script.ps1, sysbench, etc.) MUST save measurement results directly to shared folder
+- **FR-016a**: Shared folder C:\VMShare on host MUST be mapped to Z: drive inside Win11 VM guest via VirtualBox shared folders
+- **FR-016b**: All test scripts (BootRacer exports, AV-Bench script.ps1, PowerShell test scripts) MUST save measurement results directly to Z:\data\ folder
 - **FR-016c**: Shared folder MUST persist measurement data even after VM snapshots are restored to prevent data loss
 - **FR-016d**: System MUST verify shared folder read/write permissions work correctly before beginning test iterations
+- **FR-016e**: All measurement data is stored in C:\VMShare on host for accessibility from both host and guest systems
 
 #### Data Collection & Analysis
 
@@ -224,6 +338,8 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 #### LaTeX Document Generation
 
+- **FR-021A**: System MUST first aggregate all paper content into paper.md in Markdown format for user review
+- **FR-021B**: LaTeX conversion and PDF compilation MUST only proceed after paper.md receives user approval
 - **FR-022**: System MUST generate LaTeX source using the mandatory LNCS template
 - **FR-023**: Document MUST follow scientific paper structure: abstract, introduction, related work, methodology, results, discussion, conclusion, references
 - **FR-024**: Document MUST include methodology section describing test setup, VM specifications, software versions, and measurement procedures
@@ -237,12 +353,13 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 #### Network Testing Setup
 
-- **FR-032**: System MUST establish 1 Gigabit LAN connection from WIN11 VM to QNAP NAS for folder copy testing
-- **FR-033**: System MUST configure VirtualBox network adapter to Bridged mode to access local network and QNAP NAS
-- **FR-034**: System MUST establish FTP connection from WIN11 VM to DIGI Storage server for remote file download testing
-- **FR-035**: System MUST create or identify a 1GB test folder on QNAP NAS for network copy benchmarks
+- **FR-032**: System MUST establish 1 Gigabit LAN connection from WIN11 VM to network share (192.168.50.99:/Public/Test) for folder copy testing
+- **FR-033**: System MUST configure VirtualBox network adapter to Bridged mode to access local network and network share
+- **FR-034**: System MUST establish FTP connection from WIN11 VM to DIGI Storage server (configured via FileZilla) for remote file download testing
+- **FR-035**: System MUST create or identify a 1GB test folder on network share (192.168.50.99:/Public/Test) for network copy benchmarks
 - **FR-036**: System MUST create or identify a test file of at least 100MB on DIGI Storage server accessible via FTP for download testing
 - **FR-037**: System MUST ensure consistent network conditions across test runs (or document any variations in throughput)
+- **FR-038**: System MUST include 3 relevant testing methodology references from Tom's Hardware or AnandTech in bibliography
 
 ### Key Entities
 
@@ -264,68 +381,63 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 - **SC-002**: Selected antivirus product is properly installed, activated, and verified in AV-only and AV+Firewall configurations
 - **SC-003**: Selected firewall product is properly installed, activated, and verified in Firewall-only and AV+Firewall configurations
 - **SC-004**: Baseline (No IDS) configuration is verified to have no antivirus or firewall software running
-- **SC-005**: VirtualBox shared folder is successfully configured between host computer and Win11 VM
-- **SC-006**: Shared folder is accessible from inside VM (mapped to drive letter or mount point) with read/write permissions
-- **SC-007**: All test scripts successfully write measurement data to shared folder visible from host computer
+- **SC-005**: VirtualBox shared folder (C:\VMShare on host) is successfully configured and mapped to Z: drive in Win11 VM
+- **SC-006**: Shared folder is accessible from inside VM with read/write permissions verified
+- **SC-007**: All test scripts successfully write measurement data to Z: drive visible from host computer
 - **SC-008**: Shared folder data persists correctly after VM snapshot restore operations
 
-#### Mandatory Measurements (Criteria a-e)
+#### Mandatory Measurements (Criteria a-e - Reordered)
 
-- **SC-009**: OS boot time is successfully measured using specialized tool (e.g., BootRacer) for all 4 configurations [CRITERION A]
-- **SC-010**: RAM consumption at startup is successfully measured and recorded for all 4 configurations [CRITERION B]
-- **SC-011**: Process count is successfully measured and recorded for all 4 configurations [CRITERION C]
-- **SC-012**: Folder copy speed (≥1GB via local network) is successfully measured across all 4 configurations using documented protocol (SMB) [CRITERION D]
-- **SC-013**: Remote file download speed (≥100MB from long-distance server) is successfully measured across all 4 configurations [CRITERION E]
+- **SC-009**: OS boot time is successfully measured using BootRacer for all 4 configurations (5 iterations each) [CRITERION A - Boot Time]
+- **SC-010**: RAM consumption at startup is successfully measured and recorded for all 4 configurations (5 iterations each) [CRITERION B - RAM Usage]
+- **SC-011**: Process count is successfully measured and recorded for all 4 configurations (5 iterations each) [CRITERION C - Process Count]
+- **SC-012**: Remote file download speed (≥100MB from DIGI Storage via FTP) is successfully measured across all 4 configurations (5 iterations each) [CRITERION D - Remote Download]
+- **SC-013**: Folder copy speed (≥1GB via SMB on local network to 192.168.50.99) is successfully measured across all 4 configurations (5 iterations each) using documented protocol (SMB) [CRITERION E - Network Copy]
 - **SC-014**: All mandatory measurements show consistent results with variance <10% across 5 iterations per configuration
 
-#### Additional Criterion (Bonus Points - Criterion g)
+#### Additional Criterion (Bonus Points - Criterion f)
 
-- **SC-015**: Sysbench is successfully installed from GitHub and configured for Windows testing [CRITERION G]
-- **SC-015a**: At least one sysbench benchmark type (CPU, memory, or disk I/O) is measured across all 4 configurations with documented results
-- **SC-015b**: Sysbench results reveal meaningful performance differences between configurations and demonstrate IDS impact on system resources
-- **SC-015c**: Sysbench methodology, rationale, and results are properly documented in the case study with appropriate attribution
-
-#### Application Launch Performance (Bonus Points - Criterion f)
-
-- **SC-016**: Application launch script (AV-Bench/script.ps1) is modified to run 5 iterations per configuration [CRITERION F]
-- **SC-016a**: Script successfully launches 75 application instances and records timing data to CSV across all 4 configurations
-- **SC-016b**: Application launch results show <10% variance within iterations demonstrating measurement consistency
-- **SC-016c**: Results reveal meaningful differences in process creation overhead between IDS configurations
-- **SC-016d**: Application launch performance data is properly documented in the case study with clear rationale for real-world relevance
+- **SC-015**: Application launch script (AV-Bench/script.ps1) runs 5 iterations per configuration [CRITERION F - App Launch]
+- **SC-015a**: Script successfully launches 75 application instances per iteration (375 total across 5 iterations) and records timing data to CSV across all 4 configurations
+- **SC-015b**: Application launch results show <10% variance within iterations demonstrating measurement consistency
+- **SC-015c**: Results reveal meaningful differences in process creation overhead between IDS configurations
+- **SC-015d**: Application launch performance data is properly documented in the case study with clear rationale for real-world relevance
 
 #### Data Analysis & Visualization
 
-- **SC-013**: Percentage impact/overhead is accurately calculated for each criterion by comparing each IDS configuration to baseline
-- **SC-014**: Comparative graphs are generated showing all 4 configurations for each measured criterion (a-e plus additional)
-- **SC-015**: All graphs are properly formatted and suitable for LaTeX document inclusion
-- **SC-016**: All measurement data is available in structured format (CSV) for verification and reproducibility
+- **SC-016**: Percentage impact/overhead is accurately calculated for each criterion by comparing each IDS configuration to baseline
+- **SC-017**: Comparative graphs are generated showing all 4 configurations for each measured criterion (a-f, 6 total graphs)
+- **SC-018**: All graphs are properly formatted and suitable for LaTeX document inclusion
+- **SC-019**: All measurement data is available in structured format (CSV) for verification and reproducibility
 
 #### LaTeX Document Deliverable
 
-- **SC-017**: LaTeX source files compile successfully to PDF without errors
-- **SC-018**: Compiled PDF document meets minimum 7-page requirement
-- **SC-019**: Document uses mandatory LNCS template correctly with proper formatting
-- **SC-020**: Document includes all required sections: abstract, introduction, related work, methodology, results, discussion, conclusion, references
-- **SC-021**: Methodology section clearly describes test setup, VM specs, software versions, selected AV/firewall products, and measurement procedures
-- **SC-022**: Results section includes tables and comparative graphs for all measured criteria
-- **SC-023**: Discussion section provides insightful analysis explaining performance differences between configurations
-- **SC-024**: Screenshots (if included) do not exceed 25% of any page
-- **SC-025**: Document passes TurnItIn plagiarism check with ≤7% similarity score
-- **SC-026**: Both PDF and complete LaTeX sources are ready for submission
+- **SC-020**: LaTeX source files compile successfully to PDF without errors
+- **SC-021**: Compiled PDF document meets minimum 7-page requirement
+- **SC-022**: Document uses mandatory LNCS template correctly with proper formatting
+- **SC-023**: Document includes all required sections: abstract, introduction, related work, methodology, results, discussion, conclusion, references
+- **SC-024**: Methodology section clearly describes test setup, VM specs, software versions, selected AV/firewall products, and measurement procedures
+- **SC-025**: Methodology section documents shared folder configuration for automated data collection from VM to host computer
+- **SC-026**: Results section includes tables and comparative graphs for all 6 measured criteria (a-f)
+- **SC-027**: Discussion section provides insightful analysis explaining performance differences between configurations
+- **SC-028**: Screenshots (if included) do not exceed 25% of any page
+- **SC-029**: Document passes TurnItIn plagiarism check with ≤7% similarity score
+- **SC-030**: Both PDF and complete LaTeX sources are ready for submission
 
-#### Network Testing Infrastructure
+**Network Testing Infrastructure**
 
-- **SC-027**: 1 Gigabit LAN connection between WIN11 VM and QNAP NAS is established and functional for folder copy testing
-- **SC-028**: FTP connection to DIGI Storage server is accessible and functional for remote download testing
-- **SC-029**: Test folder of ≥1GB is created/available on QNAP NAS for network copy benchmarks
-- **SC-030**: Test file of ≥100MB is created/available on DIGI Storage for FTP download benchmarks
-- **SC-031**: Network conditions remain consistent across test runs, or variations are documented
+- **SC-031**: 1 Gigabit LAN connection between WIN11 VM and network share (192.168.50.99:/Public/Test mapped via SMB) is established and functional for folder copy testing
+- **SC-032**: FTP connection to DIGI Storage server (configured via FileZilla) is accessible and functional for remote download testing
+- **SC-033**: Test folder of ≥1GB is created/available on network share for network copy benchmarks
+- **SC-034**: Test file of ≥100MB is created/available on DIGI Storage for FTP download benchmarks
+- **SC-035**: Network conditions remain consistent across test runs, or variations are documented
+- **SC-036**: Bibliography includes 3 relevant testing methodology references from Tom's Hardware or AnandTech
 
 #### Project Completion
 
-- **SC-031**: All deliverables (PDF + LaTeX sources) are ready for submission before deadline (23 Jan 2026, 21:00)
-- **SC-032**: Selected antivirus and firewall products are documented in project submission
-- **SC-033**: Project meets all academic requirements for maximum grade eligibility (including bonus points from additional criterion)
+- **SC-037**: All deliverables (PDF + LaTeX sources) are ready for submission before deadline (23 Jan 2026, 21:00)
+- **SC-038**: Selected antivirus (Symantec) and firewall (OPNsense) products are documented in project submission
+- **SC-039**: Project meets all academic requirements for maximum grade eligibility (including bonus points from criterion f - application launch testing)
 
 ## Product Selection & Technical Constraints
 
@@ -354,9 +466,9 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 - **Network Protocol (Criterion a)**: SMB (Server Message Block) for 1GB folder copy test over local network
 - **Network Protocol (Criterion b)**: FTP (File Transfer Protocol) for 100MB remote download test
 - **Test Data**: 1GB folder on QNAP NAS for local copy, 100MB file on DIGI Storage for remote download
-- **Measurement Tools**: Must document all tools used (BootRacer or equivalent, Task Manager/perfmon, etc.)
-- **Bonus Criterion Tool (f)**: sysbench from GitHub (https://github.com/akopytov/sysbench) for CPU/memory/disk I/O benchmarking
-- **Bonus Criterion Tool (g)**: AV-Bench/script.ps1 for application launch performance testing (75 app instances)
+- **Technical Constraints**: Must document all tools used (BootRacer for boot times, Task Manager/perfmon for processes/RAM, AV-Bench/script.ps1 for app launch)
+- **Application Launch Tool (Criterion D)**: AV-Bench/script.ps1 for application launch performance testing (75 app instances per iteration: 5 iterations × 75 apps = 375 total launches)
+- **Data Collection**: All measurement data stored in C:\VMShare on host (mapped to Z: on guest) for accessibility
 - **LaTeX Template**: LNCS template mandatory (https://github.com/latextemplates/LNCS/archive/main.zip)
 - **Plagiarism Limit**: Maximum 7% similarity on TurnItIn
 - **Document Length**: Minimum 7 pages
@@ -366,16 +478,20 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 
 1. ~~Which antivirus product will be selected?~~ **RESOLVED: Symantec**
 2. ~~Which firewall product will be selected?~~ **RESOLVED: OPNsense**
-3. ~~Which network protocol for folder copying?~~ **RESOLVED: SMB protocol on 1Gbit LAN to QNAP NAS**
-4. ~~What will be the additional criterion (f)?~~ **RESOLVED: System benchmarking using sysbench from GitHub**
-5. ~~What are the exact VM specifications?~~ **RESOLVED: VirtualBox VM named "Win11" with clean snapshot (OS updated, no AV/firewall)**
-6. ~~What remote server will be used for download testing?~~ **RESOLVED: DIGI Storage server via FTP protocol**
-7. ~~How many iterations per test?~~ **RESOLVED: 5 iterations per test for all measurements**
+3. ~~Which network protocol for folder copying?~~ **RESOLVED: SMB protocol on 1Gbit LAN to 192.168.50.99:/Public/Test**
+4. ~~What will be the additional criterion (f)?~~ **RESOLVED: Application launch performance using AV-Bench/script.ps1 (75 instances per iteration, 375 total across 5 iterations)**
+5. ~~What are the exact VM specifications?~~ **RESOLVED: VirtualBox VM named "Win11" with clean snapshot (OS updated, no AV/firewall), BootRacer pre-installed**
+6. ~~What remote server will be used for download testing?~~ **RESOLVED: DIGI Storage server via FTP (configured via FileZilla)**
+7. ~~How many iterations per test?~~ **RESOLVED: 5 iterations per test for all measurements (375 total app launches for Criterion D)**
+8. ~~What is the optional bonus criterion (g)?~~ **RESOLVED: Removed - sysbench not supported on Windows, renounced completely**
+9. ~~How will we gather measurements from the VM?~~ **RESOLVED: C:\VMShare on host mapped to Z: drive in guest; all data in C:\VMShare for accessibility from both systems**
+10. ~~Can installations be done via CLI?~~ **RESOLVED: Yes, where possible using CLI commands (e.g., Windows Firewall via PowerShell)**
 
 ### Reference Materials
 
 - **Testing Criteria Reference**: https://pastebin.com/fnxDqJ7V (illustrative purposes only)
 - **LNCS LaTeX Template**: https://github.com/latextemplates/LNCS/archive/main.zip (mandatory)
 - **Paper Structure Examples**: https://uvt-ro.academia.edu/CiprianPungila (follow same layout as scientific papers)
-- **Sysbench Tool**: https://github.com/akopytov/sysbench (for bonus criterion f - system benchmarking)
-- **Application Launch Script**: AV-Bench/script.ps1 (for bonus criterion g - real-world app performance)
+- **Application Launch Script**: AV-Bench/script.ps1 (for bonus criterion f - real-world app performance)
+- **Testing Methodology References**: Tom's Hardware and AnandTech benchmark methodologies (3 references required in bibliography for relevant testing methods)
+- **Project Tracking**: All project information maintained in speckit format (spec.md, plan.md, tasks.md, guest-setup.md)

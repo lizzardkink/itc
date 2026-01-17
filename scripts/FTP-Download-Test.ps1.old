@@ -1,0 +1,106 @@
+# FTP-Download-Test.ps1
+# Measures FTP download performance from DIGI Storage
+# Created: 2026-01-16
+
+param(
+    [string]$ConfigName = "baseline",
+    [int]$Iterations = 5
+)
+
+Write-Host "=== FTP Download Test ===" -ForegroundColor Cyan
+Write-Host "Configuration: $ConfigName" -ForegroundColor Yellow
+Write-Host "Iterations: $Iterations`n" -ForegroundColor Yellow
+
+# FTP Configuration (from FileZilla)
+$ftpServer = "storage.rcs-rds.ro"
+$ftpUser = "robinet_AT_rdslink.ro"
+$encodedPass = "c21AcnRwYXNzRDEyIQ=="
+$ftpPass = [System.Text.Encoding]::UTF8.GetString([System.Convert]::FromBase64String($encodedPass))
+
+$ftpFile = "swisstransfer_f4f2d8d9-2b76-41c8-874a-8d7683e98b74.zip"
+$ftpPath = "/Digi Cloud/Test/$ftpFile"
+$ftpUri = "ftp://$ftpServer$ftpPath"
+
+$destBasePath = "C:\Users\admin\Desktop\FTP"
+$csvPath = "Z:\data\$ConfigName\ftp-download-$ConfigName.csv"
+
+# Create CSV with header
+"Iteration,Timestamp,FileSizeMB,DownloadTimeSeconds,SpeedMBps,Configuration" | Out-File -FilePath $csvPath -Encoding UTF8
+
+# Get file size once
+Write-Host "Checking file size..." -ForegroundColor Yellow
+$sizeRequest = [System.Net.FtpWebRequest]::Create($ftpUri)
+$sizeRequest.Credentials = New-Object System.Net.NetworkCredential($ftpUser, $ftpPass)
+$sizeRequest.Method = [System.Net.WebRequestMethods+Ftp]::GetFileSize
+$sizeResponse = $sizeRequest.GetResponse()
+$fileSize = $sizeResponse.ContentLength
+$sizeResponse.Close()
+$fileSizeMB = [math]::Round($fileSize / 1MB, 2)
+Write-Host "File size: $fileSizeMB MB`n" -ForegroundColor Green
+
+for ($i = 1; $i -le $Iterations; $i++) {
+    Write-Host "Iteration $i of $Iterations" -ForegroundColor Cyan
+    
+    $destFile = "$destBasePath\test_iteration_$i.zip"
+    
+    # Clean destination if exists
+    if (Test-Path $destFile) {
+        Remove-Item $destFile -Force
+    }
+    
+    Write-Host "  Starting download..." -ForegroundColor Yellow
+    
+    # Measure download time
+    $startTime = Get-Date
+    
+    try {
+        $request = [System.Net.FtpWebRequest]::Create($ftpUri)
+        $request.Credentials = New-Object System.Net.NetworkCredential($ftpUser, $ftpPass)
+        $request.Method = [System.Net.WebRequestMethods+Ftp]::DownloadFile
+        $request.UseBinary = $true
+        
+        $response = $request.GetResponse()
+        $responseStream = $response.GetResponseStream()
+        
+        $fileStream = [System.IO.File]::Create($destFile)
+        $buffer = New-Object byte[] 8192
+        
+        do {
+            $bytesRead = $responseStream.Read($buffer, 0, $buffer.Length)
+            $fileStream.Write($buffer, 0, $bytesRead)
+        } while ($bytesRead -gt 0)
+        
+        $fileStream.Close()
+        $responseStream.Close()
+        $response.Close()
+        
+        $endTime = Get-Date
+        $downloadTime = ($endTime - $startTime).TotalSeconds
+        $speedMBps = [math]::Round($fileSizeMB / $downloadTime, 2)
+        
+        $timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+        
+        Write-Host "  Download completed in $([math]::Round($downloadTime, 2)) seconds" -ForegroundColor Green
+        Write-Host "  Speed: $speedMBps MB/s" -ForegroundColor Cyan
+        
+        # Save to CSV
+        "$i,$timestamp,$fileSizeMB,$([math]::Round($downloadTime, 2)),$speedMBps,$ConfigName" | 
+            Out-File -FilePath $csvPath -Append -Encoding UTF8
+        
+        # Clean up
+        Write-Host "  Cleaning up..." -ForegroundColor Gray
+        Remove-Item $destFile -Force
+        
+    } catch {
+        Write-Host "  ✗ Error during download: $_" -ForegroundColor Red
+    }
+    
+    Write-Host ""
+}
+
+Write-Host "=== FTP Test Complete ===" -ForegroundColor Green
+Write-Host "Results saved to: $csvPath`n" -ForegroundColor Cyan
+
+# Display summary
+Write-Host "Summary:" -ForegroundColor Yellow
+Import-Csv $csvPath | Format-Table -AutoSize

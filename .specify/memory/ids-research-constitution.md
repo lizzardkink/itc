@@ -67,6 +67,7 @@ Virtual machine testing environment must be:
 - **Specified**: VM specs (RAM, CPU, disk) documented in methodology
 - **Windows-Based**: Windows OS (implied from requirements)
 - **Isolated**: No interference from host system or other processes
+- **Target System**: All information gathering, measurements, and BootRacer data retrieval targets the VM (WIN11), not the host machine
 
 ## LaTeX Document Standards
 
@@ -81,6 +82,16 @@ The case study must follow scientific paper structure:
 - **Discussion**: Analysis and interpretation of findings
 - **Conclusion**: Summary of impact and implications
 - **References**: Properly cited sources
+
+### Documentation Workflow
+
+All content destined for LaTeX must follow this workflow:
+- **Stage 1 - Aggregation**: All documentation aggregated to `paper.md` for review
+- **Stage 2 - Review**: User reviews and approves `paper.md` content
+- **Stage 3 - LaTeX Conversion**: Only after approval, content converted to LaTeX format
+- **Stage 4 - PDF Generation**: Final compilation to PDF for submission
+
+**Critical**: LaTeX and PDF conversion only happens AFTER user approval of paper.md
 
 ### Formatting Rules
 

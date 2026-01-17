@@ -1,13 +1,29 @@
 # Implementation Plan: IDS Impact Analysis Research
 
-**Branch**: `001-av-benchmark` | **Date**: 2026-01-16 | **Spec**: [spec.md](spec.md)  
+**Branch**: `001-av-benchmark` | **Date**: 2026-01-16 15:49 UTC | **Spec**: [spec.md](spec.md)  
 **Input**: Feature specification from `/specs/001-av-benchmark/spec.md`
 
 **Note**: This is an academic research project with 4-variant IDS testing and LaTeX paper deliverable.
 
+**Test Criteria (Reordered)**:
+- **Criterion A**: OS boot time (BootRacer)
+- **Criterion B**: RAM at startup
+- **Criterion C**: Process count at startup
+- **Criterion D**: Application launch performance (AV-Bench/script.ps1)
+- **Criterion E**: Local network SMB copy (1GB to 192.168.50.99/Public/Test)
+- **Criterion F**: Remote FTP download (100MB from DIGI Storage)
+
+**Configuration**:
+- Antivirus: Symantec
+- Firewall: OPNsense  
+- VM: Win11 (VirtualBox), BootRacer installed
+- Network: SMB to QNAP 192.168.50.99/Public/Test, FTP to DIGI Storage (FileZilla)
+- Shared folder: Host C:\VMShare → Guest Z:
+- Iterations: 5 per test (375 total app launches for Criterion D)
+
 ## Summary
 
-This project analyzes the performance impact of intrusion detection systems (antivirus and firewall) on Windows 11 computational resources through systematic benchmarking. Four configurations (No IDS, Symantec-only, OPNsense-only, Both) will be measured across six performance criteria (local network transfer, remote download, process count, RAM usage, boot time, and system benchmarks) with results documented in a 7+ page LNCS-formatted LaTeX paper. The research compares baseline performance against IDS-enabled configurations to quantify overhead percentages, with findings submitted by January 23, 2026.
+This project analyzes the performance impact of intrusion detection systems (antivirus and firewall) on Windows 11 computational resources through systematic benchmarking. Four configurations (No IDS, Symantec-only, OPNsense-only, Both) will be measured across six performance criteria (boot time, RAM usage, process count, application launch performance, local network transfer speed, and remote download speed) with results documented in a 7+ page LNCS-formatted LaTeX paper including 3 testing methodology references from Tom's Hardware/AnandTech. The research compares baseline performance against IDS-enabled configurations to quantify overhead percentages, with findings submitted by January 23, 2026.
 
 ## Technical Context
 
@@ -15,8 +31,9 @@ This project analyzes the performance impact of intrusion detection systems (ant
 **VM Configuration**: WIN11 VM with 4 CPU cores, 8 GB RAM, SATA storage  
 **Virtualization**: Oracle VirtualBox with snapshot-based testing  
 **IDS Software**: Symantec Endpoint Protection + OPNsense (or Windows Firewall)  
-**Testing Tools**: BootRacer, sysbench (via WSL), PowerShell, Windows Performance Monitor  
-**Network Infrastructure**: 1 Gigabit LAN (QNAP NAS), FTP (DIGI Storage)  
+**Testing Tools**: BootRacer, PowerShell scripts, Windows Performance Monitor, AV-Bench/script.ps1 
+**Network Infrastructure**: 1 Gigabit LAN to QNAP NAS (192.168.50.99), FTP to DIGI Storage  
+**Shared Folder**: C:\VMShare on host mapped to Z: drive in guest for automated data collection  
 **Data Format**: CSV for measurements, LaTeX for paper  
 **Document Format**: LNCS LaTeX template (7+ pages minimum)  
 **Plagiarism Check**: TurnItIn (≤7% similarity required)  
@@ -69,12 +86,12 @@ AV-Bench/                    # Existing benchmark resources
 
 data/                        # Measurement data (to be created)
 ├── baseline/
-│   ├── smb-copy-*.csv
-│   ├── ftp-download-*.csv
-│   ├── process-count-*.csv
-│   ├── ram-startup-*.csv
 │   ├── boot-time-*.csv
-│   └── sysbench-*.csv
+│   ├── ram-startup-*.csv
+│   ├── process-count-*.csv
+│   ├── app-launch-*.csv
+│   ├── smb-copy-*.csv
+│   └── ftp-download-*.csv
 ├── symantec/
 │   └── [same structure]
 ├── opnsense/
@@ -83,11 +100,11 @@ data/                        # Measurement data (to be created)
     └── [same structure]
 
 scripts/                     # Testing automation (to be created)
-├── smb-copy-test.ps1
-├── ftp-download-test.ps1
-├── process-count-test.ps1
+├── boot-time-test.ps1
 ├── ram-startup-test.ps1
-└── sysbench-wrapper.ps1
+├── process-count-test.ps1
+├── smb-copy-test.ps1
+└── ftp-download-test.ps1
 
 lncs-enhanced-main/          # LaTeX paper (exists)
 ├── paper.tex                # Main document (to be edited)
@@ -118,17 +135,18 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 **Tasks**:
 1. Rename WIN11 VM snapshot 'Clean' → 'Baseline-NoIDS'
 2. Configure VM network to Bridged mode for QNAP access
-3. Verify SMB access to QNAP NAS
-4. Verify FTP access to DIGI Storage
-5. Install sysbench via WSL (`wsl --install`, `apt-get install sysbench`)
-6. Download BootRacer for boot time measurement
+3. Configure VirtualBox shared folder (C:\VMShare on host → Z: drive in guest)
+4. Verify SMB access to QNAP NAS (192.168.50.99:/Public/Test)
+5. Verify FTP access to DIGI Storage
+6. Verify BootRacer is installed for boot time measurement
 7. Create 1GB test folder on QNAP NAS
 8. Upload 100MB test file to DIGI Storage
 
 **Deliverables**:
 - Baseline-NoIDS snapshot verified
-- Network connectivity confirmed
-- All testing tools installed
+- Shared folder mapping configured and tested
+- Network connectivity confirmed (SMB and FTP)
+- All testing tools verified
 - Test data prepared
 
 ### Phase 1: Baseline Measurements (Days 1-2)
@@ -136,16 +154,15 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 
 **Tasks**:
 1. Restore Baseline-NoIDS snapshot
-2. Run SMB copy test (5 iterations) → `data/baseline/smb-copy-*.csv`
-3. Run FTP download test (5 iterations) → `data/baseline/ftp-download-*.csv`
-4. Count processes (5 boots) → `data/baseline/process-count-*.csv`
-5. Measure RAM at startup (5 boots) → `data/baseline/ram-startup-*.csv`
-6. Measure boot time with BootRacer (5 boots) → `data/baseline/boot-time-*.csv`
-7. Run sysbench CPU/memory/disk tests (5 iterations) → `data/baseline/sysbench-*.csv`
-8. Run application launch test (5 iterations) → `data/baseline/app-launch-*.csv`
+2. Run boot time test with BootRacer (5 iterations) → save to Z:\data\baseline\boot-time-*.csv
+3. Measure RAM at startup (5 boots) → save to Z:\data\baseline\ram-startup-*.csv
+4. Count processes (5 boots) → save to Z:\data\baseline\process-count-*.csv
+5. Run application launch test with AV-Bench/script.ps1 (5 iterations) → save to Z:\data\baseline\app-launch-*.csv
+6. Run SMB copy test (5 iterations) → save to Z:\data\baseline\smb-copy-*.csv
+7. Run FTP download test (5 iterations) → save to Z:\data\baseline\ftp-download-*.csv
 
 **Deliverables**:
-- 7 CSV files with baseline measurements
+- 6 CSV files with baseline measurements (all criteria A-F)
 - Variance verification (<10% required)
 
 ### Phase 2: Symantec Configuration (Days 3-4)
@@ -157,12 +174,11 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 3. Update antivirus definitions
 4. Verify real-time protection is active
 5. Create 'Symantec-Only' snapshot
-6. Run all 7 criteria tests (5 iterations each)
-7. Collect data to `data/symantec/` directory
+6. Run all 6 criteria tests (5 iterations each) → save to Z:\data\symantec\
 
 **Deliverables**:
 - Symantec-Only snapshot
-- 7 CSV files with AV measurements
+- 6 CSV files with AV measurements
 
 ### Phase 3: OPNsense Configuration (Days 5-6)
 **Goal**: Install firewall and measure performance impact
@@ -173,12 +189,11 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 3. Enable firewall rules and logging
 4. Verify firewall is active
 5. Create 'OPNsense-Only' snapshot
-6. Run all 7 criteria tests (5 iterations each)
-7. Collect data to `data/opnsense/` directory
+6. Run all 6 criteria tests (5 iterations each) → save to Z:\data\opnsense\
 
 **Deliverables**:
 - OPNsense-Only snapshot
-- 7 CSV files with firewall measurements
+- 6 CSV files with firewall measurements
 
 ### Phase 4: Combined Configuration (Day 7)
 **Goal**: Install both IDS components and measure combined impact
@@ -189,27 +204,26 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 3. Install OPNsense/firewall
 4. Verify both are active simultaneously
 5. Create 'Symantec-OPNsense-Both' snapshot
-6. Run all 7 criteria tests (5 iterations each)
-7. Collect data to `data/both/` directory
+6. Run all 6 criteria tests (5 iterations each) → save to Z:\data\both\
 
 **Deliverables**:
 - Symantec-OPNsense-Both snapshot
-- 7 CSV files with combined measurements
+- 6 CSV files with combined measurements
 
 ### Phase 5: Data Analysis (Days 8-9)
 **Goal**: Calculate overhead and generate comparative visualizations
 
 **Tasks**:
-1. Import all CSV data (28 files total: 7 criteria × 4 configurations)
+1. Import all CSV data (24 files total: 6 criteria × 4 configurations)
 2. Calculate average, min, max for each test
 3. Calculate percentage overhead vs baseline
-4. Generate comparative graphs (7 graphs, one per criterion)
+4. Generate comparative graphs (6 graphs, one per criterion: A-F)
 5. Export graphs to `lncs-enhanced-main/figures/`
 6. Verify statistical significance
 
 **Deliverables**:
-- Overhead calculations for all 7 criteria
-- 7 publication-ready graphs
+- Overhead calculations for all 6 criteria
+- 6 publication-ready graphs
 - Statistical analysis summary
 
 ### Phase 6: LaTeX Paper Writing (Days 10-13)
@@ -218,12 +232,12 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 **Tasks**:
 1. Write Abstract (problem, method, findings)
 2. Write Introduction (context, objectives)
-3. Write Related Work (literature review)
-4. Write Methodology (4 configs, 7 criteria, VM specs, tools)
+3. Write Related Work (literature review with 3 Tom's Hardware/AnandTech references)
+4. Write Methodology (4 configs, 6 criteria, VM specs, tools, shared folder setup)
 5. Write Results (tables with measurements, graphs)
 6. Write Discussion (analysis of overhead patterns)
 7. Write Conclusion (summary, implications)
-8. Populate References section
+8. Populate References section (include testing methodology webpages)
 9. Insert figures and tables
 10. Compile to PDF (`latexmk paper` or `lualatex paper`)
 11. Check plagiarism with TurnItIn (must be ≤7%)
@@ -240,10 +254,10 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 
 **Tasks**:
 1. Verify PDF is 7+ pages
-2. Verify all 7 criteria documented
+2. Verify all 6 criteria documented
 3. Verify comparative graphs included
 4. Verify LNCS format compliance
-5. Verify references are complete
+5. Verify references are complete (including 3 Tom's Hardware/AnandTech)
 6. Final plagiarism check
 7. Package: PDF + LaTeX sources
 8. Submit before deadline (23 Jan 2026, 21:00)
@@ -268,19 +282,21 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 ## Success Criteria
 
 **Measurements Complete**:
-- ✅ 140 test runs executed (4 configs × 7 criteria × 5 iterations)
+- ✅ 120 test runs executed (4 configs × 6 criteria × 5 iterations)
 - ✅ All data in CSV format with timestamps
 - ✅ Variance <10% within iterations
 - ✅ All 4 VM snapshots functional and verified
+- ✅ Shared folder data collection working properly
 
 **Analysis Complete**:
-- ✅ Overhead percentages calculated for all 7 criteria
-- ✅ 7 comparative graphs generated
+- ✅ Overhead percentages calculated for all 6 criteria
+- ✅ 6 comparative graphs generated (criteria a-f)
 - ✅ Statistical validity confirmed
 
 **Paper Complete**:
 - ✅ 7+ pages in LNCS format
 - ✅ All sections present (abstract through references)
+- ✅ Bibliography includes 3 Tom's Hardware/AnandTech methodology references
 - ✅ Plagiarism ≤7%
 - ✅ Compiles without errors
 - ✅ Submitted before deadline (23 Jan 2026, 21:00)

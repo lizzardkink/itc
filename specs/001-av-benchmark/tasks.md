@@ -1,7 +1,61 @@
 # Tasks: IDS Impact Analysis Research
 
-**Feature**: `001-av-benchmark` | **Date**: 2026-01-16  
+**Feature**: `001-av-benchmark` | **Date**: 2026-01-16 15:49 UTC  
 **Status**: Ready to start | **Deadline**: 23 Jan 2026, 21:00
+
+**Test Criteria (Reordered)**:
+- **Criterion A**: OS boot time (BootRacer)
+- **Criterion B**: RAM at startup
+- **Criterion C**: Process count at startup
+- **Criterion D**: Application launch performance (AV-Bench/script.ps1, 75 apps × 5 iterations = 375 total)
+- **Criterion E**: Local network SMB copy (1GB to 192.168.50.99/Public/Test)
+- **Criterion F**: Remote FTP download (100MB from DIGI Storage)
+
+**Configuration**:
+- Antivirus: Symantec
+- Firewall: OPNsense (or Windows Firewall as alternative)
+- VM: Win11 (VirtualBox), BootRacer pre-installed
+- Network: SMB to QNAP 192.168.50.99/Public/Test, FTP to DIGI Storage (configured via FileZilla)
+- Shared folder: Host C:\VMShare → Guest Z: (all data in C:\VMShare for host/guest access)
+- Iterations: 5 per test (total 375 app launches for Criterion D across 5 iterations)
+
+**Current Status**: ✅ Environment configured | ✅ Test scripts created | ✅ Remote GUI control implemented | 🚀 **NEXT: Begin baseline measurements**
+
+**Completed Setup**:
+- [x] VM baseline snapshot available
+- [x] BootRacer pre-installed
+- [x] Shared folder configured (C:\VMShare → Z:)
+- [x] SMB network drive mapped (192.168.50.99/Public/Test)
+- [x] FTP configured (DIGI Storage via FileZilla)
+- [x] Data folder structure created in C:\VMShare\data\
+- [x] Test scripts created in C:\VMShare\scripts\
+- [x] PowerShell remoting configured (NAT port forwarding, 127.0.0.1:5985)
+- [x] Auto-login configured for admin user
+- [x] Remote GUI control solution implemented (file-based signaling)
+
+**Immediate Next Steps** (in order):
+1. ✅ **TASK-009**: Create data folder structure - COMPLETE
+2. ✅ **TASK-010**: Create/modify PowerShell test scripts - COMPLETE
+3. ✅ **TASK-010C**: Implement remote GUI application control - COMPLETE
+4. 🔄 **TASK-010B**: Gather system information for LaTeX paper - **NEXT ACTION**
+5. 🔄 **TASK-011**: Begin baseline measurements
+
+**Where Measurements Are Captured**:
+All test measurements are saved as CSV files to **C:\VMShare\data\** on the host computer:
+- Boot time → C:\VMShare\data\{config}\boot-time-{config}.csv
+- RAM usage → C:\VMShare\data\{config}\ram-startup-{config}.csv  
+- Process count → C:\VMShare\data\{config}\process-count-{config}.csv
+- App launch → C:\VMShare\data\{config}\app-launch-{config}.csv
+- SMB transfer → C:\VMShare\data\{config}\smb-copy-{config}.csv
+- FTP download → C:\VMShare\data\{config}\ftp-download-{config}.csv
+
+(Where {config} = baseline, symantec, opnsense, or both)
+
+📂 Folders created:
+  - C:\VMShare\data\baseline\
+  - C:\VMShare\data\symantec\
+  - C:\VMShare\data\opnsense\
+  - C:\VMShare\data\both\
 
 ## Task Organization
 
@@ -162,32 +216,7 @@ $webclient.DownloadString("ftp://digi-storage-server/")
 
 ---
 
-### TASK-007: Install sysbench via WSL
-**Priority**: P0 (Blocker)  
-**Estimated Time**: 45 minutes  
-**Dependencies**: None
 
-**Description**: Install Windows Subsystem for Linux and sysbench for criterion (f) testing.
-
-**Steps**:
-1. Open PowerShell as Administrator
-2. Run: `wsl --install`
-3. Reboot if prompted
-4. Complete Ubuntu setup
-5. Run: `sudo apt-get update && sudo apt-get install sysbench`
-6. Verify: `sysbench --version`
-
-**Acceptance Criteria**:
-- [ ] WSL installed and functional
-- [ ] sysbench installed in WSL
-- [ ] Version displayed correctly
-
-**Verification**:
-```powershell
-wsl sysbench --version
-```
-
----
 
 ### TASK-008: Download and Install BootRacer
 **Priority**: P0 (Blocker)  
@@ -215,24 +244,26 @@ wsl sysbench --version
 **Priority**: P1 (High)  
 **Estimated Time**: 10 minutes  
 **Dependencies**: None
+**Status**: ✅ **COMPLETE**
 
 **Description**: Create directory structure for storing measurement CSV files.
 
 **Steps**:
 1. Navigate to project root
-2. Create directories: `data/baseline`, `data/symantec`, `data/opnsense`, `data/both`
-3. Create `scripts/` directory
-4. Verify structure
+2. Create directories: `C:\VMShare\data\baseline`, `C:\VMShare\data\symantec`, `C:\VMShare\data\opnsense`, `C:\VMShare\data\both`
+3. Verify structure
 
 **Acceptance Criteria**:
-- [ ] All data directories created
-- [ ] Scripts directory created
-- [ ] Structure matches plan.md
+- [x] All data directories created
+- [x] Structure accessible from host
+- [x] Accessible from VM guest as Z:\data\
 
 **Command**:
 ```powershell
-mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
+mkdir C:\VMShare\data\baseline, C:\VMShare\data\symantec, C:\VMShare\data\opnsense, C:\VMShare\data\both
 ```
+
+**Completed**: 2026-01-16 16:22 UTC
 
 ---
 
@@ -240,25 +271,112 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Priority**: P1 (High)  
 **Estimated Time**: 2 hours  
 **Dependencies**: TASK-009
+**Status**: ✅ **COMPLETE**
 
-**Description**: Create PowerShell scripts for automated testing based on provided templates, and modify existing app launch script.
+**Description**: Create PowerShell scripts for automated testing and modify existing app launch script.
 
-**Scripts to Create**:
-1. `scripts/smb-copy-test.ps1` (from NETWORK_TEST_CONFIG.md)
-2. `scripts/ftp-download-test.ps1` (from REMOTE_DOWNLOAD_CONFIG.md)
-3. `scripts/process-count-test.ps1`
-4. `scripts/ram-startup-test.ps1`
-5. `scripts/sysbench-wrapper.ps1`
-
-**Script to Modify**:
-6. `AV-Bench/script.ps1` - Change `$iterations = 3` to `$iterations = 5`
+**Scripts Created**:
+1. `scripts/SMB-Copy-Test.ps1`
+2. `scripts/FTP-Download-Test.ps1`
+3. `scripts/Automated-Boot-Cycle-With-BootRacer.ps1`
+4. `scripts/Run-AllTests-SingleIteration.ps1`
+5. `scripts/Invoke-VMCommand.ps1` - Remote command execution helper
+6. `scripts/Test-VMConnection.ps1` - Connection testing
+7. `scripts/Analyze-AllData.ps1` - Data analysis automation
 
 **Acceptance Criteria**:
-- [ ] All 5 scripts created
-- [ ] App launch script modified for 5 iterations
-- [ ] Scripts include parameter handling
-- [ ] Scripts export to CSV
-- [ ] Scripts include iteration loops
+- [x] All scripts created in scripts\ folder
+- [x] Scripts include parameter handling for Config and Iteration
+- [x] Scripts export to CSV in C:\VMShare\data\
+- [x] Scripts ready to run remotely via PowerShell remoting
+- [x] Remote execution tested and verified
+
+**Completed**: 2026-01-16 16:25 UTC
+
+---
+
+### TASK-010C: Implement Remote GUI Application Control
+**Priority**: P0 (Blocker)  
+**Estimated Time**: 3 hours  
+**Dependencies**: TASK-010
+**Status**: ✅ **COMPLETE**
+
+**Description**: Solve the Session 0 vs Session 1 problem for remote GUI app launching. PowerShell remoting runs in Session 0 (no GUI access), requiring a helper script in Session 1 (desktop) to launch visible applications.
+
+**Problem Identified**:
+- PowerShell remoting runs in Session 0 (non-interactive)
+- GUI apps launched from remoting have no visible windows
+- Paint, Notepad, Calculator need Session 1 (desktop) to be visible
+
+**Solution Implemented**:
+- File-based signaling between Session 0 (remoting) and Session 1 (desktop)
+- Helper script (GUI-App-Launcher-Helper.ps1) runs in desktop session
+- Monitors Z:\gui_trigger.txt for launch/close requests
+- Communicates status via Z:\gui_processed.txt
+
+**Files Created**:
+1. `scripts/Invoke-RemoteGUIApp.ps1` - Remote control interface
+2. `scripts/Test-RemoteGUIApps.ps1` - Testing/research script  
+3. `scripts/Test-AppLaunch-Remote.ps1` - Updated app launch test using remote GUI
+4. `analysis/Remote-GUI-Solution.md` - Complete technical documentation
+5. `Z:\GUI-App-Launcher-Helper.ps1` - Helper deployed on VM
+
+**Acceptance Criteria**:
+- [x] Helper script created and deployed to VM
+- [x] Remote control script created (Invoke-RemoteGUIApp.ps1)
+- [x] Tested launching Paint, Notepad, Calculator remotely
+- [x] Tested closing all instances remotely
+- [x] Apps launch in Session 1 with visible windows
+- [x] File-based signaling works reliably
+- [x] Complete documentation created
+
+**Usage**:
+```powershell
+# Launch apps remotely with visible windows
+.\Invoke-RemoteGUIApp.ps1 -AppName mspaint -Action Launch -Count 25
+.\Invoke-RemoteGUIApp.ps1 -AppName notepad -Action Launch -Count 25
+.\Invoke-RemoteGUIApp.ps1 -AppName calc -Action Launch -Count 25
+
+# Close all instances
+.\Invoke-RemoteGUIApp.ps1 -AppName mspaint -Action CloseAll
+```
+
+**Setup Required**:
+- Helper must be running on VM desktop: `& 'Z:\GUI-App-Launcher-Helper.ps1'`
+- Auto-login configured so VM boots to desktop automatically
+- Z: drive accessible from both Session 0 and Session 1
+
+**Completed**: 2026-01-16 20:55 UTC
+
+---
+
+### TASK-010B: Gather System Information for LaTeX Paper
+**Priority**: P1 (High)  
+**Estimated Time**: 10 minutes  
+**Dependencies**: None
+**Status**: 📝 **TODO**
+
+**Description**: Run PowerShell script in VM guest to gather exact system specifications for inclusion in the LaTeX paper methodology section.
+
+**Steps**:
+1. Boot Win11 VM
+2. Open PowerShell in VM
+3. Run: `Z:\get-system-info.ps1`
+4. Verify output saved to `Z:\system-info.txt`
+5. Copy information to update LaTeX paper
+
+**Information to Gather**:
+- Exact Windows 11 version and build number
+- CPU model, cores, and logical processors
+- RAM amount (GB)
+- Disk size (GB)
+
+**Acceptance Criteria**:
+- [ ] Script executed successfully
+- [ ] System info file created at C:\VMShare\system-info.txt
+- [ ] Information ready for LaTeX paper update
+
+**Next Step**: Update paper.tex with actual system specifications (replace XXXXX placeholders)
 
 ---
 
@@ -375,50 +493,39 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 ---
 
-### TASK-016: Run Baseline sysbench Tests
-**Priority**: P0 (Blocker)  
-**Estimated Time**: 2 hours  
-**Dependencies**: TASK-001, TASK-007, TASK-010
 
-**Description**: Run sysbench CPU, memory, and disk I/O tests (criterion f) on baseline configuration.
 
-**Steps**:
-1. Restore Baseline-NoIDS snapshot
-2. Start VM
-3. Run CPU test: `wsl sysbench cpu --threads=4 --time=60 run` (5 iterations)
-4. Run memory test: `wsl sysbench memory --memory-total-size=10G run` (5 iterations)
-5. Run disk I/O test: `wsl sysbench fileio --file-test-mode=rndrw run` (5 iterations)
-6. Save results: `data\baseline\sysbench-*.csv`
-
-**Acceptance Criteria**:
-- [ ] CPU test completed (5 iterations)
-- [ ] Memory test completed (5 iterations)
-- [ ] Disk I/O test completed (5 iterations)
-- [ ] CSV files generated
-- [ ] Average metrics documented
-
----
-
-### TASK-016A: Run Baseline Application Launch Test
+### TASK-016: Run Baseline Application Launch Test
 **Priority**: P0 (Blocker)  
 **Estimated Time**: 30 minutes  
-**Dependencies**: TASK-001, TASK-010
+**Dependencies**: TASK-001, TASK-010, TASK-010C
 
-**Description**: Run application launch performance test (criterion g) on baseline configuration using modified AV-Bench script.
+**Description**: Run application launch performance test (Criterion D) on baseline configuration using remote GUI control.
 
 **Steps**:
 1. Restore Baseline-NoIDS snapshot (if needed)
 2. Start VM
-3. Navigate to: `cd C:\Users\...\ItC\AV-Bench`
-4. Run: `.\script.ps1`
-5. Wait for 5 iterations to complete (~5-10 minutes)
-6. Copy `measurements.csv` to `data\baseline\app-launch-baseline.csv`
+3. Ensure GUI-App-Launcher-Helper.ps1 is running on VM desktop
+4. Run from host: `.\scripts\Test-AppLaunch-Remote.ps1 -ConfigName baseline -Iterations 5`
+5. Wait for 5 iterations to complete (~10-15 minutes)
+6. Verify results saved to `C:\VMShare\data\baseline\app-launch-baseline.csv`
+
+**Technical Details**:
+- Uses Invoke-RemoteGUIApp.ps1 for remote GUI control
+- Launches 75 apps per iteration (25 each: Calc, Notepad, Paint)
+- File-based signaling between Session 0 (remoting) and Session 1 (desktop)
+- Apps launch with visible windows in correct session
+- Automatic cleanup after each iteration
 
 **Acceptance Criteria**:
-- [ ] 5 iterations completed
-- [ ] CSV file generated
+- [ ] Helper script running on VM desktop
+- [ ] 5 iterations completed (75 apps × 5 = 375 total launches)
+- [ ] Apps launch with visible windows (verified manually)
+- [ ] CSV file generated at correct location
 - [ ] Variance <10%
-- [ ] Average time documented (expected: 8-15 seconds for 75 apps)
+- [ ] Average time documented (expected: 8-20 seconds for 75 apps depending on launch method overhead)
+
+**Note**: Remote GUI control adds small overhead (~200ms per app) due to file-based signaling, but ensures apps launch correctly in visible session.
 
 ---
 
@@ -430,14 +537,14 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Description**: Review all baseline measurements for completeness and consistency.
 
 **Steps**:
-1. Check all 7 CSV files exist
+1. Check all 6 CSV files exist (boot-time, ram-usage, process-count, app-launch, smb-transfer, ftp-download)
 2. Verify 5 iterations in each file
 3. Calculate variance for each criterion
 4. Document any issues
 5. Re-run tests if variance >10%
 
 **Acceptance Criteria**:
-- [ ] All 7 CSV files present
+- [ ] All 6 CSV files present
 - [ ] All variances <10%
 - [ ] Data ready for comparison
 
@@ -472,24 +579,23 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 ### TASK-019: Run Symantec Tests (All Criteria)
 **Priority**: P0 (Blocker)  
-**Estimated Time**: 6-8 hours  
+**Estimated Time**: 5-6 hours  
 **Dependencies**: TASK-018
 
-**Description**: Run all 7 criteria tests on Symantec-Only configuration (5 iterations each).
+**Description**: Run all 6 criteria tests on Symantec-Only configuration (5 iterations each).
 
 **Steps**:
 1. Restore Symantec-Only snapshot
-2. Run SMB copy test → `data\symantec\smb-copy-symantec.csv`
-3. Run FTP download test → `data\symantec\ftp-download-symantec.csv`
-4. Run process count test → `data\symantec\process-count-symantec.csv`
-5. Run RAM startup test → `data\symantec\ram-startup-symantec.csv`
-6. Run boot time test → `data\symantec\boot-time-symantec.csv`
-7. Run sysbench tests → `data\symantec\sysbench-*.csv`
-8. Run app launch test → `data\symantec\app-launch-symantec.csv`
+2. Run boot time test (Criterion A) → `Z:\data\symantec\boot-time-symantec.csv`
+3. Run RAM startup test (Criterion B) → `Z:\data\symantec\ram-startup-symantec.csv`
+4. Run process count test (Criterion C) → `Z:\data\symantec\process-count-symantec.csv`
+5. Run app launch test (Criterion D) → `Z:\data\symantec\app-launch-symantec.csv`
+6. Run SMB copy test (Criterion E) → `Z:\data\symantec\smb-copy-symantec.csv`
+7. Run FTP download test (Criterion F) → `Z:\data\symantec\ftp-download-symantec.csv`
 
 **Acceptance Criteria**:
-- [ ] All 7 criteria tested (5 iterations each)
-- [ ] All CSV files generated
+- [ ] All 6 criteria tested (5 iterations each)
+- [ ] All CSV files generated in Z:\data\
 - [ ] Variance <10% per criterion
 - [ ] Data saved to symantec directory
 
@@ -503,13 +609,13 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Description**: Calculate percentage overhead for Symantec configuration vs baseline.
 
 **Steps**:
-1. Load baseline and Symantec CSV files
+1. Load baseline and Symantec CSV files from C:\VMShare\data\
 2. Calculate average for each criterion
-3. Calculate percentage overhead: `((Baseline - Symantec) / Baseline) * 100`
+3. Calculate percentage overhead: `((IDS - Baseline) / Baseline) * 100`
 4. Document results
 
 **Acceptance Criteria**:
-- [ ] Overhead calculated for all 7 criteria
+- [ ] Overhead calculated for all 6 criteria
 - [ ] Results documented
 - [ ] Overhead percentages reasonable (5-40%)
 
@@ -546,24 +652,23 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 ### TASK-022: Run Firewall Tests (All Criteria)
 **Priority**: P0 (Blocker)  
-**Estimated Time**: 6-8 hours  
+**Estimated Time**: 5-6 hours  
 **Dependencies**: TASK-021
 
-**Description**: Run all 7 criteria tests on firewall-only configuration (5 iterations each).
+**Description**: Run all 6 criteria tests on firewall-only configuration (5 iterations each).
 
 **Steps**:
 1. Restore OPNsense-Only snapshot
-2. Run SMB copy test → `data\opnsense\smb-copy-opnsense.csv`
-3. Run FTP download test → `data\opnsense\ftp-download-opnsense.csv`
-4. Run process count test → `data\opnsense\process-count-opnsense.csv`
-5. Run RAM startup test → `data\opnsense\ram-startup-opnsense.csv`
-6. Run boot time test → `data\opnsense\boot-time-opnsense.csv`
-7. Run sysbench tests → `data\opnsense\sysbench-*.csv`
-8. Run app launch test → `data\opnsense\app-launch-opnsense.csv`
+2. Run boot time test (Criterion A) → `Z:\data\opnsense\boot-time-opnsense.csv`
+3. Run RAM startup test (Criterion B) → `Z:\data\opnsense\ram-startup-opnsense.csv`
+4. Run process count test (Criterion C) → `Z:\data\opnsense\process-count-opnsense.csv`
+5. Run app launch test (Criterion D) → `Z:\data\opnsense\app-launch-opnsense.csv`
+6. Run SMB copy test (Criterion E) → `Z:\data\opnsense\smb-copy-opnsense.csv`
+7. Run FTP download test (Criterion F) → `Z:\data\opnsense\ftp-download-opnsense.csv`
 
 **Acceptance Criteria**:
-- [ ] All 7 criteria tested (5 iterations each)
-- [ ] All CSV files generated
+- [ ] All 6 criteria tested (5 iterations each)
+- [ ] All CSV files generated in Z:\data\
 - [ ] Variance <10% per criterion
 - [ ] Data saved to opnsense directory
 
@@ -577,13 +682,13 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Description**: Calculate percentage overhead for firewall configuration vs baseline.
 
 **Steps**:
-1. Load baseline and OPNsense CSV files
+1. Load baseline and OPNsense CSV files from C:\VMShare\data\
 2. Calculate average for each criterion
 3. Calculate percentage overhead
 4. Document results
 
 **Acceptance Criteria**:
-- [ ] Overhead calculated for all 7 criteria
+- [ ] Overhead calculated for all 6 criteria
 - [ ] Results documented
 - [ ] Overhead percentages reasonable (5-25%)
 
@@ -618,24 +723,23 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 ### TASK-025: Run Combined Tests (All Criteria)
 **Priority**: P0 (Blocker)  
-**Estimated Time**: 6-8 hours  
+**Estimated Time**: 5-6 hours  
 **Dependencies**: TASK-024
 
-**Description**: Run all 7 criteria tests on combined configuration (5 iterations each).
+**Description**: Run all 6 criteria tests on combined configuration (5 iterations each).
 
 **Steps**:
 1. Restore Symantec-OPNsense-Both snapshot
-2. Run SMB copy test → `data\both\smb-copy-both.csv`
-3. Run FTP download test → `data\both\ftp-download-both.csv`
-4. Run process count test → `data\both\process-count-both.csv`
-5. Run RAM startup test → `data\both\ram-startup-both.csv`
-6. Run boot time test → `data\both\boot-time-both.csv`
-7. Run sysbench tests → `data\both\sysbench-*.csv`
-8. Run app launch test → `data\both\app-launch-both.csv`
+2. Run boot time test (Criterion A) → `Z:\data\both\boot-time-both.csv`
+3. Run RAM startup test (Criterion B) → `Z:\data\both\ram-startup-both.csv`
+4. Run process count test (Criterion C) → `Z:\data\both\process-count-both.csv`
+5. Run app launch test (Criterion D) → `Z:\data\both\app-launch-both.csv`
+6. Run SMB copy test (Criterion E) → `Z:\data\both\smb-copy-both.csv`
+7. Run FTP download test (Criterion F) → `Z:\data\both\ftp-download-both.csv`
 
 **Acceptance Criteria**:
-- [ ] All 7 criteria tested (5 iterations each)
-- [ ] All CSV files generated
+- [ ] All 6 criteria tested (5 iterations each)
+- [ ] All CSV files generated in Z:\data\
 - [ ] Variance <10% per criterion
 - [ ] Data saved to both directory
 
@@ -649,14 +753,14 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Description**: Calculate percentage overhead for combined configuration vs baseline.
 
 **Steps**:
-1. Load baseline and combined CSV files
+1. Load baseline and combined CSV files from C:\VMShare\data\
 2. Calculate average for each criterion
 3. Calculate percentage overhead
 4. Document results
 5. Compare with individual overheads
 
 **Acceptance Criteria**:
-- [ ] Overhead calculated for all 7 criteria
+- [ ] Overhead calculated for all 6 criteria
 - [ ] Results documented
 - [ ] Overhead percentages reasonable (15-50%)
 - [ ] Comparison with individual configs noted
@@ -670,18 +774,18 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Estimated Time**: 1 hour  
 **Dependencies**: TASK-026
 
-**Description**: Import and consolidate all CSV files into master spreadsheet or analysis tool.
+**Description**: Import and consolidate all CSV files from C:\VMShare\data\ into master spreadsheet or analysis tool.
 
 **Steps**:
 1. Create analysis spreadsheet/notebook
-2. Import all 28 CSV files
+2. Import all 24 CSV files (4 configs × 6 criteria)
 3. Organize by criterion and configuration
 4. Calculate summary statistics
 5. Document any anomalies
 
 **Acceptance Criteria**:
-- [ ] All 28 CSV files imported
-- [ ] Data organized by criterion
+- [ ] All 24 CSV files imported from C:\VMShare\data\
+- [ ] Data organized by criterion (A-F)
 - [ ] Summary statistics calculated
 - [ ] Anomalies documented
 
@@ -689,24 +793,23 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 ### TASK-028: Generate Comparative Graphs
 **Priority**: P0 (Blocker)  
-**Estimated Time**: 3 hours  
+**Estimated Time**: 2 hours  
 **Dependencies**: TASK-027
 
-**Description**: Create 6 comparative graphs (one per criterion) showing all 4 configurations.
+**Description**: Create 6 comparative graphs (one per criterion A-F) showing all 4 configurations.
 
 **Graphs to Create**:
-1. SMB copy speed comparison (MB/s)
-2. FTP download speed comparison (Mbps)
-3. Process count comparison
-4. RAM usage comparison (MB)
-5. Boot time comparison (seconds)
-6. sysbench performance comparison (events/s, MB/s, IOPS)
-7. Application launch time comparison (seconds for 75 apps)
+1. Criterion A: Boot time comparison (seconds)
+2. Criterion B: RAM usage comparison (MB)
+3. Criterion C: Process count comparison
+4. Criterion D: Application launch time comparison (seconds for 75 apps)
+5. Criterion E: SMB copy speed comparison (MB/s)
+6. Criterion F: FTP download speed comparison (Mbps)
 
 **Format**: Bar charts or line graphs suitable for LaTeX inclusion
 
 **Acceptance Criteria**:
-- [ ] 7 graphs generated
+- [ ] 6 graphs generated (one per criterion A-F)
 - [ ] All 4 configurations shown per graph
 - [ ] Graphs properly labeled (axis, legend)
 - [ ] Saved as high-quality images (PNG/PDF)
@@ -828,13 +931,18 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Description**: Write comprehensive Methodology section describing test setup and procedures.
 
 **Content**:
-- VM specifications (WIN11, 4 cores, 8GB)
-- 4 configurations detailed
-- 7 criteria explained (a-g)
-- Tools used (BootRacer, sysbench, AV-Bench script, etc.)
-- Network setup (QNAP, DIGI Storage)
-- Testing procedure (5 iterations)
-- Data collection methods
+- 4 configurations detailed (Baseline, Symantec-only, Firewall-only, Both)
+- 6 criteria explained:
+  * Criterion A: Boot time (BootRacer)
+  * Criterion B: RAM at startup
+  * Criterion C: Process count
+  * Criterion D: App launch (75 apps × 5 iterations = 375 total launches)
+  * Criterion E: SMB transfer (1GB to 192.168.50.99/Public/Test)
+  * Criterion F: FTP download (100MB from DIGI Storage)
+- Tools used (BootRacer, Task Manager/Perfmon, AV-Bench/script.ps1, PowerShell scripts)
+- Network setup (QNAP NAS via SMB, DIGI Storage via FTP configured with FileZilla)
+- Testing procedure (5 iterations per test)
+- Data collection (C:\VMShare on host mapped to Z: on guest)
 
 **Acceptance Criteria**:
 - [ ] Methodology written (2-2.5 pages)
@@ -853,15 +961,21 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Description**: Write Results section presenting measurement data with tables and graphs.
 
 **Content**:
-- Present all 7 criteria results
+- Present all 6 criteria results:
+  * Criterion A: Boot time
+  * Criterion B: RAM usage
+  * Criterion C: Process count
+  * Criterion D: App launch (375 total launches)
+  * Criterion E: SMB transfer
+  * Criterion F: FTP download
 - Include tables with data
-- Include comparative graphs
+- Include 6 comparative graphs
 - Report overhead percentages
 - Statistical variance data
 
 **Acceptance Criteria**:
 - [ ] Results written (2 pages)
-- [ ] All 7 graphs included
+- [ ] All 6 graphs included (A-F)
 - [ ] All tables included
 - [ ] Data clearly presented
 - [ ] No interpretation (save for Discussion)
@@ -923,10 +1037,12 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Sources to Include**:
 - LNCS template
 - Symantec documentation
-- OPNsense documentation
-- sysbench GitHub
+- OPNsense/Windows Firewall documentation
+- AV-Bench script information
 - SMB protocol documentation
+- FTP protocol documentation
 - Related research papers (5+)
+- 3 testing methodology references from Tom's Hardware or AnandTech
 - Windows 11 documentation
 - VirtualBox documentation
 
@@ -1023,10 +1139,10 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 **Checklist**:
 - [ ] 7+ pages?
 - [ ] All sections present?
-- [ ] all 7 criteria documented?
-- [ ] All graphs included?
+- [ ] All 6 criteria documented (A-F: boot, RAM, process, app launch, SMB, FTP)?
+- [ ] All graphs included (6 total for A-F)?
 - [ ] All tables formatted correctly?
-- [ ] References complete?
+- [ ] References complete (including 3 from Tom's Hardware/AnandTech)?
 - [ ] Author info correct?
 - [ ] LNCS format compliance?
 - [ ] Plagiarism ≤7%?
@@ -1097,7 +1213,7 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 **Steps**:
 1. Create backup of entire project directory
-2. Include all data files (28 CSV files)
+2. Include all data files (24 CSV files from C:\VMShare\data\)
 3. Include all scripts
 4. Include LaTeX sources and PDF
 5. Store in safe location (cloud, external drive)
@@ -1111,24 +1227,24 @@ mkdir data\baseline, data\symantec, data\opnsense, data\both, scripts
 
 ## Summary Statistics
 
-**Total Tasks**: 46 (added TASK-016A for app launch test)  
-**Estimated Total Time**: 72-92 hours over 14 days  
-**Critical Path Tasks**: 37 (marked P0)  
-**Blocker Tasks**: 43  
+**Total Tasks**: 43 (removed TASK-007 sysbench, removed old TASK-016 sysbench tests)  
+**Estimated Total Time**: 65-80 hours over 14 days  
+**Critical Path Tasks**: 35 (marked P0)  
+**Blocker Tasks**: 40  
 
 **Phase Breakdown**:
-- Phase 0 (Setup): 10 tasks, 4-6 hours
-- Phase 1 (Baseline): 8 tasks (added TASK-016A), 6.5-8.5 hours
-- Phase 2 (Symantec): 3 tasks, 8-10 hours
-- Phase 3 (OPNsense): 3 tasks, 8-10 hours
-- Phase 4 (Combined): 3 tasks, 8-10 hours
-- Phase 5 (Analysis): 4 tasks, 6-8 hours
+- Phase 0 (Setup): 8 tasks, 3.5-5 hours
+- Phase 1 (Baseline): 7 tasks, 5.5-7 hours
+- Phase 2 (Symantec): 3 tasks, 6-7 hours
+- Phase 3 (OPNsense): 3 tasks, 6-7 hours
+- Phase 4 (Combined): 3 tasks, 6-7 hours
+- Phase 5 (Analysis): 4 tasks, 5-7 hours
 - Phase 6 (Writing): 11 tasks, 16-20 hours
 - Phase 7 (Submission): 4 tasks, 2-4 hours
 
 **Deadline**: 23 Jan 2026, 21:00 (7 days from spec complete)
 
-**Test Matrix**: 4 configurations × 7 criteria × 5 iterations = **140 test runs**
+**Test Matrix**: 4 configurations × 6 criteria × 5 iterations = **120 test runs** (including 375 total app launches for Criterion D)
 
 ---
 
@@ -1153,7 +1269,16 @@ Use this to track daily progress:
 
 ---
 
-**Status**: Ready to begin Phase 0  
-**Next Task**: TASK-001 (Configure VM Baseline Snapshot)  
+## Next Steps
+
+**Current Phase**: Phase 0 (Environment Setup) - Nearly complete  
+**Next Action**: Begin Phase 1 (Baseline Measurements)  
+**Status**: ✅ VM configured, shared folder ready, network configured
+
+**Immediate Tasks**:
+1. Verify data folder structure exists in C:\VMShare
+2. Run baseline measurements (TASK-011 through TASK-016)
+3. Verify data quality (TASK-017)
+
 **Good luck! 🚀**
 
