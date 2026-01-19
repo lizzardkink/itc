@@ -37,13 +37,13 @@ def remove_outliers_iqr(data, column):
 def calculate_statistics(data, column):
     """Calculate comprehensive statistics for a column"""
     return {
-        'mean': data[column].mean(),
-        'median': data[column].median(),
-        'std': data[column].std(),
-        'min': data[column].min(),
-        'max': data[column].max(),
-        'count': len(data),
-        'cv': (data[column].std() / data[column].mean() * 100) if data[column].mean() != 0 else 0  # Coefficient of variation
+        'mean': float(data[column].mean()),
+        'median': float(data[column].median()),
+        'std': float(data[column].std()),
+        'min': float(data[column].min()),
+        'max': float(data[column].max()),
+        'count': int(len(data)),
+        'cv': float((data[column].std() / data[column].mean() * 100) if data[column].mean() != 0 else 0)  # Coefficient of variation
     }
 
 def analyze_boot_time():
