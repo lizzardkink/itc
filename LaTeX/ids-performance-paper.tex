@@ -175,7 +175,6 @@ Q_1 &= \text{25th percentile}, \quad Q_3 = \text{75th percentile} \\
 \item \textbf{Mean ($\mu$)}: Arithmetic average of cleaned dataset, representing the primary measurement result.
 \item \textbf{Median}: 50th percentile value, providing a robust central tendency measure less sensitive to outliers.
 \item \textbf{Standard Deviation ($\sigma$)}: Measure of data dispersion indicating measurement variability. Lower values indicate more consistent measurements.
-\item \textbf{Coefficient of Variation (CV)}: Normalized variability measure calculated as CV = $\sigma/\mu \times 100\%$. This dimensionless metric allows comparison of variability across metrics with different units. Values below 20\% indicate good measurement consistency, following benchmarking best practices~\cite{anandtech-statistical-methods,box2005}.
 \item \textbf{Range}: [Minimum, Maximum] values after outlier removal, showing the span of observed measurements.
 \end{itemize}
 
@@ -189,7 +188,7 @@ Positive overhead values indicate performance degradation (increased time or red
 \section{Results}
 \label{sec:results}
 
-All result tables present five key metrics for each configuration: \textit{Mean} (average value across iterations), \textit{Std Dev} (standard deviation showing measurement variability), \textit{CV} (coefficient of variation as normalized variability percentage), and \textit{Overhead} (percentage change relative to baseline, where positive values indicate degradation and negative values indicate improvement). Lower CV values (<20\%) indicate more consistent measurements.
+All result tables present four key metrics for each configuration: \textit{Mean} (average value across iterations), \textit{Std Dev} (standard deviation showing measurement variability), and \textit{Overhead} (percentage change relative to baseline, where positive values indicate degradation and negative values indicate improvement).
 
 \subsection{Boot Time Performance}
 
@@ -200,16 +199,16 @@ All result tables present five key metrics for each configuration: \textit{Mean}
 \label{tab:boot_time}
 \centering
 \small
-\begin{tabular}{@{}lrrrr@{}}
+\begin{tabular}{@{}lrrr@{}}
 \toprule
-\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{CV (\%)} & \textbf{Overhead (\%)} \\
+\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{Overhead (\%)} \\
 \midrule
-Baseline & 72.76 & 9.42 & 12.94 & --- \\
-TotalAV Only & 95.60 & 20.35 & 21.28 & \textbf{+31.39} \\
-Fort Firewall Only & 62.12 & 10.16 & 16.35 & \textbf{-14.62}$^\dagger$ \\
-Both IDS & 90.29 & 15.35 & 17.00 & +24.09 \\
+Baseline & 72.76 & 9.42 & --- \\
+TotalAV Only & 95.60 & 20.35 & \textbf{+31.39} \\
+Fort Firewall Only & 62.12 & 10.16 & \textbf{-14.62}$^\dagger$ \\
+Both IDS & 90.29 & 15.35 & +24.09 \\
 \bottomrule
-\multicolumn{5}{l}{\small $^\dagger$ Negative values indicate performance improvement}
+\multicolumn{4}{l}{\small $^\dagger$ Negative values indicate performance improvement}
 \end{tabular}
 \end{table}
 
@@ -231,14 +230,14 @@ Both IDS & 90.29 & 15.35 & 17.00 & +24.09 \\
 \label{tab:ram_usage}
 \centering
 \small
-\begin{tabular}{@{}lrrrr@{}}
+\begin{tabular}{@{}lrrr@{}}
 \toprule
-\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{CV (\%)} & \textbf{Overhead (\%)} \\
+\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{Overhead (\%)} \\
 \midrule
-Baseline & 2661.45 & 17.68 & 0.66 & --- \\
-TotalAV Only & 3125.62 & 62.72 & 2.01 & \textbf{+17.44} (+464~MB) \\
-Fort Firewall Only & 2700.77 & 85.89 & 3.18 & +1.48 (+39~MB) \\
-Both IDS & 3203.13 & 140.61 & 4.39 & +20.35 (+542~MB) \\
+Baseline & 2661.45 & 17.68 & --- \\
+TotalAV Only & 3125.62 & 62.72 & \textbf{+17.44} (+464~MB) \\
+Fort Firewall Only & 2700.77 & 85.89 & +1.48 (+39~MB) \\
+Both IDS & 3203.13 & 140.61 & +20.35 (+542~MB) \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -261,20 +260,20 @@ Both IDS & 3203.13 & 140.61 & 4.39 & +20.35 (+542~MB) \\
 \label{tab:process_count}
 \centering
 \small
-\begin{tabular}{@{}lrrrr@{}}
+\begin{tabular}{@{}lrrr@{}}
 \toprule
-\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{CV (\%)} & \textbf{Overhead (\%)} \\
+\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{Overhead (\%)} \\
 \midrule
-Baseline & 150.50 & 1.29 & 0.86 & --- \\
-TotalAV Only & 147.33 & 2.08 & 1.41 & \textbf{-2.10}$^\dagger$ \\
-Fort Firewall Only & 152.00 & 0.00 & 0.00 & +1.00 \\
-Both IDS & 151.00 & 0.00 & 0.00 & +0.33 \\
+Baseline & 150.50 & 1.29 & --- \\
+TotalAV Only & 147.33 & 2.08 & \textbf{-2.10}$^\dagger$ \\
+Fort Firewall Only & 152.00 & 0.00 & +1.00 \\
+Both IDS & 151.00 & 0.00 & +0.33 \\
 \bottomrule
-\multicolumn{5}{l}{\small $^\dagger$ TotalAV reduces process count through consolidation}
+\multicolumn{4}{l}{\small $^\dagger$ TotalAV reduces process count through consolidation}
 \end{tabular}
 \end{table}
 
-\textbf{Key Findings:} TotalAV reduced count by 2.10\%, suggesting efficient multi-threading or service consolidation. Low CV (0.00--1.41\%) indicates highly consistent measurements.
+\textbf{Key Findings:} TotalAV reduced count by 2.10\%, suggesting efficient multi-threading or service consolidation. Low standard deviation indicates highly consistent measurements.
 
 \subsection{Application Launch Performance}
 
@@ -285,16 +284,16 @@ Both IDS & 151.00 & 0.00 & 0.00 & +0.33 \\
 \label{tab:app_launch}
 \centering
 \small
-\begin{tabular}{@{}lrrrr@{}}
+\begin{tabular}{@{}lrrr@{}}
 \toprule
-\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{CV (\%)} & \textbf{Overhead (\%)} \\
+\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{Overhead (\%)} \\
 \midrule
-Baseline & 14.46 & 2.89 & 19.98 & --- \\
-TotalAV Only & 21.70 & 4.28 & 19.72 & \textbf{+50.05} \\
-Fort Firewall Only & 11.85 & 2.24 & 18.93 & \textbf{-18.05}$^\dagger$ \\
-Both IDS & 18.98 & 4.70 & 24.75 & +31.21 \\
+Baseline & 14.46 & 2.89 & --- \\
+TotalAV Only & 21.70 & 4.28 & \textbf{+50.05} \\
+Fort Firewall Only & 11.85 & 2.24 & \textbf{-18.05}$^\dagger$ \\
+Both IDS & 18.98 & 4.70 & +31.21 \\
 \bottomrule
-\multicolumn{5}{l}{\small $^\dagger$ Fort Firewall improves performance over baseline}
+\multicolumn{4}{l}{\small $^\dagger$ Fort Firewall improves performance over baseline}
 \end{tabular}
 \end{table}
 
@@ -316,16 +315,16 @@ Both IDS & 18.98 & 4.70 & 24.75 & +31.21 \\
 \label{tab:smb_transfer}
 \centering
 \small
-\begin{tabular}{@{}lrrrr@{}}
+\begin{tabular}{@{}lrrr@{}}
 \toprule
-\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{CV (\%)} & \textbf{Change (\%)} \\
+\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{Change (\%)} \\
 \midrule
-Baseline & 39.37 & 5.20 & 13.22 & --- \\
-TotalAV Only & 31.79 & 6.72 & 21.13 & \textbf{-19.26} \\
-Fort Firewall Only & 42.18 & 9.26 & 21.94 & \textbf{+7.14}$^\dagger$ \\
-Both IDS & 35.91 & 6.56 & 18.27 & -8.80 \\
+Baseline & 39.37 & 5.20 & --- \\
+TotalAV Only & 31.79 & 6.72 & \textbf{-19.26} \\
+Fort Firewall Only & 42.18 & 9.26 & \textbf{+7.14}$^\dagger$ \\
+Both IDS & 35.91 & 6.56 & -8.80 \\
 \bottomrule
-\multicolumn{5}{l}{\small $^\dagger$ Fort Firewall exceeds baseline throughput}
+\multicolumn{4}{l}{\small $^\dagger$ Fort Firewall exceeds baseline throughput}
 \end{tabular}
 \end{table}
 
@@ -334,14 +333,14 @@ Both IDS & 35.91 & 6.56 & 18.27 & -8.80 \\
 \label{tab:ftp_download}
 \centering
 \small
-\begin{tabular}{@{}lrrrr@{}}
+\begin{tabular}{@{}lrrr@{}}
 \toprule
-\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{CV (\%)} & \textbf{Change (\%)} \\
+\textbf{Configuration} & \textbf{Mean} & \textbf{Std Dev} & \textbf{Change (\%)} \\
 \midrule
-Baseline & 10.29 & 1.59 & 15.42 & --- \\
-TotalAV Only & 9.18 & 1.32 & 14.43 & -10.83 \\
-Fort Firewall Only & 8.50 & 1.95 & 22.93 & \textbf{-17.41} \\
-Both IDS & 8.23 & 1.63 & 19.85 & \textbf{-20.02} \\
+Baseline & 10.29 & 1.59 & --- \\
+TotalAV Only & 9.18 & 1.32 & -10.83 \\
+Fort Firewall Only & 8.50 & 1.95 & \textbf{-17.41} \\
+Both IDS & 8.23 & 1.63 & \textbf{-20.02} \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -423,7 +422,7 @@ Fort Firewall exhibited unexpectedly positive performance in several metrics. Th
 
 \subsection{Limitations}
 
-VirtualBox introduces baseline performance penalty (estimated 5--15\%) compared to bare-metal installations. While this affects absolute values, relative comparisons remain valid. FTP tests showed higher coefficient of variation (14--23\%) due to Internet connection fluctuations. The 30-application test may not reflect enterprise applications with database connections and network authentication. Five iterations meet minimum statistical requirements, but larger samples would improve confidence intervals.
+VirtualBox introduces baseline performance penalty (estimated 5--15\%) compared to bare-metal installations. While this affects absolute values, relative comparisons remain valid. FTP tests showed higher variability due to Internet connection fluctuations. The 30-application test may not reflect enterprise applications with database connections and network authentication. Five iterations meet minimum statistical requirements, but larger samples would improve confidence intervals.
 
 \section{Conclusion}
 \label{sec:conclusion}
