@@ -92,7 +92,7 @@
 \maketitle
 
 \begin{abstract}
-This study quantifies the computational overhead of intrusion detection systems (IDS) on Windows 11 through systematic benchmarking of TotalAV antivirus (v6.5.219) and Fort Firewall (v3.19.9). Four configurations were evaluated: baseline (no IDS), TotalAV-only, Fort Firewall-only, and combined deployment. Six performance metrics were measured across five iterations: boot time, RAM consumption, process count, application launch, local network throughput (SMB), and remote download speed (FTP). Statistical analysis using Interquartile Range (IQR) outlier detection revealed significant patterns. TotalAV imposed the highest overhead at 31.39\% increased boot time, 17.44\% higher RAM usage, and 50.05\% slower application launches. Surprisingly, Fort Firewall improved boot time by 14.62\% and application launch by 18.05\%, suggesting optimization benefits over Windows' built-in firewall. Network performance degraded 8.80--20.02\% across all IDS configurations. Results indicate that while IDS software provides essential security, careful consideration of performance trade-offs is necessary for resource-constrained environments.
+This study quantifies the computational overhead of intrusion detection systems (IDS) on Windows 11 by systematically benchmarking TotalAV antivirus (v6.5.219) and Fort Firewall (v3.19.9). We evaluated four configurations: baseline (no IDS), TotalAV-only, Fort Firewall-only, and combined deployment. Six performance metrics were measured across five iterations: boot time, RAM consumption, process count, application launch, local network throughput (SMB), and remote download speed (FTP). Our statistical analysis using Interquartile Range (IQR) outlier detection revealed significant patterns. TotalAV imposed the highest overhead with 31.39\% increased boot time, 17.44\% higher RAM usage, and 50.05\% slower application launches. Surprisingly, Fort Firewall actually improved boot time by 14.62\% and application launch by 18.05\%, suggesting it offers optimization benefits over Windows' built-in firewall. Network performance degraded between 8.80--20.02\% across all IDS configurations. Our results indicate that while IDS software provides essential security, careful consideration of performance trade-offs is necessary for resource-constrained environments.
 
 \keywords{Intrusion Detection System \and Antivirus \and Firewall \and Performance Benchmarking \and Windows 11}
 \end{abstract}
@@ -100,7 +100,7 @@ This study quantifies the computational overhead of intrusion detection systems 
 \section{Introduction}
 \label{sec:introduction}
 
-Modern computing environments require Intrusion Detection Systems (IDS) including antivirus and firewalls for cybersecurity protection. However, these solutions consume computational resources, creating performance trade-offs that impact user experience. This study quantifies the performance overhead of TotalAV antivirus and Fort Firewall on Windows 11, providing empirical data for informed deployment decisions.
+Modern computing environments rely heavily on Intrusion Detection Systems (IDS) like antivirus and firewalls for cybersecurity protection. However, these solutions inevitably consume computational resources, creating performance trade-offs that can significantly impact user experience. This study quantifies the performance overhead of TotalAV antivirus and Fort Firewall on Windows 11, providing empirical data to help inform deployment decisions.
 
 \subsection{Research Questions}
 
@@ -113,7 +113,7 @@ Modern computing environments require Intrusion Detection Systems (IDS) includin
 
 \subsection{Contribution}
 
-This research provides empirically-derived performance metrics for contemporary IDS solutions on Windows 11 using standardized testing methodologies consistent with industry practices established by Tom's Hardware~\cite{tomshardware-methodology,tomshardware-testing-guide} and AnandTech~\cite{anandtech-benchmarks,anandtech-statistical-methods}. These methodologies emphasize controlled test environments, multiple iteration testing for statistical validity (minimum 3-5 runs), outlier detection using established statistical methods, and comparative analysis against baseline configurations. Unlike vendor-provided benchmarks, this independent evaluation enables data-driven decision-making for security policy development and capacity planning.
+This research provides empirically-derived performance metrics for contemporary IDS solutions on Windows 11, following standardized testing methodologies consistent with industry practices established by Tom's Hardware~\cite{tomshardware-methodology,tomshardware-testing-guide} and AnandTech~\cite{anandtech-benchmarks,anandtech-statistical-methods}. These methodologies emphasize controlled test environments, multiple iteration testing for statistical validity (minimum 3-5 runs), outlier detection using established statistical methods, and comparative analysis against baseline configurations. Unlike vendor-provided benchmarks that often showcase best-case scenarios, this independent evaluation enables data-driven decision-making for security policy development and capacity planning.
 
 \section{Related Work}
 \label{sec:related}
@@ -212,7 +212,7 @@ Both IDS & 90.29 & 15.35 & +24.09 \\
 \end{tabular}
 \end{table}
 
-\textbf{Key Findings:} TotalAV imposed 31.39\% boot penalty (72.76s $\rightarrow$ 95.60s). Fort Firewall paradoxically improved boot time by 14.62\% (62.12s), suggesting more efficient initialization than Windows Firewall services. Combined deployment showed 24.09\% overhead, less than TotalAV alone (non-additive effect).
+\textbf{Key Findings:} TotalAV imposed a 31.39\% boot penalty, increasing startup time from 72.76s to 95.60s. Interestingly, Fort Firewall actually improved boot time by 14.62\% (down to 62.12s), which suggests it initializes more efficiently than Windows' built-in Firewall services. When both were deployed together, we observed 24.09\% overhead—notably less than TotalAV alone, indicating a non-additive effect.
 
 \begin{figure}[htbp]
 \centering
@@ -242,7 +242,7 @@ Both IDS & 3203.13 & 140.61 & +20.35 (+542~MB) \\
 \end{tabular}
 \end{table}
 
-\textbf{Key Findings:} TotalAV consumed 464~MB additional RAM, typical for modern antivirus with in-memory threat databases. Fort Firewall added minimal 39~MB, demonstrating efficient implementation. Combined overhead (542~MB) approximates sum of components (464 + 39 = 503~MB), indicating independent memory footprints (\Cref{fig:ram_usage}).
+\textbf{Key Findings:} TotalAV consumed an additional 464~MB of RAM, which is typical for modern antivirus software that maintains threat databases in memory. Fort Firewall added only 39~MB, demonstrating efficient implementation. The combined overhead (542~MB) roughly approximates the sum of both components (464 + 39 = 503~MB), which indicates that the two systems maintain independent memory footprints (\Cref{fig:ram_usage}).
 
 \begin{figure}[htbp]
 \centering
@@ -297,7 +297,7 @@ Both IDS & 18.98 & 4.70 & +31.21 \\
 \end{tabular}
 \end{table}
 
-\textbf{Key Findings:} TotalAV imposed severe 50.05\% penalty (14.46s $\rightarrow$ 21.70s), indicating aggressive real-time executable scanning. Fort Firewall improved performance by 18.05\% (11.85s), consistent with boot time improvements. Combined deployment showed 31.21\% overhead, significantly less than TotalAV alone.
+\textbf{Key Findings:} TotalAV imposed a severe 50.05\% penalty, increasing launch time from 14.46s to 21.70s. This indicates aggressive real-time executable scanning. In contrast, Fort Firewall actually improved performance by 18.05\% (down to 11.85s), consistent with the boot time improvements we observed. The combined deployment showed 31.21\% overhead—significantly less than TotalAV operating alone.
 
 \begin{figure}[htbp]
 \centering
@@ -398,17 +398,17 @@ FTP Speed & -10.83 & -17.41 & -20.02 \\
 
 \subsection{TotalAV Performance Impact}
 
-TotalAV demonstrated significant overhead across nearly all metrics, with most severe impact on \textit{application launch} (+50.05\%). Doubling of launch time reflects aggressive real-time executable scanning, prioritizing security over responsiveness. The 23-second \textit{boot delay} (72.76s $\rightarrow$ 95.60s) reflects antivirus service initialization and signature database loading. \textit{SMB transfer} degradation (-19.26\%) stems from real-time on-access scanning creating I/O bottlenecks. The 464~MB \textit{RAM overhead} (+17.44\%) is consistent with modern antivirus architectures maintaining resident threat databases and machine learning models.
+TotalAV demonstrated significant overhead across nearly all metrics, with the most severe impact on \textit{application launch} (+50.05\%). The doubling of launch time reflects the aggressive real-time executable scanning that prioritizes security over responsiveness. The 23-second \textit{boot delay} (from 72.76s to 95.60s) results from antivirus service initialization and signature database loading. \textit{SMB transfer} degradation (-19.26\%) stems from real-time on-access scanning that creates I/O bottlenecks. The 464~MB \textit{RAM overhead} (+17.44\%) is consistent with modern antivirus architectures that maintain resident threat databases and machine learning models.
 
 \subsection{Fort Firewall Characteristics}
 
-Fort Firewall exhibited unexpectedly positive performance in several metrics. The 10-second faster \textit{boot} and 2.6-second \textit{app launch} reduction may result from efficient application whitelisting or reduced protocol stack overhead compared to Windows Firewall. \textit{SMB throughput increase} (+7.14\%) indicates more efficient packet processing through optimized buffering. However, Fort Firewall imposed highest \textit{FTP penalty} (-17.41\%), suggesting deep packet inspection overhead for external traffic differs significantly from local LAN.
+Fort Firewall exhibited unexpectedly positive performance across several metrics. The 10-second faster \textit{boot} and 2.6-second \textit{app launch} reduction likely result from efficient application whitelisting or reduced protocol stack overhead compared to Windows Firewall. The \textit{SMB throughput increase} (+7.14\%) indicates more efficient packet processing through optimized buffering. However, Fort Firewall imposed the highest \textit{FTP penalty} (-17.41\%), which suggests that deep packet inspection overhead for external traffic differs significantly from local LAN behavior.
 
 \subsection{Combined Deployment Interactions}
 
-\textbf{Subadditive Effects:} Boot time (24.09\% vs.\ expected 16.77\%) and app launch (31.21\% vs.\ expected 32.00\%) showed less overhead than sum of individual components, suggesting shared Windows security APIs reducing redundant system calls or Fort Firewall whitelisting TotalAV processes.
+\textbf{Subadditive Effects:} Boot time (24.09\% vs.\ expected 16.77\%) and app launch (31.21\% vs.\ expected 32.00\%) showed less overhead than the sum of individual components would suggest, which indicates shared Windows security APIs that reduce redundant system calls or Fort Firewall whitelisting TotalAV processes.
 
-\textbf{Additive Effects:} RAM usage (20.35\% vs.\ expected 18.92\%) and FTP performance (-20.02\% vs.\ -28.24\%) remained largely independent.
+\textbf{Additive Effects:} RAM usage (20.35\% vs.\ expected 18.92\%) and FTP performance (-20.02\% vs.\ -28.24\%) remained largely independent, operating without significant interaction.
 
 \subsection{Practical Recommendations}
 
