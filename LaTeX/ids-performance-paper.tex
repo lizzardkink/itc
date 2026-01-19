@@ -169,17 +169,27 @@ Q_1 &= \text{25th percentile}, \quad Q_3 = \text{75th percentile} \\
 \text{Upper bound} &= Q_3 + 1.5 \times \text{IQR}
 \end{align*}
 
-\textbf{Statistics Calculated:} Mean ($\mu$), Median, Standard Deviation ($\sigma$), Coefficient of Variation (CV = $\sigma/\mu \times 100\%$), Range [Min, Max].
+\textbf{Statistics Calculated:} For each performance metric, we report the following statistics in result tables:
 
-\textbf{Overhead Calculation:}
+\begin{itemize}
+\item \textbf{Mean ($\mu$)}: Arithmetic average of cleaned dataset, representing the primary measurement result.
+\item \textbf{Median}: 50th percentile value, providing a robust central tendency measure less sensitive to outliers.
+\item \textbf{Standard Deviation ($\sigma$)}: Measure of data dispersion indicating measurement variability. Lower values indicate more consistent measurements.
+\item \textbf{Coefficient of Variation (CV)}: Normalized variability measure calculated as CV = $\sigma/\mu \times 100\%$. This dimensionless metric allows comparison of variability across metrics with different units. Values below 20\% indicate good measurement consistency~\cite{box2005}.
+\item \textbf{Range}: [Minimum, Maximum] values after outlier removal, showing the span of observed measurements.
+\end{itemize}
+
+\textbf{Overhead Calculation:} Performance overhead for each IDS configuration was computed as:
 \begin{equation}
 \text{Overhead (\%)} = \frac{\mu_{\text{IDS}} - \mu_{\text{baseline}}}{\mu_{\text{baseline}}} \times 100\%
 \end{equation}
 
-Positive values indicate degradation; negative values indicate improvement.
+Positive overhead values indicate performance degradation (increased time or reduced throughput), while negative values indicate performance improvement relative to baseline.
 
 \section{Results}
 \label{sec:results}
+
+All result tables present five key metrics for each configuration: \textit{Mean} (average value across iterations), \textit{Std Dev} (standard deviation showing measurement variability), \textit{CV} (coefficient of variation as normalized variability percentage), and \textit{Overhead} (percentage change relative to baseline, where positive values indicate degradation and negative values indicate improvement). Lower CV values (<20\%) indicate more consistent measurements.
 
 \subsection{Boot Time Performance}
 
