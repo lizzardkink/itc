@@ -12,8 +12,8 @@
 ## Test Environment Configuration
 
 **Selected Products**:
-- **Antivirus**: Symantec
-- **Firewall**: OPNsense
+- **Antivirus**: TotalAV (6.5.219)
+- **Firewall**: Fort Firewall (3.19.9)
 
 **Hardware/VM Setup**:
 - **Platform**: VirtualBox
@@ -100,9 +100,9 @@ As a researcher, I need to establish and measure 4 distinct system configuration
 **Acceptance Scenarios**:
 
 1. **Given** a clean Windows 11 VM, **When** I create the baseline snapshot with no IDS, **Then** no antivirus or firewall software is running
-2. **Given** the baseline snapshot, **When** I install only Symantec antivirus, **Then** a new snapshot "AV-only" is created with AV confirmed active
-3. **Given** the baseline snapshot, **When** I install only OPNsense firewall, **Then** a new snapshot "Firewall-only" is created with firewall confirmed active
-4. **Given** the baseline snapshot, **When** I install both Symantec and OPNsense, **Then** a new snapshot "AV+Firewall" is created with both confirmed active
+2. **Given** the baseline snapshot, **When** I install only TotalAV antivirus, **Then** a new snapshot "AV-only" is created with AV confirmed active
+3. **Given** the baseline snapshot, **When** I install only Fort Firewall, **Then** a new snapshot "Firewall-only" is created with firewall confirmed active
+4. **Given** the baseline snapshot, **When** I install both TotalAV and Fort Firewall, **Then** a new snapshot "AV+Firewall" is created with both confirmed active
 5. **Given** all 4 snapshots exist, **When** I restore each snapshot, **Then** the system boots successfully with the correct IDS configuration
 
 ---
@@ -315,9 +315,9 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 
 - **FR-009**: System MUST use VirtualBox VM named "Win11" for all testing
 - **FR-010**: System MUST maintain clean baseline snapshot with Windows 11 updated and no antivirus or firewall software installed
-- **FR-011**: System MUST create four distinct snapshots: (1) Baseline-NoIDS, (2) Symantec-Only, (3) OPNsense-Only, (4) Symantec-OPNsense-Both
-- **FR-012**: System MUST verify that selected antivirus (Symantec) is properly installed and active in AV-only and AV+Firewall snapshots
-- **FR-013**: System MUST verify that selected firewall (OPNsense) is properly installed and active in Firewall-only and AV+Firewall snapshots
+- **FR-011**: System MUST create four distinct snapshots: (1) Baseline-NoIDS, (2) TotalAV-Only, (3) FortFirewall-Only, (4) TotalAV-FortFirewall-Both
+- **FR-012**: System MUST verify that selected antivirus (TotalAV 6.5.219) is properly installed and active in AV-only and AV+Firewall snapshots
+- **FR-013**: System MUST verify that selected firewall (Fort Firewall 3.19.9) is properly installed and active in Firewall-only and AV+Firewall snapshots
 - **FR-014**: System MUST document exact VM specifications (RAM, CPU cores, disk size) from VirtualBox configuration for methodology section
 - **FR-015**: System MUST be able to restore snapshots reliably for repeatable testing across all measurements
 - **FR-016**: System MUST configure VirtualBox shared folder between host computer and Win11 VM for automatic data collection
@@ -436,7 +436,7 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 #### Project Completion
 
 - **SC-037**: All deliverables (PDF + LaTeX sources) are ready for submission before deadline (23 Jan 2026, 21:00)
-- **SC-038**: Selected antivirus (Symantec) and firewall (OPNsense) products are documented in project submission
+- **SC-038**: Selected antivirus (TotalAV 6.5.219) and firewall (Fort Firewall 3.19.9) products are documented in project submission
 - **SC-039**: Project meets all academic requirements for maximum grade eligibility (including bonus points from criterion f - application launch testing)
 
 ## Product Selection & Technical Constraints
@@ -447,7 +447,7 @@ Students must select ONE antivirus from the list below on a first-come, first-se
 
 1. Ad-Aware, 2. AegisLab, 3. AhnLab-V3, 4. AntiVir, 5. Antiy-AVL, 6. Avast, 7. AVG, 8. Baidu-International, 9. BitDefender, 10. ByteHero, 11. CAT-QuickHeal, 12. ClamAV, 13. CMC, 14. Commtouch, 15. Comodo, 16. DrWeb, 17. Emsisoft, 18. eScan, 19. ESET-NOD32, 20. F-Prot, 21. F-Secure, 22. Fortinet, 23. GData, 24. Ikarus, 25. Jiangmin, 26. K7AntiVirus, 27. K7GW, 28. Kaspersky, 29. Kingsoft, 30. Malwarebytes, 31. McAfee, 32. McAfee-GW-Edition, 33. Microsoft, 34. NANO-Antivirus, 35. Norman, 36. nProtect, 37. Panda, 38. Qihoo-360, 39. Rising, 40. Sophos, 41. SUPERAntiSpyware, 42. Symantec, 43. Tencent, 44. TheHacker, 45. TotalDefense, 46. TrendMicro, 47. TrendMicro-HouseCall, 48. VBA32, 49. VIPRE, 50. ViRobot, 51. Yandex, 52. Zillya
 
-**Selected Antivirus**: Symantec
+**Selected Antivirus**: TotalAV (6.5.219)
 
 ### Available Firewall Products (Select One)
 
@@ -455,7 +455,7 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 
 1. SolarWinds Network Firewall Security Management, 2. System Mechanic Ultimate Defense, 3. Norton, 4. LifeLock, 5. ZoneAlarm, 6. Comodo Firewall, 7. TinyWall, 8. Netdefender, 9. Glasswire, 10. PeerBlock, 11. AVS Firewall, 12. OpenDNS Home, 13. Privatefirewall, 14. Avast Endpoint Firewall, 15. Mcafee Firewall, 16. Azure Firewall, 17. Evorim, 18. Untangle, 19. eScan Advanced Firewall, 20. Sophos XG Firewall, 21. Outpost Firewall, 22. R-Firewall, 23. Ashampoo FireWall, 24. pfSense, 25. Little Snitch, 26. OPNsense
 
-**Selected Firewall**: OPNsense
+**Selected Firewall**: Fort Firewall (3.19.9)
 
 ### Technical Constraints
 
@@ -476,8 +476,8 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 
 ### Open Questions Requiring Clarification
 
-1. ~~Which antivirus product will be selected?~~ **RESOLVED: Symantec**
-2. ~~Which firewall product will be selected?~~ **RESOLVED: OPNsense**
+1. ~~Which antivirus product will be selected?~~ **RESOLVED: TotalAV (6.5.219)**
+2. ~~Which firewall product will be selected?~~ **RESOLVED: Fort Firewall (3.19.9)**
 3. ~~Which network protocol for folder copying?~~ **RESOLVED: SMB protocol on 1Gbit LAN to 192.168.50.99:/Public/Test**
 4. ~~What will be the additional criterion (f)?~~ **RESOLVED: Application launch performance using AV-Bench/script.ps1 (30 instances per iteration, 150 total across 5 iterations)**
 5. ~~What are the exact VM specifications?~~ **RESOLVED: VirtualBox VM named "Win11" with clean snapshot (OS updated, no AV/firewall), BootRacer pre-installed**

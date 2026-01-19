@@ -14,8 +14,8 @@
 - **Criterion F**: Remote FTP download (100MB from DIGI Storage)
 
 **Configuration**:
-- Antivirus: TotalAV (version 6.5.219)
-- Firewall: Fort Firewall (version 3.19.9)
+- Antivirus: TotalAV (6.5.219)
+- Firewall: Fort Firewall (3.19.9)
 - VM: Win11 (VirtualBox), BootRacer installed
 - Network: SMB to QNAP 192.168.50.99/Public/Test, FTP to DIGI Storage (FileZilla)
 - Shared folder: Host C:\VMShare → Guest Z:
@@ -50,7 +50,7 @@ This project analyzes the performance impact of intrusion detection systems (ant
 - ✅ **Systematic Methodology**: Identical procedures across all 4 configurations with 5 iterations each
 - ✅ **Data-Driven**: CSV storage for all measurements, comparative graphs required
 - ✅ **Requirements Compliance**: All mandatory criteria (a-e) + bonus criterion (f) specified
-- ✅ **Product Selection**: Symantec (AV) + OPNsense (firewall) confirmed
+- ✅ **Product Selection**: TotalAV 6.5.219 (AV) + Fort Firewall 3.19.9 (firewall) confirmed
 - ✅ **Statistical Validity**: 5 iterations per test, variance target <10%
 - ✅ **LaTeX Standards**: LNCS template, 7+ pages, ≤7% plagiarism
 - ✅ **Timeline**: 7-day deadline with structured testing phases
@@ -165,34 +165,34 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 - 6 CSV files with baseline measurements (all criteria A-F)
 - Variance verification (<10% required)
 
-### Phase 2: Symantec Configuration (Days 3-4)
-**Goal**: Install Symantec and measure performance impact
+### Phase 2: TotalAV Configuration (Days 3-4)
+**Goal**: Install TotalAV and measure performance impact
 
 **Tasks**:
 1. Restore Baseline-NoIDS snapshot
-2. Install Symantec Endpoint Protection
+2. Install TotalAV (6.5.219)
 3. Update antivirus definitions
 4. Verify real-time protection is active
-5. Create 'Symantec-Only' snapshot
-6. Run all 6 criteria tests (5 iterations each) → save to Z:\data\symantec\
+5. Create 'TotalAV-Only' snapshot
+6. Run all 6 criteria tests (5 iterations each) → save to Z:\data\antivirus\
 
 **Deliverables**:
-- Symantec-Only snapshot
+- TotalAV-Only snapshot
 - 6 CSV files with AV measurements
 
-### Phase 3: OPNsense Configuration (Days 5-6)
-**Goal**: Install firewall and measure performance impact
+### Phase 3: Fort Firewall Configuration (Days 5-6)
+**Goal**: Install Fort Firewall and measure performance impact
 
 **Tasks**:
 1. Restore Baseline-NoIDS snapshot
-2. Install OPNsense or configure Windows Firewall
+2. Install Fort Firewall (3.19.9)
 3. Enable firewall rules and logging
 4. Verify firewall is active
-5. Create 'OPNsense-Only' snapshot
-6. Run all 6 criteria tests (5 iterations each) → save to Z:\data\opnsense\
+5. Create 'FortFirewall-Only' snapshot
+6. Run all 6 criteria tests (5 iterations each) → save to Z:\data\firewall\
 
 **Deliverables**:
-- OPNsense-Only snapshot
+- FortFirewall-Only snapshot
 - 6 CSV files with firewall measurements
 
 ### Phase 4: Combined Configuration (Day 7)
@@ -200,14 +200,14 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 
 **Tasks**:
 1. Restore Baseline-NoIDS snapshot
-2. Install Symantec Endpoint Protection
-3. Install OPNsense/firewall
+2. Install TotalAV (6.5.219)
+3. Install Fort Firewall (3.19.9)
 4. Verify both are active simultaneously
-5. Create 'Symantec-OPNsense-Both' snapshot
+5. Create 'TotalAV-FortFirewall-Both' snapshot
 6. Run all 6 criteria tests (5 iterations each) → save to Z:\data\both\
 
 **Deliverables**:
-- Symantec-OPNsense-Both snapshot
+- TotalAV-FortFirewall-Both snapshot
 - 6 CSV files with combined measurements
 
 ### Phase 5: Data Analysis (Days 8-9)
@@ -272,8 +272,8 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 |------|-------------|--------|------------|
 | VM snapshot corruption | Low | High | Regular backups, test restore before each use |
 | Network connectivity issues | Medium | Medium | Test connectivity before each session, document downtime |
-| Symantec installation fails | Medium | High | Have alternative AV ready, document actual product used |
-| OPNsense incompatibility | High | High | Use Windows Firewall as documented alternative |
+| TotalAV installation fails | Medium | High | Have alternative AV ready, document actual product used |
+| Fort Firewall incompatibility | Low | High | Use Windows Firewall as documented alternative |
 | Inconsistent measurements (>10% variance) | Medium | Medium | Increase iterations to 7-10 if needed |
 | LaTeX compilation errors | Low | Medium | Test compile early, LNCS template already verified |
 | Plagiarism check fails | Low | Critical | Use own words, proper citations, check iteratively |
@@ -307,8 +307,8 @@ lncs-enhanced-main/          # LaTeX paper (exists)
 |------|-------|-------------|
 | 1 | Setup | Environment ready |
 | 1-2 | Baseline | Baseline data collected |
-| 3-4 | Symantec | AV data collected |
-| 5-6 | OPNsense | Firewall data collected |
+| 3-4 | TotalAV | AV data collected |
+| 5-6 | Fort Firewall | Firewall data collected |
 | 7 | Combined | Both IDS data collected |
 | 8-9 | Analysis | Graphs and calculations |
 | 10-13 | Writing | LaTeX paper complete |
