@@ -9,28 +9,28 @@
 - **Criterion A**: OS boot time (BootRacer)
 - **Criterion B**: RAM at startup
 - **Criterion C**: Process count at startup
-- **Criterion D**: Application launch performance (AV-Bench/script.ps1)
+- **Criterion D**: Application launch performance (AV-Bench/script.ps1 - 30 apps per iteration)
 - **Criterion E**: Local network SMB copy (1GB to 192.168.50.99/Public/Test)
 - **Criterion F**: Remote FTP download (100MB from DIGI Storage)
 
 **Configuration**:
-- Antivirus: Symantec
-- Firewall: OPNsense  
+- Antivirus: TotalAV (version 6.5.219)
+- Firewall: Fort Firewall (version 3.19.9)
 - VM: Win11 (VirtualBox), BootRacer installed
 - Network: SMB to QNAP 192.168.50.99/Public/Test, FTP to DIGI Storage (FileZilla)
 - Shared folder: Host C:\VMShare → Guest Z:
-- Iterations: 5 per test (375 total app launches for Criterion D)
+- Iterations: 5 per test (150 total app launches for Criterion D)
 
 ## Summary
 
-This project analyzes the performance impact of intrusion detection systems (antivirus and firewall) on Windows 11 computational resources through systematic benchmarking. Four configurations (No IDS, Symantec-only, OPNsense-only, Both) will be measured across six performance criteria (boot time, RAM usage, process count, application launch performance, local network transfer speed, and remote download speed) with results documented in a 7+ page LNCS-formatted LaTeX paper including 3 testing methodology references from Tom's Hardware/AnandTech. The research compares baseline performance against IDS-enabled configurations to quantify overhead percentages, with findings submitted by January 23, 2026.
+This project analyzes the performance impact of intrusion detection systems (antivirus and firewall) on Windows 11 computational resources through systematic benchmarking. Four configurations (No IDS, TotalAV-only, Fort Firewall-only, Both) will be measured across six performance criteria (boot time, RAM usage, process count, application launch performance, local network transfer speed, and remote download speed) with results documented in a 7+ page LNCS-formatted LaTeX paper including 3 testing methodology references from Tom's Hardware/AnandTech. The research compares baseline performance against IDS-enabled configurations to quantify overhead percentages, with findings submitted by January 23, 2026.
 
 ## Technical Context
 
 **Platform**: Windows 11 (64-bit) in VirtualBox VM  
 **VM Configuration**: WIN11 VM with 4 CPU cores, 8 GB RAM, SATA storage  
 **Virtualization**: Oracle VirtualBox with snapshot-based testing  
-**IDS Software**: Symantec Endpoint Protection + OPNsense (or Windows Firewall)  
+**IDS Software**: TotalAV (6.5.219) + Fort Firewall (3.19.9)  
 **Testing Tools**: BootRacer, PowerShell scripts, Windows Performance Monitor, AV-Bench/script.ps1 
 **Network Infrastructure**: 1 Gigabit LAN to QNAP NAS (192.168.50.99), FTP to DIGI Storage  
 **Shared Folder**: C:\VMShare on host mapped to Z: drive in guest for automated data collection  

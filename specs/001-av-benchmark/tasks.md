@@ -7,17 +7,17 @@
 - **Criterion A**: OS boot time (BootRacer)
 - **Criterion B**: RAM at startup
 - **Criterion C**: Process count at startup
-- **Criterion D**: Application launch performance (AV-Bench/script.ps1, 75 apps × 5 iterations = 375 total)
+- **Criterion D**: Application launch performance (AV-Bench/script.ps1, 30 apps × 5 iterations = 150 total)
 - **Criterion E**: Local network SMB copy (1GB to 192.168.50.99/Public/Test)
 - **Criterion F**: Remote FTP download (100MB from DIGI Storage)
 
 **Configuration**:
-- Antivirus: Symantec
-- Firewall: OPNsense (or Windows Firewall as alternative)
+- Antivirus: TotalAV (version 6.5.219)
+- Firewall: Fort Firewall (version 3.19.9)
 - VM: Win11 (VirtualBox), BootRacer pre-installed
 - Network: SMB to QNAP 192.168.50.99/Public/Test, FTP to DIGI Storage (configured via FileZilla)
 - Shared folder: Host C:\VMShare → Guest Z: (all data in C:\VMShare for host/guest access)
-- Iterations: 5 per test (total 375 app launches for Criterion D across 5 iterations)
+- Iterations: 5 per test (total 150 app launches for Criterion D across 5 iterations)
 
 **Current Status**: ✅ Environment configured | ✅ Test scripts created | ✅ Remote GUI control implemented | 🚀 **NEXT: Begin baseline measurements**
 
@@ -507,23 +507,23 @@ mkdir C:\VMShare\data\baseline, C:\VMShare\data\symantec, C:\VMShare\data\opnsen
 2. Start VM
 3. Ensure GUI-App-Launcher-Helper.ps1 is running on VM desktop
 4. Run from host: `.\scripts\Test-AppLaunch-Remote.ps1 -ConfigName baseline -Iterations 5`
-5. Wait for 5 iterations to complete (~10-15 minutes)
+5. Wait for 5 iterations to complete (~5-10 minutes)
 6. Verify results saved to `C:\VMShare\data\baseline\app-launch-baseline.csv`
 
 **Technical Details**:
 - Uses Invoke-RemoteGUIApp.ps1 for remote GUI control
-- Launches 75 apps per iteration (25 each: Calc, Notepad, Paint)
+- Launches 30 apps per iteration (10 each: Calc, Notepad, Paint)
 - File-based signaling between Session 0 (remoting) and Session 1 (desktop)
 - Apps launch with visible windows in correct session
 - Automatic cleanup after each iteration
 
 **Acceptance Criteria**:
 - [ ] Helper script running on VM desktop
-- [ ] 5 iterations completed (75 apps × 5 = 375 total launches)
+- [ ] 5 iterations completed (30 apps × 5 = 150 total launches)
 - [ ] Apps launch with visible windows (verified manually)
 - [ ] CSV file generated at correct location
 - [ ] Variance <10%
-- [ ] Average time documented (expected: 8-20 seconds for 75 apps depending on launch method overhead)
+- [ ] Average time documented (expected: 3-8 seconds for 30 apps depending on launch method overhead)
 
 **Note**: Remote GUI control adds small overhead (~200ms per app) due to file-based signaling, but ensures apps launch correctly in visible session.
 
@@ -802,7 +802,7 @@ mkdir C:\VMShare\data\baseline, C:\VMShare\data\symantec, C:\VMShare\data\opnsen
 1. Criterion A: Boot time comparison (seconds)
 2. Criterion B: RAM usage comparison (MB)
 3. Criterion C: Process count comparison
-4. Criterion D: Application launch time comparison (seconds for 75 apps)
+4. Criterion D: Application launch time comparison (seconds for 30 apps)
 5. Criterion E: SMB copy speed comparison (MB/s)
 6. Criterion F: FTP download speed comparison (Mbps)
 
@@ -936,7 +936,7 @@ mkdir C:\VMShare\data\baseline, C:\VMShare\data\symantec, C:\VMShare\data\opnsen
   * Criterion A: Boot time (BootRacer)
   * Criterion B: RAM at startup
   * Criterion C: Process count
-  * Criterion D: App launch (75 apps × 5 iterations = 375 total launches)
+  * Criterion D: App launch (30 apps × 5 iterations = 150 total launches)
   * Criterion E: SMB transfer (1GB to 192.168.50.99/Public/Test)
   * Criterion F: FTP download (100MB from DIGI Storage)
 - Tools used (BootRacer, Task Manager/Perfmon, AV-Bench/script.ps1, PowerShell scripts)
@@ -1244,7 +1244,7 @@ mkdir C:\VMShare\data\baseline, C:\VMShare\data\symantec, C:\VMShare\data\opnsen
 
 **Deadline**: 23 Jan 2026, 21:00 (7 days from spec complete)
 
-**Test Matrix**: 4 configurations × 6 criteria × 5 iterations = **120 test runs** (including 375 total app launches for Criterion D)
+**Test Matrix**: 4 configurations × 6 criteria × 5 iterations = **120 test runs** (including 150 total app launches for Criterion D)
 
 ---
 

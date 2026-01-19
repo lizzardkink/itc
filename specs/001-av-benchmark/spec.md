@@ -83,7 +83,7 @@ ItC/
 **Criterion A**: OS boot time measurement (using BootRacer)  
 **Criterion B**: RAM consumption at startup  
 **Criterion C**: Process count at startup  
-**Criterion D**: Application launch performance (AV-Bench/script.ps1 - 75 apps × 5 iterations = 375 total launches)  
+**Criterion D**: Application launch performance (AV-Bench/script.ps1 - 30 apps × 5 iterations = 150 total launches)  
 **Criterion E**: Local network file transfer speed via SMB (1GB folder copy)  
 **Criterion F**: Remote file download speed via FTP (100MB file from DIGI Storage)
 
@@ -174,12 +174,12 @@ As a researcher, I need to measure real-world application launch performance usi
 
 **Why this priority**: Provides additional bonus points and real-world performance data more meaningful than static measurements. Uses actual Windows applications to test IDS overhead on process creation.
 
-**Independent Test**: Can be fully tested by running AV-Bench/script.ps1 which launches 75 application instances (25 Calculator, 25 Paint, 25 Notepad) in randomized order per iteration, runs 5 iterations, and measures total time with automated cleanup.
+**Independent Test**: Can be fully tested by running AV-Bench/script.ps1 which launches 30 application instances (10 Calculator, 10 Paint, 10 Notepad) in randomized order per iteration, runs 5 iterations, and measures total time with automated cleanup.
 
 **Acceptance Scenarios**:
 
 1. **Given** the application launch script exists (AV-Bench/script.ps1), **When** it runs 5 iterations, **Then** it matches the consistency standard of other tests
-2. **Given** the script runs on baseline configuration, **When** 75 application instances launch per iteration (5 iterations × 75 = 375 total), **Then** total time is recorded in measurements.csv with <10% variance
+2. **Given** the script runs on baseline configuration, **When** 30 application instances launch per iteration (5 iterations × 30 = 150 total), **Then** total time is recorded in measurements.csv with <10% variance
 3. **Given** baseline measurements are complete, **When** I run the same test on all 4 configurations, **Then** I can calculate percentage overhead for process creation
 4. **Given** all configuration data is collected, **When** I analyze results, **Then** I can identify which IDS component has greatest impact on application startup and system responsiveness
 5. **Given** measurements are collected, **When** saved to Z:\data\app-launch\, **Then** CSV files contain config name, iteration, and timing data
@@ -300,8 +300,8 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 - **FR-002**: System MUST measure RAM memory consumption at system startup for each configuration [CRITERION B - RAM Usage]
 - **FR-003**: System MUST count the number of running processes in Windows for each configuration using Task Manager or equivalent tool [CRITERION C - Process Count]
 - **FR-004**: System MUST measure application launch performance using AV-Bench/script.ps1 across all 4 configurations [CRITERION D - App Launch]
-  - **FR-004a**: Application launch test MUST launch 75 application instances per iteration (25 Calculator, 25 Paint, 25 Notepad)
-  - **FR-004b**: Application launch test MUST run 5 iterations per configuration (total: 5 iterations × 75 apps = 375 total application launches)
+  - **FR-004a**: Application launch test MUST launch 30 application instances per iteration (10 Calculator, 10 Paint, 10 Notepad)
+  - **FR-004b**: Application launch test MUST run 5 iterations per configuration (total: 5 iterations × 30 apps = 150 total application launches)
   - **FR-004c**: Application launch test MUST randomize launch order within each iteration
   - **FR-004d**: Application launch test MUST automatically clean up (close all launched apps) after each iteration
 - **FR-005**: System MUST measure recursive folder copy speed (≥1GB) via SMB protocol from QNAP NAS to VM Desktop\SMB folder across all 4 configurations [CRITERION E - Network Copy]
@@ -398,7 +398,7 @@ As a researcher, I need automated scripts to execute all benchmarks across all 4
 #### Additional Criterion (Bonus Points - Criterion f)
 
 - **SC-015**: Application launch script (AV-Bench/script.ps1) runs 5 iterations per configuration [CRITERION F - App Launch]
-- **SC-015a**: Script successfully launches 75 application instances per iteration (375 total across 5 iterations) and records timing data to CSV across all 4 configurations
+- **SC-015a**: Script successfully launches 30 application instances per iteration (150 total across 5 iterations) and records timing data to CSV across all 4 configurations
 - **SC-015b**: Application launch results show <10% variance within iterations demonstrating measurement consistency
 - **SC-015c**: Results reveal meaningful differences in process creation overhead between IDS configurations
 - **SC-015d**: Application launch performance data is properly documented in the case study with clear rationale for real-world relevance
@@ -467,7 +467,7 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 - **Network Protocol (Criterion b)**: FTP (File Transfer Protocol) for 100MB remote download test
 - **Test Data**: 1GB folder on QNAP NAS for local copy, 100MB file on DIGI Storage for remote download
 - **Technical Constraints**: Must document all tools used (BootRacer for boot times, Task Manager/perfmon for processes/RAM, AV-Bench/script.ps1 for app launch)
-- **Application Launch Tool (Criterion D)**: AV-Bench/script.ps1 for application launch performance testing (75 app instances per iteration: 5 iterations × 75 apps = 375 total launches)
+- **Application Launch Tool (Criterion D)**: AV-Bench/script.ps1 for application launch performance testing (30 app instances per iteration: 5 iterations × 30 apps = 150 total launches)
 - **Data Collection**: All measurement data stored in C:\VMShare on host (mapped to Z: on guest) for accessibility
 - **LaTeX Template**: LNCS template mandatory (https://github.com/latextemplates/LNCS/archive/main.zip)
 - **Plagiarism Limit**: Maximum 7% similarity on TurnItIn
@@ -479,10 +479,10 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 1. ~~Which antivirus product will be selected?~~ **RESOLVED: Symantec**
 2. ~~Which firewall product will be selected?~~ **RESOLVED: OPNsense**
 3. ~~Which network protocol for folder copying?~~ **RESOLVED: SMB protocol on 1Gbit LAN to 192.168.50.99:/Public/Test**
-4. ~~What will be the additional criterion (f)?~~ **RESOLVED: Application launch performance using AV-Bench/script.ps1 (75 instances per iteration, 375 total across 5 iterations)**
+4. ~~What will be the additional criterion (f)?~~ **RESOLVED: Application launch performance using AV-Bench/script.ps1 (30 instances per iteration, 150 total across 5 iterations)**
 5. ~~What are the exact VM specifications?~~ **RESOLVED: VirtualBox VM named "Win11" with clean snapshot (OS updated, no AV/firewall), BootRacer pre-installed**
 6. ~~What remote server will be used for download testing?~~ **RESOLVED: DIGI Storage server via FTP (configured via FileZilla)**
-7. ~~How many iterations per test?~~ **RESOLVED: 5 iterations per test for all measurements (375 total app launches for Criterion D)**
+7. ~~How many iterations per test?~~ **RESOLVED: 5 iterations per test for all measurements (150 total app launches for Criterion D)**
 8. ~~What is the optional bonus criterion (g)?~~ **RESOLVED: Removed - sysbench not supported on Windows, renounced completely**
 9. ~~How will we gather measurements from the VM?~~ **RESOLVED: C:\VMShare on host mapped to Z: drive in guest; all data in C:\VMShare for accessibility from both systems**
 10. ~~Can installations be done via CLI?~~ **RESOLVED: Yes, where possible using CLI commands (e.g., Windows Firewall via PowerShell)**
@@ -492,6 +492,6 @@ Students must select ONE firewall from the list below on a first-come, first-ser
 - **Testing Criteria Reference**: https://pastebin.com/fnxDqJ7V (illustrative purposes only)
 - **LNCS LaTeX Template**: https://github.com/latextemplates/LNCS/archive/main.zip (mandatory)
 - **Paper Structure Examples**: https://uvt-ro.academia.edu/CiprianPungila (follow same layout as scientific papers)
-- **Application Launch Script**: AV-Bench/script.ps1 (for bonus criterion f - real-world app performance)
+- **Application Launch Script**: AV-Bench/script.ps1 (for bonus criterion f - real-world app performance with 30 apps per iteration)
 - **Testing Methodology References**: Tom's Hardware and AnandTech benchmark methodologies (3 references required in bibliography for relevant testing methods)
 - **Project Tracking**: All project information maintained in speckit format (spec.md, plan.md, tasks.md, guest-setup.md)

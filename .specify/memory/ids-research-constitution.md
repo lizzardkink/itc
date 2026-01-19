@@ -51,6 +51,7 @@ All measurements must meet quality standards:
 - **Completeness**: All 4 configurations tested for every criterion
 - **Timestamps**: Every measurement logged with date/time
 - **Units**: All values recorded with appropriate units (seconds, MB, count, etc.)
+- **Time Precision**: All time measurements MUST be formatted to 2 decimal places (X.XX seconds)
 
 ### Network Testing Requirements
 
@@ -150,4 +151,4 @@ This constitution establishes non-negotiable standards for the research project.
 
 ---
 
-**Version**: 1.0.0 | **Ratified**: 2026-01-16 | **Last Amended**: 2026-01-16
+**Version**: 1.0.1 | **Ratified**: 2026-01-16 | **Last Amended**: 2026-01-17

@@ -1,0 +1,6 @@
+﻿Iteration,Timestamp,TimeToLogon,LogonTimeout,LogonToDesktop,TotalBootTime,Configuration
+1,2026-01-19T15:25:45,16.00,0.00,68.13,84.13,antivirus
+1,2026-01-19T15:39:40,16.00,0.00,110.41,126.41,antivirus
+1,2026-01-19T15:51:44,17.00,0.00,62.83,79.83,antivirus
+1,2026-01-19T16:03:11,17.00,1.00,89.47,106.47,antivirus
+1,2026-01-19T16:15:02,17.00,0.00,64.17,81.17,antivirus
