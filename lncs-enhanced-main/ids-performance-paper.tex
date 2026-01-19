@@ -113,14 +113,14 @@ Modern computing environments require Intrusion Detection Systems (IDS) includin
 
 \subsection{Contribution}
 
-This research provides empirically-derived performance metrics for contemporary IDS solutions on Windows 11 using standardized testing methodologies consistent with industry practices (Tom's Hardware~\cite{tomshardware-methodology}, AnandTech~\cite{anandtech-benchmarks}). Unlike vendor-provided benchmarks, this independent evaluation enables data-driven decision-making for security policy development and capacity planning.
+This research provides empirically-derived performance metrics for contemporary IDS solutions on Windows 11 using standardized testing methodologies consistent with industry practices established by Tom's Hardware~\cite{tomshardware-methodology} and AnandTech~\cite{anandtech-benchmarks}. These methodologies emphasize controlled test environments, multiple iteration testing for statistical validity, outlier detection using established statistical methods, and comparative analysis against baseline configurations. Unlike vendor-provided benchmarks, this independent evaluation enables data-driven decision-making for security policy development and capacity planning.
 
 \section{Related Work}
 \label{sec:related}
 
-Computer performance evaluation methodologies established by Tom's Hardware and AnandTech emphasize controlled environments, multiple iteration testing, outlier detection, and comparative analysis against baseline configurations. Our methodology aligns with these principles, employing five iterations per test and applying Interquartile Range (IQR) outlier detection~\cite{tukey1977}.
+Computer performance evaluation methodologies established by Tom's Hardware~\cite{tomshardware-methodology} and AnandTech~\cite{anandtech-benchmarks} emphasize controlled environments with consistent hardware configurations, multiple iteration testing to establish statistical validity, outlier detection and removal using established statistical methods (such as the IQR method we employ), and comparative analysis against baseline configurations. Our methodology aligns with these industry-standard practices, employing five iterations per test and applying Interquartile Range (IQR) outlier detection~\cite{tukey1977}.
 
-Previous antivirus performance studies reported overhead ranging from 10--40\% on boot times and 5--20\% on application performance. However, comprehensive comparative analysis of combined IDS deployments (antivirus + firewall) on Windows 11 virtualized environments remains limited. This study addresses that gap through controlled measurements across six distinct performance criteria.
+Previous antivirus performance studies~\cite{tomshardware-antivirus} reported overhead ranging from 10--40\% on boot times and 5--20\% on application performance. However, comprehensive comparative analysis of combined IDS deployments (antivirus + firewall) on Windows 11 virtualized environments remains limited. This study addresses that gap through controlled measurements across six distinct performance criteria, following established benchmarking methodologies.
 
 \section{Methodology}
 \label{sec:methodology}
