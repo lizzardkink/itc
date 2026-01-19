@@ -1,0 +1,2838 @@
+{
+  "both": {
+    "smb-copy": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T19:41:27",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "34.01",
+        "SpeedMBps": "30.54",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T19:42:08",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "32.92",
+        "SpeedMBps": "31.55",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T19:42:46",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "27.66",
+        "SpeedMBps": "37.55",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T19:43:18",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "37.58",
+        "SpeedMBps": "27.64",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T19:44:02",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "42.94",
+        "SpeedMBps": "24.19",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:00:50",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "25.33",
+        "SpeedMBps": "41.01",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:01:21",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "25.59",
+        "SpeedMBps": "40.59",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:01:51",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "28.37",
+        "SpeedMBps": "36.61",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:02:25",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "30.46",
+        "SpeedMBps": "34.10",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:03:01",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "25.67",
+        "SpeedMBps": "40.46",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:11:44",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "28.61",
+        "SpeedMBps": "36.30",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:12:19",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "39.16",
+        "SpeedMBps": "26.52",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:13:05",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "28.34",
+        "SpeedMBps": "36.65",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:13:38",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "21.03",
+        "SpeedMBps": "49.39",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:14:02",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "15.07",
+        "SpeedMBps": "68.92",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:23:45",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "24.95",
+        "SpeedMBps": "41.63",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:24:15",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "26.92",
+        "SpeedMBps": "38.58",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:24:48",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "26.45",
+        "SpeedMBps": "39.27",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:25:19",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "28.53",
+        "SpeedMBps": "36.41",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:25:53",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "26.30",
+        "SpeedMBps": "39.49",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:56:03",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.15",
+        "SpeedMBps": "44.87",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:56:32",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "35.16",
+        "SpeedMBps": "29.54",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:57:14",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "31.34",
+        "SpeedMBps": "33.14",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:57:50",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "44.38",
+        "SpeedMBps": "23.40",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:58:40",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "24.56",
+        "SpeedMBps": "42.29",
+        "Configuration": "both"
+      }
+    ],
+    "boot-time": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T19:38:49",
+        "TimeToLogon": "17.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "65.30",
+        "TotalBootTime": "82.30",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T19:58:23",
+        "TimeToLogon": "16.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "94.78",
+        "TotalBootTime": "110.78",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:09:06",
+        "TimeToLogon": "17.00",
+        "LogonTimeout": "1.00",
+        "LogonToDesktop": "85.02",
+        "TotalBootTime": "102.02",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:20:53",
+        "TimeToLogon": "16.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "58.42",
+        "TotalBootTime": "74.42",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:53:22",
+        "TimeToLogon": "17.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "64.94",
+        "TotalBootTime": "81.94",
+        "Configuration": "both"
+      }
+    ],
+    "ram-startup": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T19:38:49",
+        "UsedMemoryMB": "3074.47",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T19:58:23",
+        "UsedMemoryMB": "3314.16",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:09:06",
+        "UsedMemoryMB": "3391.59",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:20:53",
+        "UsedMemoryMB": "3110.96",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:53:22",
+        "UsedMemoryMB": "3124.46",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "both"
+      }
+    ],
+    "app-launch": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T19:38:51",
+        "TimeMs": "19206.9365",
+        "TimeSeconds": "19.21",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T19:39:22",
+        "TimeMs": "17385.6107",
+        "TimeSeconds": "17.39",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T19:39:54",
+        "TimeMs": "22878.4704",
+        "TimeSeconds": "22.88",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T19:40:33",
+        "TimeMs": "22115.1946",
+        "TimeSeconds": "22.12",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T19:41:07",
+        "TimeMs": "15237.8494",
+        "TimeSeconds": "15.24",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T19:58:24",
+        "TimeMs": "20330.1651",
+        "TimeSeconds": "20.33",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T19:58:59",
+        "TimeMs": "19421.764",
+        "TimeSeconds": "19.42",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T19:59:32",
+        "TimeMs": "14501.269",
+        "TimeSeconds": "14.50",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:00:01",
+        "TimeMs": "15554.2695",
+        "TimeSeconds": "15.55",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:00:30",
+        "TimeMs": "14977.3482",
+        "TimeSeconds": "14.98",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:09:07",
+        "TimeMs": "26883.4949",
+        "TimeSeconds": "26.88",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:09:56",
+        "TimeMs": "23465.2687",
+        "TimeSeconds": "23.47",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:10:36",
+        "TimeMs": "15766.3162",
+        "TimeSeconds": "15.77",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:11:02",
+        "TimeMs": "11223.0854",
+        "TimeSeconds": "11.22",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:11:24",
+        "TimeMs": "14857.6668",
+        "TimeSeconds": "14.86",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:20:55",
+        "TimeMs": "31240.9835",
+        "TimeSeconds": "31.24",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:21:44",
+        "TimeMs": "17157.9196",
+        "TimeSeconds": "17.16",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:22:15",
+        "TimeMs": "20401.583",
+        "TimeSeconds": "20.40",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:22:51",
+        "TimeMs": "16573.7118",
+        "TimeSeconds": "16.57",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:23:21",
+        "TimeMs": "18942.5476",
+        "TimeSeconds": "18.94",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:53:23",
+        "TimeMs": "21640.8245",
+        "TimeSeconds": "21.64",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:54:01",
+        "TimeMs": "20812.4221",
+        "TimeSeconds": "20.81",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:54:43",
+        "TimeMs": "25753.4897",
+        "TimeSeconds": "25.75",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:55:22",
+        "TimeMs": "15102.6482",
+        "TimeSeconds": "15.10",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:55:47",
+        "TimeMs": "13032.0611",
+        "TimeSeconds": "13.03",
+        "Configuration": "both"
+      }
+    ],
+    "ftp-download": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T19:44:46",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.07",
+        "SpeedMBps": "8.77",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T19:45:04",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.09",
+        "SpeedMBps": "9.48",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T19:45:20",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.21",
+        "SpeedMBps": "10.23",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T19:45:37",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.58",
+        "SpeedMBps": "8.44",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T19:45:57",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "20.26",
+        "SpeedMBps": "5.66",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:03:27",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.56",
+        "SpeedMBps": "9.13",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:03:46",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.23",
+        "SpeedMBps": "8.67",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:04:05",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "15.30",
+        "SpeedMBps": "7.49",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:04:26",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "14.44",
+        "SpeedMBps": "7.94",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:04:46",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "15.76",
+        "SpeedMBps": "7.28",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:14:18",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.80",
+        "SpeedMBps": "8.96",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:14:35",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.22",
+        "SpeedMBps": "9.38",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:14:53",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "15.08",
+        "SpeedMBps": "7.60",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:15:15",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "24.99",
+        "SpeedMBps": "4.59",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:15:48",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "22.22",
+        "SpeedMBps": "5.16",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:26:20",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.03",
+        "SpeedMBps": "10.40",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:26:37",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "16.75",
+        "SpeedMBps": "6.85",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:26:59",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.38",
+        "SpeedMBps": "10.08",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:27:16",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "16.24",
+        "SpeedMBps": "7.06",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T20:27:38",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "16.53",
+        "SpeedMBps": "6.94",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:59:05",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.47",
+        "SpeedMBps": "10.00",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T20:59:22",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.33",
+        "SpeedMBps": "9.30",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T20:59:40",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "10.72",
+        "SpeedMBps": "10.70",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T20:59:57",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.82",
+        "SpeedMBps": "8.30",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T21:00:16",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "15.48",
+        "SpeedMBps": "7.41",
+        "Configuration": "both"
+      }
+    ],
+    "process-count": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T19:38:49",
+        "ProcessCount": "151",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T19:58:23",
+        "ProcessCount": "151",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:09:06",
+        "ProcessCount": "155",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:20:53",
+        "ProcessCount": "150",
+        "Configuration": "both"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T20:53:22",
+        "ProcessCount": "151",
+        "Configuration": "both"
+      }
+    ]
+  },
+  "firewall": {
+    "smb-copy": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:44:08",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "32.72",
+        "SpeedMBps": "31.74",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T16:44:46",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "30.73",
+        "SpeedMBps": "33.8",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T16:45:22",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "34.61",
+        "SpeedMBps": "30.01",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T16:46:02",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "29.41",
+        "SpeedMBps": "35.32",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T16:46:36",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "46.67",
+        "SpeedMBps": "22.26",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:25:40",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.43",
+        "SpeedMBps": "44.33",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:26:10",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "21.84",
+        "SpeedMBps": "47.56",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:26:37",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.00",
+        "SpeedMBps": "47.21",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:27:04",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.02",
+        "SpeedMBps": "47.17",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:27:31",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.95",
+        "SpeedMBps": "45.26",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:34:36",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.95",
+        "SpeedMBps": "45.26",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:35:05",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "21.89",
+        "SpeedMBps": "47.45",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:35:32",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.51",
+        "SpeedMBps": "46.14",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:36:00",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.55",
+        "SpeedMBps": "46.06",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:36:27",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "25.49",
+        "SpeedMBps": "40.75",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:43:06",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.53",
+        "SpeedMBps": "44.14",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:43:36",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "27.25",
+        "SpeedMBps": "38.12",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:44:09",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "21.77",
+        "SpeedMBps": "47.71",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:44:35",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "16.31",
+        "SpeedMBps": "63.68",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:44:56",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.52",
+        "SpeedMBps": "44.16",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:52:07",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "14.61",
+        "SpeedMBps": "71.09",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:52:25",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "18.02",
+        "SpeedMBps": "57.64",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:52:48",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.13",
+        "SpeedMBps": "44.91",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:53:18",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "30.95",
+        "SpeedMBps": "33.56",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:53:57",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "36.96",
+        "SpeedMBps": "28.10",
+        "Configuration": "firewall"
+      }
+    ],
+    "boot-time": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:42:02",
+        "TimeToLogon": "16",
+        "LogonTimeout": "0",
+        "LogonToDesktop": "56.86",
+        "TotalBootTime": "72.86",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:23:43",
+        "TimeToLogon": "17.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "41.80",
+        "TotalBootTime": "58.80",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:32:42",
+        "TimeToLogon": "15.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "56.30",
+        "TotalBootTime": "71.30",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:41:01",
+        "TimeToLogon": "19.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "40.52",
+        "TotalBootTime": "59.52",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:49:58",
+        "TimeToLogon": "19.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "29.14",
+        "TotalBootTime": "48.14",
+        "Configuration": "firewall"
+      }
+    ],
+    "ram-startup": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:42:02",
+        "UsedMemoryMB": "2581.56",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:23:43",
+        "UsedMemoryMB": "2775.25",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:32:42",
+        "UsedMemoryMB": "2681.92",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:41:01",
+        "UsedMemoryMB": "2793.28",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:49:58",
+        "UsedMemoryMB": "2671.86",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "firewall"
+      }
+    ],
+    "app-launch": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:42:04",
+        "TimeMs": "15387.6232",
+        "TimeSeconds": "15.39",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T16:42:33",
+        "TimeMs": "12361.6562",
+        "TimeSeconds": "12.36",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T16:42:58",
+        "TimeMs": "13119.909",
+        "TimeSeconds": "13.12",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T16:43:25",
+        "TimeMs": "14525.7616",
+        "TimeSeconds": "14.53",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T16:43:52",
+        "TimeMs": "11893.5973",
+        "TimeSeconds": "11.89",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:23:45",
+        "TimeMs": "15682.0438",
+        "TimeSeconds": "15.68",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:24:13",
+        "TimeMs": "10711.3566",
+        "TimeSeconds": "10.71",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:24:37",
+        "TimeMs": "10752.6304",
+        "TimeSeconds": "10.75",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:25:01",
+        "TimeMs": "11690.0995",
+        "TimeSeconds": "11.69",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:25:26",
+        "TimeMs": "11267.3167",
+        "TimeSeconds": "11.27",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:32:43",
+        "TimeMs": "13704.342",
+        "TimeSeconds": "13.70",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:33:10",
+        "TimeMs": "10732.2207",
+        "TimeSeconds": "10.73",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:33:34",
+        "TimeMs": "11489.162",
+        "TimeSeconds": "11.49",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:33:58",
+        "TimeMs": "11464.5511",
+        "TimeSeconds": "11.46",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:34:23",
+        "TimeMs": "10438.8373",
+        "TimeSeconds": "10.44",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:41:02",
+        "TimeMs": "23454.9452",
+        "TimeSeconds": "23.45",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:41:40",
+        "TimeMs": "11811.9004",
+        "TimeSeconds": "11.81",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:42:07",
+        "TimeMs": "14676.9214",
+        "TimeSeconds": "14.68",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:42:34",
+        "TimeMs": "10167.8678",
+        "TimeSeconds": "10.17",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:42:55",
+        "TimeMs": "8813.1945",
+        "TimeSeconds": "8.81",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:50:03",
+        "TimeMs": "21236.6761",
+        "TimeSeconds": "21.24",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:50:45",
+        "TimeMs": "14320.1582",
+        "TimeSeconds": "14.32",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:51:15",
+        "TimeMs": "12477.591",
+        "TimeSeconds": "12.48",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:51:40",
+        "TimeMs": "8474.9774",
+        "TimeSeconds": "8.47",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:51:58",
+        "TimeMs": "6682.7235",
+        "TimeSeconds": "6.68",
+        "Configuration": "firewall"
+      }
+    ],
+    "ftp-download": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:53:52",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.21",
+        "SpeedMBps": "10.23",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T16:54:08",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.35",
+        "SpeedMBps": "8.59",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T16:54:27",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "16.23",
+        "SpeedMBps": "7.06",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T16:54:49",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "16.51",
+        "SpeedMBps": "6.94",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T16:55:13",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "14.64",
+        "SpeedMBps": "7.83",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:27:55",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "14.45",
+        "SpeedMBps": "7.93",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:28:17",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "14.16",
+        "SpeedMBps": "8.10",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:28:36",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "17.00",
+        "SpeedMBps": "6.74",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:28:59",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.38",
+        "SpeedMBps": "8.57",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:29:18",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.86",
+        "SpeedMBps": "8.27",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:36:53",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.36",
+        "SpeedMBps": "9.28",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:37:13",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "14.07",
+        "SpeedMBps": "8.15",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:37:32",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.25",
+        "SpeedMBps": "10.19",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:37:49",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "18.59",
+        "SpeedMBps": "6.17",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:38:13",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.98",
+        "SpeedMBps": "9.57",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:45:20",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "16.11",
+        "SpeedMBps": "7.12",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:45:44",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "27.61",
+        "SpeedMBps": "4.15",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:46:18",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "15.20",
+        "SpeedMBps": "7.54",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:46:39",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.03",
+        "SpeedMBps": "9.53",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:46:55",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "14.21",
+        "SpeedMBps": "8.07",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:54:36",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "17.36",
+        "SpeedMBps": "6.60",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T18:55:01",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "10.92",
+        "SpeedMBps": "10.50",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T18:55:16",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "9.24",
+        "SpeedMBps": "12.41",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T18:55:28",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "8.71",
+        "SpeedMBps": "13.16",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T18:55:41",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.63",
+        "SpeedMBps": "9.86",
+        "Configuration": "firewall"
+      }
+    ],
+    "process-count": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:42:02",
+        "ProcessCount": "149",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:23:43",
+        "ProcessCount": "152",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:32:42",
+        "ProcessCount": "152",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:41:01",
+        "ProcessCount": "153",
+        "Configuration": "firewall"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T18:49:58",
+        "ProcessCount": "152",
+        "Configuration": "firewall"
+      }
+    ]
+  },
+  "antivirus": {
+    "smb-copy": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:30:03",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "56.92",
+        "SpeedMBps": "18.25",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T15:31:07",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "33.73",
+        "SpeedMBps": "30.79",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T15:31:45",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "21.56",
+        "SpeedMBps": "48.18",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T15:32:11",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "31.42",
+        "SpeedMBps": "33.06",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T15:32:48",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "37.48",
+        "SpeedMBps": "27.71",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:42:31",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "37.46",
+        "SpeedMBps": "27.73",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T15:43:15",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "38.72",
+        "SpeedMBps": "26.82",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T15:43:59",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "28.60",
+        "SpeedMBps": "36.32",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T15:44:32",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "26.95",
+        "SpeedMBps": "38.54",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T15:45:05",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "35.17",
+        "SpeedMBps": "29.53",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:54:43",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.85",
+        "SpeedMBps": "45.46",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T15:55:11",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "33.11",
+        "SpeedMBps": "31.37",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T15:55:51",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "51.27",
+        "SpeedMBps": "20.26",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T15:56:50",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "36.42",
+        "SpeedMBps": "28.52",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T15:57:31",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.36",
+        "SpeedMBps": "46.45",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:06:10",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "44.40",
+        "SpeedMBps": "23.39",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T16:07:01",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "31.16",
+        "SpeedMBps": "33.33",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T16:07:36",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "26.60",
+        "SpeedMBps": "39.05",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T16:08:07",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "30.96",
+        "SpeedMBps": "33.55",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T16:08:44",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "38.29",
+        "SpeedMBps": "27.13",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:17:49",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "30.05",
+        "SpeedMBps": "34.56",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T16:18:25",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "31.39",
+        "SpeedMBps": "33.09",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T16:19:02",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "34.50",
+        "SpeedMBps": "30.11",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T16:19:42",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "32.13",
+        "SpeedMBps": "32.33",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T16:20:20",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "29.21",
+        "SpeedMBps": "35.56",
+        "Configuration": "antivirus"
+      }
+    ],
+    "boot-time": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:25:45",
+        "TimeToLogon": "16.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "68.13",
+        "TotalBootTime": "84.13",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:39:40",
+        "TimeToLogon": "16.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "110.41",
+        "TotalBootTime": "126.41",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:51:44",
+        "TimeToLogon": "17.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "62.83",
+        "TotalBootTime": "79.83",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:03:11",
+        "TimeToLogon": "17.00",
+        "LogonTimeout": "1.00",
+        "LogonToDesktop": "89.47",
+        "TotalBootTime": "106.47",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:15:02",
+        "TimeToLogon": "17.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "64.17",
+        "TotalBootTime": "81.17",
+        "Configuration": "antivirus"
+      }
+    ],
+    "ram-startup": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:25:45",
+        "UsedMemoryMB": "3121.85",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:39:40",
+        "UsedMemoryMB": "3417.85",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:51:44",
+        "UsedMemoryMB": "3076.51",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:03:11",
+        "UsedMemoryMB": "3215.22",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:15:02",
+        "UsedMemoryMB": "3088.92",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "antivirus"
+      }
+    ],
+    "app-launch": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:25:46",
+        "TimeMs": "25985.3628",
+        "TimeSeconds": "25.99",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T15:26:34",
+        "TimeMs": "55619.7634",
+        "TimeSeconds": "55.62",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T15:27:46",
+        "TimeMs": "15175.7617",
+        "TimeSeconds": "15.18",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T15:28:14",
+        "TimeMs": "30721.3578",
+        "TimeSeconds": "30.72",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T15:29:05",
+        "TimeMs": "48160.7518",
+        "TimeSeconds": "48.16",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:39:41",
+        "TimeMs": "18491.7007",
+        "TimeSeconds": "18.49",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T15:40:11",
+        "TimeMs": "20494.7158",
+        "TimeSeconds": "20.49",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T15:40:47",
+        "TimeMs": "23132.3754",
+        "TimeSeconds": "23.13",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T15:41:28",
+        "TimeMs": "23912.2552",
+        "TimeSeconds": "23.91",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T15:42:04",
+        "TimeMs": "21540.4641",
+        "TimeSeconds": "21.54",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:51:45",
+        "TimeMs": "23733.3301",
+        "TimeSeconds": "23.73",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T15:52:26",
+        "TimeMs": "29188.0161",
+        "TimeSeconds": "29.19",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T15:53:17",
+        "TimeMs": "25672.7688",
+        "TimeSeconds": "25.67",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T15:53:59",
+        "TimeMs": "16613.6204",
+        "TimeSeconds": "16.61",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T15:54:26",
+        "TimeMs": "13442.8341",
+        "TimeSeconds": "13.44",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:03:12",
+        "TimeMs": "23600.2259",
+        "TimeSeconds": "23.60",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T16:03:58",
+        "TimeMs": "26735.5128",
+        "TimeSeconds": "26.74",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T16:04:41",
+        "TimeMs": "19078.4892",
+        "TimeSeconds": "19.08",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T16:05:10",
+        "TimeMs": "16936.5944",
+        "TimeSeconds": "16.94",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T16:05:41",
+        "TimeMs": "22265.5032",
+        "TimeSeconds": "22.27",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:15:03",
+        "TimeMs": "21253.0883",
+        "TimeSeconds": "21.25",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T16:15:40",
+        "TimeMs": "21395.3105",
+        "TimeSeconds": "21.40",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T16:16:15",
+        "TimeMs": "20084.0648",
+        "TimeSeconds": "20.08",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T16:16:50",
+        "TimeMs": "18546.81",
+        "TimeSeconds": "18.55",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T16:17:22",
+        "TimeMs": "21179.6279",
+        "TimeSeconds": "21.18",
+        "Configuration": "antivirus"
+      }
+    ],
+    "ftp-download": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:33:26",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "9.96",
+        "SpeedMBps": "11.51",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T15:33:41",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "15.28",
+        "SpeedMBps": "7.50",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T15:34:02",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.87",
+        "SpeedMBps": "8.91",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T15:34:22",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "14.33",
+        "SpeedMBps": "8.00",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T15:34:43",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.81",
+        "SpeedMBps": "9.71",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:45:40",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.26",
+        "SpeedMBps": "10.18",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T15:45:57",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.32",
+        "SpeedMBps": "9.31",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T15:46:14",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.01",
+        "SpeedMBps": "9.55",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T15:46:31",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "16.31",
+        "SpeedMBps": "7.03",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T15:46:54",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.80",
+        "SpeedMBps": "8.31",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:57:53",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "10.40",
+        "SpeedMBps": "11.03",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T15:58:09",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.81",
+        "SpeedMBps": "9.71",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T15:58:27",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "15.47",
+        "SpeedMBps": "7.41",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T15:58:48",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.99",
+        "SpeedMBps": "8.83",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T15:59:07",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.68",
+        "SpeedMBps": "9.04",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:09:23",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "14.96",
+        "SpeedMBps": "7.66",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T16:09:45",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "15.33",
+        "SpeedMBps": "7.48",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T16:10:06",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "10.02",
+        "SpeedMBps": "11.44",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T16:10:21",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.40",
+        "SpeedMBps": "10.06",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T16:10:36",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "9.75",
+        "SpeedMBps": "11.76",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:20:49",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.81",
+        "SpeedMBps": "9.71",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T16:21:07",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.59",
+        "SpeedMBps": "9.11",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T16:21:25",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.18",
+        "SpeedMBps": "8.70",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T16:21:44",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.19",
+        "SpeedMBps": "8.69",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T16:22:03",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.99",
+        "SpeedMBps": "8.83",
+        "Configuration": "antivirus"
+      }
+    ],
+    "process-count": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:25:45",
+        "ProcessCount": "135",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:39:40",
+        "ProcessCount": "160",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T15:51:44",
+        "ProcessCount": "148",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:03:11",
+        "ProcessCount": "145",
+        "Configuration": "antivirus"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T16:15:02",
+        "ProcessCount": "149",
+        "Configuration": "antivirus"
+      }
+    ]
+  },
+  "baseline": {
+    "smb-copy": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:07:46",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "24.16",
+        "SpeedMBps": "42.99",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-17T16:08:16",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.48",
+        "SpeedMBps": "44.24",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-17T16:08:45",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.22",
+        "SpeedMBps": "44.73",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-17T16:09:13",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.41",
+        "SpeedMBps": "44.37",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-17T16:09:42",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "27.02",
+        "SpeedMBps": "38.44",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:16:18",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.98",
+        "SpeedMBps": "45.2",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-17T16:16:47",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "21.47",
+        "SpeedMBps": "48.38",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-17T16:17:14",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "24.45",
+        "SpeedMBps": "42.48",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-17T16:17:44",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.34",
+        "SpeedMBps": "46.49",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-17T16:18:11",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "27.72",
+        "SpeedMBps": "37.47",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:24:35",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.79",
+        "SpeedMBps": "43.66",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-17T16:25:04",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.33",
+        "SpeedMBps": "44.52",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-17T16:25:33",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "22.85",
+        "SpeedMBps": "45.46",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-17T16:26:01",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "23.13",
+        "SpeedMBps": "44.91",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-17T16:26:29",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "26.21",
+        "SpeedMBps": "39.63",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:12:12",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "31.1",
+        "SpeedMBps": "33.39",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T14:13:12",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "31.12",
+        "SpeedMBps": "33.38",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T14:13:48",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "31.65",
+        "SpeedMBps": "32.82",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T14:14:25",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "30.66",
+        "SpeedMBps": "33.88",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T14:15:01",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "28",
+        "SpeedMBps": "37.1",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:22:29",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "31.57",
+        "SpeedMBps": "32.90",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T14:23:06",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "31.56",
+        "SpeedMBps": "32.91",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T14:23:42",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "35.89",
+        "SpeedMBps": "28.94",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T14:24:24",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "29.22",
+        "SpeedMBps": "35.55",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T14:24:57",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "24.85",
+        "SpeedMBps": "41.80",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:31:21",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "27.02",
+        "SpeedMBps": "38.44",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T14:31:53",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "26.58",
+        "SpeedMBps": "39.08",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T14:32:25",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "28.55",
+        "SpeedMBps": "36.38",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T14:32:58",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "30.15",
+        "SpeedMBps": "34.45",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T14:33:34",
+        "SourceSizeGB": "1.01",
+        "CopyTimeSeconds": "27.98",
+        "SpeedMBps": "37.12",
+        "Configuration": "baseline"
+      }
+    ],
+    "boot-time": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:05:46",
+        "TimeToLogon": "22",
+        "LogonTimeout": "0",
+        "LogonToDesktop": "40.38",
+        "TotalBootTime": "62.38",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:14:15",
+        "TimeToLogon": "19",
+        "LogonTimeout": "0",
+        "LogonToDesktop": "57.89",
+        "TotalBootTime": "76.89",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:10:05",
+        "TimeToLogon": "25.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "57.20",
+        "TotalBootTime": "82.20",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:20:13",
+        "TimeToLogon": "17.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "62.41",
+        "TotalBootTime": "79.41",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:29:12",
+        "TimeToLogon": "18.00",
+        "LogonTimeout": "0.00",
+        "LogonToDesktop": "44.94",
+        "TotalBootTime": "62.94",
+        "Configuration": "baseline"
+      }
+    ],
+    "ram-startup": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:05:46",
+        "UsedMemoryMB": "2645.39",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:14:15",
+        "UsedMemoryMB": "2574.88",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:10:05",
+        "UsedMemoryMB": "2835.24",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:20:13",
+        "UsedMemoryMB": "2680.4",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:29:12",
+        "UsedMemoryMB": "2658.55",
+        "TotalMemoryMB": "8172.88",
+        "Configuration": "baseline"
+      }
+    ],
+    "app-launch": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:05:49",
+        "TimeMs": "13303.485",
+        "TimeSeconds": "13.3",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-17T16:06:16",
+        "TimeMs": "11573.9859",
+        "TimeSeconds": "11.57",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-17T16:06:40",
+        "TimeMs": "12571.2276",
+        "TimeSeconds": "12.57",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-17T16:07:05",
+        "TimeMs": "12592.933",
+        "TimeSeconds": "12.59",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-17T16:07:31",
+        "TimeMs": "11518.0409",
+        "TimeSeconds": "11.52",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:14:16",
+        "TimeMs": "16935.909",
+        "TimeSeconds": "16.94",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-17T16:14:46",
+        "TimeMs": "10080.3033",
+        "TimeSeconds": "10.08",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-17T16:15:09",
+        "TimeMs": "12972.9736",
+        "TimeSeconds": "12.97",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-17T16:15:36",
+        "TimeMs": "11943.3247",
+        "TimeSeconds": "11.94",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-17T16:16:02",
+        "TimeMs": "13814.4798",
+        "TimeSeconds": "13.81",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:10:07",
+        "TimeMs": "18639.7276",
+        "TimeSeconds": "18.64",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T14:10:40",
+        "TimeMs": "18280.7418",
+        "TimeSeconds": "18.28",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T14:11:12",
+        "TimeMs": "14155.9271",
+        "TimeSeconds": "14.16",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T14:11:41",
+        "TimeMs": "20594.1589",
+        "TimeSeconds": "20.59",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T14:12:16",
+        "TimeMs": "18512.3709",
+        "TimeSeconds": "18.51",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:20:15",
+        "TimeMs": "18395.5298",
+        "TimeSeconds": "18.40",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T14:20:48",
+        "TimeMs": "11166.2999",
+        "TimeSeconds": "11.17",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T14:21:12",
+        "TimeMs": "18173.0516",
+        "TimeSeconds": "18.17",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T14:21:44",
+        "TimeMs": "13429.9811",
+        "TimeSeconds": "13.43",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T14:22:11",
+        "TimeMs": "14092.4931",
+        "TimeSeconds": "14.09",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:29:13",
+        "TimeMs": "16507.8276",
+        "TimeSeconds": "16.51",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T14:29:44",
+        "TimeMs": "12080.7947",
+        "TimeSeconds": "12.08",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T14:30:09",
+        "TimeMs": "13629.7667",
+        "TimeSeconds": "13.63",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T14:30:37",
+        "TimeMs": "13503.9423",
+        "TimeSeconds": "13.50",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T14:31:03",
+        "TimeMs": "13147.0504",
+        "TimeSeconds": "13.15",
+        "Configuration": "baseline"
+      }
+    ],
+    "ftp-download": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:10:10",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "10.18",
+        "SpeedMBps": "11.26",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-17T16:10:27",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "9.60",
+        "SpeedMBps": "11.94",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-17T16:10:42",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.37",
+        "SpeedMBps": "10.08",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-17T16:10:59",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.15",
+        "SpeedMBps": "9.44",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-17T16:11:16",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "10.49",
+        "SpeedMBps": "10.93",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:18:39",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "9.92",
+        "SpeedMBps": "11.56",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-17T16:18:54",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "9.40",
+        "SpeedMBps": "12.20",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-17T16:19:09",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.42",
+        "SpeedMBps": "9.23",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-17T16:19:28",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "10.24",
+        "SpeedMBps": "11.20",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-17T16:19:43",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "9.95",
+        "SpeedMBps": "11.52",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:15:30",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.81",
+        "SpeedMBps": "8.95",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T14:15:50",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "11.71",
+        "SpeedMBps": "9.79",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T14:16:07",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.10",
+        "SpeedMBps": "9.48",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T14:16:25",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "13.64",
+        "SpeedMBps": "8.41",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T14:16:44",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "17.00",
+        "SpeedMBps": "6.74",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:25:23",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.28",
+        "SpeedMBps": "9.34",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T14:25:42",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "14.87",
+        "SpeedMBps": "7.71",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T14:26:03",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.14",
+        "SpeedMBps": "9.44",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T14:26:20",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "10.35",
+        "SpeedMBps": "11.08",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T14:26:35",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "9.48",
+        "SpeedMBps": "12.09",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:34:03",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "10.49",
+        "SpeedMBps": "10.93",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "2",
+        "Timestamp": "2026-01-19T14:34:19",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "10.63",
+        "SpeedMBps": "10.79",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "3",
+        "Timestamp": "2026-01-19T14:34:35",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "12.40",
+        "SpeedMBps": "9.25",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "4",
+        "Timestamp": "2026-01-19T14:34:54",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "19.74",
+        "SpeedMBps": "5.81",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "5",
+        "Timestamp": "2026-01-19T14:35:21",
+        "FileSizeMB": "114.66",
+        "DownloadTimeSeconds": "8.37",
+        "SpeedMBps": "13.70",
+        "Configuration": "baseline"
+      }
+    ],
+    "process-count": [
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:05:46",
+        "ProcessCount": "152",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-17T16:14:15",
+        "ProcessCount": "149",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:10:05",
+        "ProcessCount": "163",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:20:13",
+        "ProcessCount": "150",
+        "Configuration": "baseline"
+      },
+      {
+        "Iteration": "1",
+        "Timestamp": "2026-01-19T14:29:12",
+        "ProcessCount": "151",
+        "Configuration": "baseline"
+      }
+    ]
+  }
+}
