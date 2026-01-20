@@ -76,6 +76,9 @@
 
 \usepackage{cleveref}
 
+% Bibliography support
+\usepackage[numbers,sort&compress]{natbib}
+
 \begin{document}
 
 \title{Performance Impact Analysis of Intrusion Detection/Prevention Systems on Windows 11: A Comparative Study of TotalAV and Fort Firewall}
@@ -113,12 +116,15 @@ Modern computing environments rely heavily on Intrusion Detection/Prevention Sys
 
 \subsection{Contribution}
 
-This research provides empirically-derived performance metrics for contemporary IDS/IPS solutions on Windows 11, following standardized testing methodologies consistent with industry practices established by Tom's Hardware~\cite{tomshardware-methodology,tomshardware-testing-guide} and AnandTech~\cite{anandtech-benchmarks,anandtech-statistical-methods}. These methodologies emphasize controlled test environments, multiple iteration testing for statistical validity (minimum 3-5 runs), outlier detection using established statistical methods, and comparative analysis against baseline configurations. Unlike vendor-provided benchmarks that often showcase best-case scenarios, this independent evaluation enables data-driven decision-making for security policy development and capacity planning.
+This research provides empirically-derived performance metrics for contemporary IDS/IPS solutions on Windows~11.
+Our methodology follows standardized testing practices including controlled environments, multiple iterations (3--5 runs), IQR outlier detection, and baseline comparisons~\cite{tomshardware-methodology,tomshardware-testing-guide,anandtech-benchmarks,anandtech-statistical-methods}.
+Unlike vendor benchmarks showing best-case scenarios, this evaluation enables data-driven security decisions.
 
 \section{Related Work}
 \label{sec:related}
 
-Computer performance evaluation methodologies established by Tom's Hardware~\cite{tomshardware-methodology,tomshardware-testing-guide} and AnandTech~\cite{anandtech-benchmarks,anandtech-statistical-methods} emphasize controlled environments with consistent hardware configurations, multiple iteration testing to establish statistical validity (minimum 3-5 runs), outlier detection and removal using established statistical methods (such as the IQR method we employ), and comparative analysis against baseline configurations. These sources provide detailed guidance on calculating mean, median, and standard deviation for benchmark result interpretation. Our methodology aligns with these industry-standard practices, employing five iterations per test and applying Interquartile Range (IQR) outlier detection.
+Computer performance evaluation follows industry standards including controlled environments, multiple iterations (3--5 runs), and IQR outlier detection~\cite{tomshardware-methodology,tomshardware-testing-guide,anandtech-benchmarks,anandtech-statistical-methods}.
+Our methodology adheres to these principles.
 
 Previous antivirus performance studies~\cite{tomshardware-antivirus} reported overhead ranging from 10--40\% on boot times and 5--20\% on application performance. However, comprehensive comparative analysis of combined IDS/IPS deployments (antivirus + firewall) on Windows 11 virtualized environments remains limited. This study addresses that gap through controlled measurements across six distinct performance criteria, following established benchmarking methodologies.
 
@@ -153,11 +159,11 @@ Each configuration implemented as separate VirtualBox snapshot for perfect state
 
 \textbf{Criterion C -- Process Count:} PowerShell Get-Process counting active processes 30 seconds post-boot. 5 measurements per configuration.
 
-\textbf{Criterion D -- Application Launch:} Custom PowerShell script launching 30 applications (10 Calculator, 10 Paint, 10 Notepad) per iteration, measuring total time. 5 iterations per configuration (150 total app launches).
+\textbf{Criterion D -- Application Launch:} Custom PowerShell script launching 30 applications (10 Calculator, 10 Paint, 10 Notepad) per iteration, measuring total time. 5 iterations across 5 boot cycles per configuration (25 measurements, 750 total app launches).
 
-\textbf{Criterion E -- SMB Network Transfer:} Server Message Block protocol copying 1.01~GB folder from QNAP NAS (192.168.50.99) over 1~Gbps LAN, measuring transfer speed (MB/s). 5 iterations per configuration.
+\textbf{Criterion E -- SMB Network Transfer:} Server Message Block protocol copying 1.01~GB folder from QNAP NAS (192.168.50.99) over 1~Gbps LAN, measuring transfer speed (MB/s). 5 iterations across 6 boot cycles per configuration (30 measurements).
 
-\textbf{Criterion F -- FTP Remote Download:} FTP download of 114.66~MB file from DIGI Storage, measuring download speed (MB/s). 5 iterations per configuration.
+\textbf{Criterion F -- FTP Remote Download:} FTP download of 114.66~MB file from DIGI Storage, measuring download speed (MB/s). 5 iterations across 5 boot cycles per configuration (25 measurements).
 
 \subsection{Statistical Analysis}
 
@@ -168,6 +174,8 @@ Q_1 &= \text{25th percentile}, \quad Q_3 = \text{75th percentile} \\
 \text{Lower bound} &= Q_1 - 1.5 \times \text{IQR} \\
 \text{Upper bound} &= Q_3 + 1.5 \times \text{IQR}
 \end{align*}
+
+Outlier removal resulted in varying sample sizes across metrics (3--30 measurements per configuration after cleaning). All reported statistics reflect cleaned datasets.
 
 \textbf{Statistics Calculated:} For each performance metric, we report the following statistics in result tables:
 
@@ -188,7 +196,7 @@ Positive overhead values indicate performance degradation (increased time or red
 \section{Results}
 \label{sec:results}
 
-All result tables present four key metrics for each configuration: \textit{Mean} (average value across iterations), \textit{Std Dev} (standard deviation showing measurement variability), and \textit{Overhead} (percentage change relative to baseline, where positive values indicate degradation and negative values indicate improvement).
+All result tables present three key metrics for each configuration: \textit{Mean} (average value across iterations), \textit{Std Dev} (standard deviation showing measurement variability), and \textit{Overhead} (percentage change relative to baseline, where positive values indicate degradation and negative values indicate improvement).
 
 \subsection{Boot Time Performance}
 
@@ -302,7 +310,7 @@ Both IDS/IPS & 18.98 & 4.70 & +31.21 \\
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=0.85\textwidth]{figures/chart3_app_launch.pdf}
-\caption{Application Launch Performance for 30 Applications. TotalAV imposes most severe overhead (+50.05\%), doubling launch time. Fort Firewall shows unexpected 18.05\% improvement.}
+\caption{Application Launch Performance for 30 Applications. TotalAV imposes most severe overhead (+50.05\%), increasing launch time by half. Fort Firewall shows unexpected 18.05\% improvement.}
 \label{fig:app_launch}
 \end{figure}
 
@@ -406,9 +414,11 @@ Fort Firewall exhibited unexpectedly positive performance across several metrics
 
 \subsection{Combined Deployment Interactions}
 
-\textbf{Subadditive Effects:} Boot time (24.09\% vs.\ expected 16.77\%) and app launch (31.21\% vs.\ expected 32.00\%) showed less overhead than the sum of individual components would suggest, which indicates shared Windows security APIs that reduce redundant system calls or Fort Firewall whitelisting TotalAV processes.
+\textbf{Superadditive Effects:} Boot time overhead (24.09\%) exceeded the expected additive sum of individual components (31.39\% + (-14.62\%) = 16.77\%), indicating negative interaction where TotalAV's scanning overhead partially negates Fort Firewall's optimization benefits when both run simultaneously.
 
-\textbf{Additive Effects:} RAM usage (20.35\% vs.\ expected 18.92\%) and FTP performance (-20.02\% vs.\ -28.24\%) remained largely independent, operating without significant interaction.
+\textbf{Subadditive Effects:} App launch overhead (31.21\% vs.\ expected 32.00\%) showed slightly less degradation than the sum would predict, suggesting some shared Windows security APIs reduce redundant system calls.
+
+\textbf{Near-Additive Effects:} RAM usage (20.35\% vs.\ expected 18.92\%) and FTP performance (-20.02\% vs.\ -28.24\%) remained largely independent, with both systems maintaining separate memory footprints and network inspection overhead.
 
 \subsection{Practical Recommendations}
 
@@ -431,7 +441,9 @@ This study quantified TotalAV antivirus and Fort Firewall performance impact on 
 
 Combined deployments showed subadditive effects in several metrics, suggesting architectural synergies. Network performance degraded across all IDS/IPS configurations (8.80--20.02%), indicating both antivirus I/O scanning and firewall packet inspection contribute independent bottlenecks.
 
-Organizations must balance security requirements against performance through careful product selection and workload-appropriate deployment strategies. The quantitative metrics provided enable data-driven security policy development and capacity planning. Fort Firewall's performance improvements suggest opportunities for optimization in mainstream security products.
+Organizations must weigh security needs against performance through careful product selection and deployment strategies.
+The quantitative metrics provided enable data-driven security policy development.
+Fort Firewall's performance improvements suggest optimization opportunities in mainstream security products.
 
 \subsubsection*{Acknowledgments}
 We thank the open-source communities behind VirtualBox, BootRacer, and the LNCS LaTeX template for providing the tools that enabled this research.

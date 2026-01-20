@@ -13,10 +13,8 @@
 \newlabel{sec:introduction}{{1}{1}{Introduction}{section.1}{}}
 \newlabel{sec:introduction@cref}{{[section][1][]1}{[1][1][]1}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.1}Research Questions}{1}{subsection.1.1}\protected@file@percent }
-\citation{tomshardware-methodology,tomshardware-testing-guide}
-\citation{anandtech-benchmarks,anandtech-statistical-methods}
-\citation{tomshardware-methodology,tomshardware-testing-guide}
-\citation{anandtech-benchmarks,anandtech-statistical-methods}
+\citation{tomshardware-methodology,tomshardware-testing-guide,anandtech-benchmarks,anandtech-statistical-methods}
+\citation{tomshardware-methodology,tomshardware-testing-guide,anandtech-benchmarks,anandtech-statistical-methods}
 \citation{tomshardware-antivirus}
 \@writefile{toc}{\contentsline {subsection}{\numberline {1.2}Contribution}{2}{subsection.1.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {2}Related Work}{2}{section.2}\protected@file@percent }
@@ -26,7 +24,7 @@
 \newlabel{sec:methodology}{{3}{2}{Methodology}{section.3}{}}
 \newlabel{sec:methodology@cref}{{[section][3][]3}{[1][2][]2}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Test Environment}{2}{subsection.3.1}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Test Configurations}{3}{subsection.3.2}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Test Configurations}{2}{subsection.3.2}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Performance Metrics}{3}{subsection.3.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Statistical Analysis}{3}{subsection.3.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {4}Results}{4}{section.4}\protected@file@percent }
@@ -36,60 +34,60 @@
 \@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Boot Time Analysis (seconds)}}{4}{table.1}\protected@file@percent }
 \newlabel{tab:boot_time}{{1}{4}{Boot Time Analysis (seconds)}{table.1}{}}
 \newlabel{tab:boot_time@cref}{{[table][1][]1}{[1][4][]4}{}{}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}RAM Consumption}{4}{subsection.4.2}\protected@file@percent }
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Operating System Boot Time Across Four IDS Configurations. Error bars represent standard deviation. Fort Firewall demonstrates unexpected 14.62\% improvement, while TotalAV imposes 31.39\% overhead.}}{5}{figure.1}\protected@file@percent }
 \newlabel{fig:boot_time}{{1}{5}{Operating System Boot Time Across Four IDS Configurations. Error bars represent standard deviation. Fort Firewall demonstrates unexpected 14.62\% improvement, while TotalAV imposes 31.39\% overhead}{figure.1}{}}
 \newlabel{fig:boot_time@cref}{{[figure][1][]1}{[1][4][]5}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}RAM Consumption}{5}{subsection.4.2}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Memory Usage at Startup (MB)}}{5}{table.2}\protected@file@percent }
 \newlabel{tab:ram_usage}{{2}{5}{Memory Usage at Startup (MB)}{table.2}{}}
-\newlabel{tab:ram_usage@cref}{{[table][2][]2}{[1][5][]5}{}{}{}}
+\newlabel{tab:ram_usage@cref}{{[table][2][]2}{[1][4][]5}{}{}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces RAM Consumption at System Startup. TotalAV accounts for majority of memory overhead (+464~MB), while Fort Firewall remains lightweight (+39~MB).}}{6}{figure.2}\protected@file@percent }
 \newlabel{fig:ram_usage}{{2}{6}{RAM Consumption at System Startup. TotalAV accounts for majority of memory overhead (+464~MB), while Fort Firewall remains lightweight (+39~MB)}{figure.2}{}}
-\newlabel{fig:ram_usage@cref}{{[figure][2][]2}{[1][5][]6}{}{}{}}
+\newlabel{fig:ram_usage@cref}{{[figure][2][]2}{[1][4][]6}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.3}Process Count}{6}{subsection.4.3}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Running Process Count}}{6}{table.3}\protected@file@percent }
 \newlabel{tab:process_count}{{3}{6}{Running Process Count}{table.3}{}}
 \newlabel{tab:process_count@cref}{{[table][3][]3}{[1][6][]6}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Application Launch Performance}{6}{subsection.4.4}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.4}Application Launch Performance}{7}{subsection.4.4}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Application Launch Time (30 apps, seconds)}}{7}{table.4}\protected@file@percent }
 \newlabel{tab:app_launch}{{4}{7}{Application Launch Time (30 apps, seconds)}{table.4}{}}
 \newlabel{tab:app_launch@cref}{{[table][4][]4}{[1][6][]7}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Application Launch Performance for 30 Applications. TotalAV imposes most severe overhead (+50.05\%), doubling launch time. Fort Firewall shows unexpected 18.05\% improvement.}}{7}{figure.3}\protected@file@percent }
-\newlabel{fig:app_launch}{{3}{7}{Application Launch Performance for 30 Applications. TotalAV imposes most severe overhead (+50.05\%), doubling launch time. Fort Firewall shows unexpected 18.05\% improvement}{figure.3}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Application Launch Performance for 30 Applications. TotalAV imposes most severe overhead (+50.05\%), increasing launch time by half. Fort Firewall shows unexpected 18.05\% improvement.}}{7}{figure.3}\protected@file@percent }
+\newlabel{fig:app_launch}{{3}{7}{Application Launch Performance for 30 Applications. TotalAV imposes most severe overhead (+50.05\%), increasing launch time by half. Fort Firewall shows unexpected 18.05\% improvement}{figure.3}{}}
 \newlabel{fig:app_launch@cref}{{[figure][3][]3}{[1][7][]7}{}{}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Network Performance}{7}{subsection.4.5}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.5}Network Performance}{8}{subsection.4.5}\protected@file@percent }
 \@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces SMB Local Network Transfer (1~GB folder, MB/s)}}{8}{table.5}\protected@file@percent }
 \newlabel{tab:smb_transfer}{{5}{8}{SMB Local Network Transfer (1~GB folder, MB/s)}{table.5}{}}
 \newlabel{tab:smb_transfer@cref}{{[table][5][]5}{[1][7][]8}{}{}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {6}{\ignorespaces FTP Remote Download (114.66~MB file, MB/s)}}{8}{table.6}\protected@file@percent }
 \newlabel{tab:ftp_download}{{6}{8}{FTP Remote Download (114.66~MB file, MB/s)}{table.6}{}}
-\newlabel{tab:ftp_download@cref}{{[table][6][]6}{[1][7][]8}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Network Performance: SMB Local Transfer (left) and FTP Remote Download (right). Fort Firewall shows contrasting behavior: improving local network performance (+7.14\%) while degrading remote FTP (-17.41\%).}}{8}{figure.4}\protected@file@percent }
-\newlabel{fig:network_performance}{{4}{8}{Network Performance: SMB Local Transfer (left) and FTP Remote Download (right). Fort Firewall shows contrasting behavior: improving local network performance (+7.14\%) while degrading remote FTP (-17.41\%)}{figure.4}{}}
-\newlabel{fig:network_performance@cref}{{[figure][4][]4}{[1][8][]8}{}{}{}}
+\newlabel{tab:ftp_download@cref}{{[table][6][]6}{[1][8][]8}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {4.6}Comprehensive Overview}{8}{subsection.4.6}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Network Performance: SMB Local Transfer (left) and FTP Remote Download (right). Fort Firewall shows contrasting behavior: improving local network performance (+7.14\%) while degrading remote FTP (-17.41\%).}}{9}{figure.4}\protected@file@percent }
+\newlabel{fig:network_performance}{{4}{9}{Network Performance: SMB Local Transfer (left) and FTP Remote Download (right). Fort Firewall shows contrasting behavior: improving local network performance (+7.14\%) while degrading remote FTP (-17.41\%)}{figure.4}{}}
+\newlabel{fig:network_performance@cref}{{[figure][4][]4}{[1][8][]9}{}{}{}}
 \@writefile{lot}{\contentsline {table}{\numberline {7}{\ignorespaces Comprehensive Performance Overhead Comparison (\%)}}{9}{table.7}\protected@file@percent }
 \newlabel{tab:comprehensive}{{7}{9}{Comprehensive Performance Overhead Comparison (\%)}{table.7}{}}
 \newlabel{tab:comprehensive@cref}{{[table][7][]7}{[1][8][]9}{}{}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comprehensive Performance Impact Heatmap. Green indicates improvements, red indicates degradation. Fort Firewall shows unique optimization benefits across multiple metrics.}}{9}{figure.5}\protected@file@percent }
-\newlabel{fig:comprehensive_overhead}{{5}{9}{Comprehensive Performance Impact Heatmap. Green indicates improvements, red indicates degradation. Fort Firewall shows unique optimization benefits across multiple metrics}{figure.5}{}}
-\newlabel{fig:comprehensive_overhead@cref}{{[figure][5][]5}{[1][8][]9}{}{}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Comprehensive Performance Impact Heatmap. Green indicates improvements, red indicates degradation. Fort Firewall shows unique optimization benefits across multiple metrics.}}{10}{figure.5}\protected@file@percent }
+\newlabel{fig:comprehensive_overhead}{{5}{10}{Comprehensive Performance Impact Heatmap. Green indicates improvements, red indicates degradation. Fort Firewall shows unique optimization benefits across multiple metrics}{figure.5}{}}
+\newlabel{fig:comprehensive_overhead@cref}{{[figure][5][]5}{[1][8][]10}{}{}{}}
 \@writefile{toc}{\contentsline {section}{\numberline {5}Discussion}{10}{section.5}\protected@file@percent }
 \newlabel{sec:discussion}{{5}{10}{Discussion}{section.5}{}}
-\newlabel{sec:discussion@cref}{{[section][5][]5}{[1][10][]10}{}{}{}}
+\newlabel{sec:discussion@cref}{{[section][5][]5}{[1][8][]10}{}{}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.1}TotalAV Performance Impact}{10}{subsection.5.1}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.2}Fort Firewall Characteristics}{10}{subsection.5.2}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Combined Deployment Interactions}{10}{subsection.5.3}\protected@file@percent }
-\bibstyle{splncs04nat}
-\bibdata{ids-paper}
-\bibcite{anandtech-benchmarks}{{AnandTech}(2024)}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.3}Combined Deployment Interactions}{11}{subsection.5.3}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.4}Practical Recommendations}{11}{subsection.5.4}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {5.5}Limitations}{11}{subsection.5.5}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {6}Conclusion}{11}{section.6}\protected@file@percent }
 \newlabel{sec:conclusion}{{6}{11}{Conclusion}{section.6}{}}
 \newlabel{sec:conclusion@cref}{{[section][6][]6}{[1][11][]11}{}{}{}}
-\bibcite{anandtech-statistical-methods}{Cutress and Smith(2023)}
-\bibcite{tomshardware-antivirus}{{Tom's Hardware}(2024{a})}
-\bibcite{tomshardware-methodology}{{Tom's Hardware}(2024{b})}
-\bibcite{tomshardware-testing-guide}{{Tom's Hardware Editorial Team}(2023)}
-\gdef \@abspage@last{12}
+\bibstyle{splncs04nat}
+\bibdata{ids-paper}
+\bibcite{anandtech-benchmarks}{{1}{2024}{{AnandTech}}{{}}}
+\bibcite{anandtech-statistical-methods}{{2}{2023}{{Cutress and Smith}}{{}}}
+\bibcite{tomshardware-antivirus}{{3}{2024{}}{{Tom's Hardware}}{{}}}
+\bibcite{tomshardware-methodology}{{4}{2024{}}{{Tom's Hardware}}{{}}}
+\bibcite{tomshardware-testing-guide}{{5}{2023}{{Tom's Hardware Editorial Team}}{{}}}
+\gdef \@abspage@last{13}
