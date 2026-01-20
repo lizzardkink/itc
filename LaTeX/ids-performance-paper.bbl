@@ -1,0 +1,53 @@
+\begin{thebibliography}{5}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\providecommand{\urlprefix}{URL }
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi:\discretionary{}{}{}#1}\else
+  \providecommand{\doi}{doi:\discretionary{}{}{}\begingroup
+  \urlstyle{rm}\Url}\fi
+
+\bibitem[{{AnandTech}(2024)}]{anandtech-benchmarks}
+{AnandTech}: The {AnandTech} {CPU} benchmarking methodology: System performance
+  testing.
+  \url{https://www.anandtech.com/show/16214/introducing-the-anandtech-storage-bench}
+  (2024), standardized testing protocols emphasizing controlled environments,
+  multiple iteration testing (5+ runs for statistical validity), outlier
+  detection, and comparative baseline analysis. Describes coefficient of
+  variation usage for measurement consistency evaluation
+
+\bibitem[{Cutress and Smith(2023)}]{anandtech-statistical-methods}
+Cutress, I., Smith, R.: {AnandTech} bench: Statistical methodology and result
+  interpretation. \url{https://www.anandtech.com/bench/about} (2023), explains
+  statistical measures used in benchmark results including mean, median,
+  standard deviation, and margin of error. Details the importance of multiple
+  test iterations and variance analysis in performance benchmarking
+
+\bibitem[{{Tom's Hardware}(2024{\natexlab{a}})}]{tomshardware-antivirus}
+{Tom's Hardware}: Best antivirus software 2024: Performance impact testing
+  methodology. \url{https://www.tomshardware.com/best-picks/best-antivirus}
+  (2024{\natexlab{a}}), industry-standard antivirus testing methodology
+  measuring system boot time, application launch speed, file transfer
+  performance, and resource consumption overhead. Establishes baseline
+  comparison methods for security software performance evaluation
+
+\bibitem[{{Tom's Hardware}(2024{\natexlab{b}})}]{tomshardware-methodology}
+{Tom's Hardware}: How we test {CPUs}: {Gaming} and desktop performance
+  methodology.
+  \url{https://www.tomshardware.com/reviews/how-we-test-cpus,5805.html}
+  (2024{\natexlab{b}}), comprehensive CPU testing methodology emphasizing
+  multiple iteration testing (minimum 3 runs), controlled test environments,
+  and statistical consistency. Describes boot time measurement, application
+  launch testing, and real-world workload benchmarking protocols used in
+  industry-standard performance evaluation
+
+\bibitem[{{Tom's Hardware Editorial Team}(2023)}]{tomshardware-testing-guide}
+{Tom's Hardware Editorial Team}: How we test: Benchmarking methodology and
+  statistical validity.
+  \url{https://www.tomshardware.com/features/how-we-test-benchmarking} (2023),
+  detailed explanation of benchmarking statistical methods including average
+  calculation, standard deviation analysis, and measurement consistency
+  requirements. Establishes industry standards for performance testing
+  repeatability and result validation
+
+\end{thebibliography}
