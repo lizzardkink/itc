@@ -56,6 +56,7 @@
 \DisableLigatures{encoding = T1, family = tt* }
 
 \usepackage{graphicx}
+\usepackage{float}
 \usepackage{diagbox}
 \usepackage[dvipsnames, table]{xcolor}
 \usepackage{booktabs}
@@ -144,8 +145,8 @@ Previous antivirus performance studies~\cite{tomshardware-antivirus} reported ov
 Four distinct configurations were evaluated:
 \begin{enumerate}
 \item \textbf{Baseline:} Clean Windows 11, no IDS
-\item \textbf{TotalAV Only:} TotalAV v6.5.219 active, Windows Firewall disabled
-\item \textbf{Fort Firewall Only:} Fort Firewall v3.19.9 active, Windows Defender disabled
+\item \textbf{TotalAV Only:} TotalAV v6.5.219 active
+\item \textbf{Fort Firewall Only:} Fort Firewall v3.19.9 active
 \item \textbf{Both IDS:} TotalAV + Fort Firewall operational simultaneously
 \end{enumerate}
 
@@ -159,9 +160,9 @@ Each configuration implemented as separate VirtualBox snapshot for perfect state
 
 \textbf{Criterion C -- Process Count:} PowerShell Get-Process counting active processes 30 seconds post-boot. 5 measurements per configuration.
 
-\textbf{Criterion D -- Application Launch:} Custom PowerShell script launching 30 applications (10 Calculator, 10 Paint, 10 Notepad) per iteration, measuring total time. 5 iterations across 5 boot cycles per configuration (25 measurements, 750 total app launches).
+\textbf{Criterion D -- Application Launch:} Custom PowerShell script launching 30 applications (10 Calculator, 10 Paint, 10 Notepad) per iteration in randomized order to circumvent any pre-caching mechanism, measuring total time. 5 iterations across 5 boot cycles per configuration (25 measurements, 750 total app launches).
 
-\textbf{Criterion E -- SMB Network Transfer:} Server Message Block protocol copying 1.01~GB folder from QNAP NAS (192.168.50.99) over 1~Gbps LAN, measuring transfer speed (MB/s). 5 iterations across 6 boot cycles per configuration (30 measurements).
+\textbf{Criterion E -- SMB Network Transfer:} Server Message Block protocol copying 1.01~GB folder from QNAP NAS (192.168.50.99) over 1~Gbps LAN, measuring transfer speed (MB/s). 5 iterations across 5 boot cycles per configuration (25 measurements).
 
 \textbf{Criterion F -- FTP Remote Download:} FTP download of 114.66~MB file from DIGI Storage, measuring download speed (MB/s). 5 iterations across 5 boot cycles per configuration (25 measurements).
 
@@ -353,14 +354,14 @@ Both IDS/IPS & 8.23 & 1.63 & \textbf{-20.02} \\
 \end{tabular}
 \end{table}
 
-\textbf{Key Findings:} TotalAV reduced SMB throughput by 19.26\% due to real-time file scanning. Fort Firewall improved SMB by 7.14\%, exceeding baseline through efficient packet processing. However, Fort Firewall imposed highest FTP penalty (-17.41\%), suggesting deep packet inspection overhead for external connections differs from local LAN behavior.
-
-\begin{figure}[htbp]
+\begin{figure}[!ht]
 \centering
 \includegraphics[width=\textwidth]{figures/chart4_network_performance.pdf}
 \caption{Network Performance: SMB Local Transfer (left) and FTP Remote Download (right). Fort Firewall shows contrasting behavior: improving local network performance (+7.14\%) while degrading remote FTP (-17.41\%).}
 \label{fig:network_performance}
 \end{figure}
+
+\textbf{Key Findings:} TotalAV reduced SMB throughput by 19.26\% due to real-time file scanning. Fort Firewall improved SMB by 7.14\%, exceeding baseline through efficient packet processing. However, Fort Firewall imposed highest FTP penalty (-17.41\%), suggesting deep packet inspection overhead for external connections differs from local LAN behavior.
 
 \subsection{Comprehensive Overview}
 
